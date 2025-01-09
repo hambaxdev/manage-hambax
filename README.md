@@ -98,8 +98,9 @@ Commit your changes:
 
     Push to your forked repository and create a pull request.
 
-📂 Project Structure
+## 📂 Project Structure
 
+```plaintext
 hambax/
 ├── public/               # Public assets
 ├── src/
@@ -115,8 +116,9 @@ hambax/
 ├── docker-compose.yml    # Docker configuration
 ├── package.json          # NPM dependencies
 └── README.md             # Project documentation
+```
 
-
+---
 🛡️ License
 
 This project is licensed under the MIT License.
