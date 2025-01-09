@@ -3,6 +3,7 @@ import { TextField, Button, InputAdornment, IconButton } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useTranslation } from 'react-i18next';
 
 const PasswordResetComponent = ({
   newPassword,
@@ -14,10 +15,13 @@ const PasswordResetComponent = ({
   showPassword,
   toggleShowPassword,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
+      {/* New password input */}
       <TextField
-        label="Новый пароль"
+        label={t('passwordReset.newPassword')}
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
         fullWidth
@@ -34,8 +38,9 @@ const PasswordResetComponent = ({
           ),
         }}
       />
+      {/* Confirm password input */}
       <TextField
-        label="Подтвердите пароль"
+        label={t('passwordReset.confirmPassword')}
         type={showPassword ? 'text' : 'password'}
         variant="outlined"
         fullWidth
@@ -52,6 +57,7 @@ const PasswordResetComponent = ({
           ),
         }}
       />
+      {/* Reset password button */}
       <Button
         variant="contained"
         color="primary"
@@ -60,7 +66,7 @@ const PasswordResetComponent = ({
         disabled={isLoading}
         sx={{ mt: 2 }}
       >
-        {isLoading ? <CircularProgress size={24} /> : 'Сменить пароль'}
+        {isLoading ? <CircularProgress size={24} /> : t('passwordReset.resetButton')}
       </Button>
     </>
   );

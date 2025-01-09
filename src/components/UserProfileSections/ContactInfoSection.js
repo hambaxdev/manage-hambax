@@ -1,15 +1,18 @@
 import React from 'react';
-import { Grid, TextField, Typography  } from '@mui/material';
+import { Grid, TextField, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ContactInfoSection = ({ data, onChange }) => {
+    const { t } = useTranslation();
+
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
-                <Typography variant="h6">Contact Information</Typography>
+                <Typography variant="h6">{t('profile.contactInfo.title')}</Typography>
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
-                    label="Phone"
+                    label={t('profile.contactInfo.phone')}
                     name="phone"
                     value={data.phone}
                     onChange={(e) => onChange('phone', e.target.value)}
@@ -18,7 +21,7 @@ const ContactInfoSection = ({ data, onChange }) => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
-                    label="Alternate Phone"
+                    label={t('profile.contactInfo.alternatePhone')}
                     name="alternatePhone"
                     value={data.alternatePhone}
                     onChange={(e) => onChange('alternatePhone', e.target.value)}
@@ -27,7 +30,7 @@ const ContactInfoSection = ({ data, onChange }) => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <TextField
-                    label="Website"
+                    label={t('profile.contactInfo.website')}
                     name="website"
                     value={data.website}
                     onChange={(e) => onChange('website', e.target.value)}

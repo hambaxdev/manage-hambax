@@ -125,14 +125,6 @@
       "allCountries": "Все страны"
     }
   },
-  "events": {
-    "title": "Предстоящие мероприятия",
-    "description": "Откройте для себя захватывающие места, яркие сообщества, выдающиеся таланты и музыку, которая выходит за пределы привычного. Выберите ритм своего сезона.",
-    "errorFetching": "Не удалось загрузить мероприятия. Попробуйте позже."
-  },
-  "eventList": {
-    "noEvents": "Нет предстоящих мероприятий."
-  },
   "filters": {
     "city": "Город",
     "theme": "Тема",
@@ -160,5 +152,119 @@
     "title": "Требуется настройка Stripe",
     "description": "Для включения платежных функций завершите процесс настройки Stripe.",
     "button": "Перейти к настройке Stripe"
+  },
+  "ageRestriction": {
+    "title": "Возрастное ограничение",
+    "label": "Выберите возрастное ограничение",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventImage": {
+    "title": "Изображение мероприятия",
+    "helperText": "Нажмите, чтобы выбрать изображение для мероприятия",
+    "altText": "Изображение мероприятия",
+    "placeholder": "Нажмите для выбора изображения"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Название",
+    "descriptionLabel": "Описание",
+    "clubNameLabel": "Название клуба",
+    "dateLabel": "Дата мероприятия",
+    "timeLabel": "Время начала"
+  },
+  "eventStepper": {
+    "generalInformation": "Общая информация",
+    "eventAddress": "Адрес мероприятия",
+    "tickets": "Билеты"
+  },
+  "createEventPage": {
+    "title": "Создание нового мероприятия",
+    "backButton": "Назад",
+    "nextButton": "Далее",
+    "submitButton": "Создать мероприятие",
+    "savedData": "Сохраненные данные:"
+  },
+  "eventType": {
+    "title": "Тип мероприятия",
+    "helperText": "Выберите тип мероприятия",
+    "party": "Вечеринка",
+    "club": "Клубное шоу",
+    "concert": "Концерт"
+  },
+  "eventAddress": {
+    "title": "Адрес мероприятия",
+    "streetLabel": "Улица",
+    "buildingLabel": "Здание",
+    "cityLabel": "Город",
+    "countryLabel": "Страна",
+    "countryHelperText": "Выберите страну для мероприятия",
+    "postalCodeLabel": "Почтовый индекс"
+  },
+  "events": {
+    "title": "Список мероприятий",
+    "createEventButton": "Добавить мероприятие"
+  },
+  "profile": {
+    "saveButton": "Сохранить",
+    "basicInfo": {
+      "title": "Основная информация",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Электронная почта"
+    },
+    "contactInfo": {
+      "title": "Контактная информация",
+      "phone": "Телефон",
+      "alternatePhone": "Дополнительный телефон",
+      "website": "Веб-сайт"
+    },
+    "addressInfo": {
+      "title": "Адресная информация",
+      "city": "Город",
+      "zipCode": "Почтовый индекс",
+      "streetName": "Улица",
+      "houseNumber": "Дом",
+      "state": "Область"
+    }
+  },
+  "emailInput": {
+    "label": "Введите ваш email",
+    "sendCodeButton": "Отправить код"
+  },
+  "sidebar": {
+    "title": "Hambax",
+    "dashboard": "Панель управления",
+    "profile": "Профиль",
+    "events": "Мероприятия",
+    "logout": "Выйти"
+  },
+  "register": {
+    "title": "Регистрация",
+    "username": "Имя пользователя",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "loading": "Регистрация...",
+    "submit": "Зарегистрироваться",
+    "success": "Регистрация прошла успешно!",
+    "error": "Ошибка регистрации. Пожалуйста, попробуйте снова.",
+    "validation": {
+      "username": "Имя пользователя обязательно.",
+      "email": "Некорректный адрес электронной почты.",
+      "password": "Пароль должен содержать не менее 6 символов.",
+      "confirmPassword": "Пароли не совпадают."
+    }
+  },
+  "passwordReset": {
+    "newPassword": "Новый пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "resetButton": "Сменить пароль"
+  },
+  "pricingOptions": {
+    "label": "Способ ценообразования",
+    "fixedPrice": "Фиксированная цена",
+    "ticketPools": "Пулы билетов",
+    "ticketPrice": "Цена билета"
   }
 }

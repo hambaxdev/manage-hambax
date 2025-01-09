@@ -126,14 +126,6 @@
       "allCountries": "Alle Länder"
     }
   },
-  "events": {
-    "title": "Bevorstehende Veranstaltungen",
-    "description": "Entdecken Sie atemberaubende Orte, lebendige Gemeinschaften, außergewöhnliche Talente und Musik, die das Gewöhnliche übertrifft. Wählen Sie den Rhythmus Ihrer Saison.",
-    "errorFetching": "Veranstaltungen konnten nicht geladen werden. Bitte versuchen Sie es später noch einmal."
-  },
-  "eventList": {
-    "noEvents": "Keine bevorstehenden Veranstaltungen."
-  },
   "filters": {
     "city": "Stadt",
     "theme": "Thema",
@@ -160,5 +152,119 @@
     "title": "Stripe-Onboarding erforderlich",
     "description": "Um Zahlungsfunktionen zu aktivieren, schließen Sie bitte den Stripe-Onboarding-Prozess ab.",
     "button": "Zum Stripe-Onboarding gehen"
+  },
+  "ageRestriction": {
+    "title": "Altersbeschränkung",
+    "label": "Wählen Sie eine Altersbeschränkung",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventImage": {
+    "title": "Veranstaltungsbild",
+    "helperText": "Klicken Sie, um ein Bild für die Veranstaltung auszuwählen",
+    "altText": "Veranstaltungsbild",
+    "placeholder": "Klicken Sie, um ein Bild auszuwählen"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Veranstaltungstitel",
+    "descriptionLabel": "Beschreibung",
+    "clubNameLabel": "Name des Clubs",
+    "dateLabel": "Veranstaltungsdatum",
+    "timeLabel": "Startzeit"
+  },
+  "eventStepper": {
+    "generalInformation": "Allgemeine Informationen",
+    "eventAddress": "Veranstaltungsadresse",
+    "tickets": "Tickets"
+  },
+  "createEventPage": {
+    "title": "Erstellen Sie Ihr Event",
+    "backButton": "Zurück",
+    "nextButton": "Weiter",
+    "submitButton": "Event erstellen",
+    "savedData": "Gespeicherte Daten:"
+  },
+  "eventType": {
+    "title": "Veranstaltungsart",
+    "helperText": "Wählen Sie die Art der Veranstaltung aus",
+    "party": "Party",
+    "club": "Club-Show",
+    "concert": "Konzert"
+  },
+  "eventAddress": {
+    "title": "Veranstaltungsadresse",
+    "streetLabel": "Straße",
+    "buildingLabel": "Gebäude",
+    "cityLabel": "Stadt",
+    "countryLabel": "Land",
+    "countryHelperText": "Wählen Sie das Land der Veranstaltung",
+    "postalCodeLabel": "Postleitzahl"
+  },
+  "events": {
+    "title": "Veranstaltungsliste",
+    "createEventButton": "Veranstaltung erstellen"
+  },
+  "profile": {
+    "saveButton": "Speichern",
+    "basicInfo": {
+      "title": "Grundlegende Informationen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail"
+    },
+    "contactInfo": {
+      "title": "Kontaktinformationen",
+      "phone": "Telefon",
+      "alternatePhone": "Alternativtelefon",
+      "website": "Webseite"
+    },
+    "addressInfo": {
+      "title": "Adressinformationen",
+      "city": "Stadt",
+      "zipCode": "Postleitzahl",
+      "streetName": "Straßenname",
+      "houseNumber": "Hausnummer",
+      "state": "Bundesland"
+    }
+  },
+  "emailInput": {
+    "label": "Geben Sie Ihre E-Mail ein",
+    "sendCodeButton": "Code senden"
+  },
+  "sidebar": {
+    "title": "Hambax",
+    "dashboard": "Übersicht",
+    "profile": "Profil",
+    "events": "Veranstaltungen",
+    "logout": "Abmelden"
+  },
+  "register": {
+    "title": "Registrieren",
+    "username": "Benutzername",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "loading": "Registrierung...",
+    "submit": "Registrieren",
+    "success": "Registrierung erfolgreich!",
+    "error": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "validation": {
+      "username": "Benutzername ist erforderlich.",
+      "email": "Ungültige E-Mail-Adresse.",
+      "password": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "confirmPassword": "Die Passwörter stimmen nicht überein."
+    }
+  },
+  "passwordReset": {
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "resetButton": "Passwort zurücksetzen"
+  },
+  "pricingOptions": {
+    "label": "Preisgestaltung",
+    "fixedPrice": "Festpreis",
+    "ticketPools": "Ticket-Pools",
+    "ticketPrice": "Ticketpreis"
   }
 }

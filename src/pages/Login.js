@@ -1,10 +1,10 @@
-// src/pages/Login.js
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography, Box, Link, CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import useLogin from '../hooks/useLogin';
-import useAuth from '../hooks/useAuth'; // Хук аутентификации
-import { validateLogin } from '../utils/validation'; // Утилита для валидации
+import useAuth from '../hooks/useAuth';
+import { validateLogin } from '../utils/validation';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +13,7 @@ const Login = () => {
     const { isLoading, apiError, handleLogin } = useLogin();
     const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const onLogin = async () => {
         const values = { email, password };
@@ -23,7 +24,7 @@ const Login = () => {
             const { success, isBasicRegistrationComplete } = await handleLogin({ email, password });
             
             if (success) {
-                // Перенаправляем пользователя
+                // Redirect the user
                 navigate(isBasicRegistrationComplete ? '/admin' : '/complete-registration', { replace: true });
             }
         }
@@ -32,8 +33,9 @@ const Login = () => {
     return (
         <Container maxWidth="sm">
             <Box display="flex" flexDirection="column" alignItems="center" mt={8}>
+                {/* Localized title */}
                 <Typography variant="h4" gutterBottom>
-                    Вход в админ-панель
+                    {t('login.title')}
                 </Typography>
 
                 {apiError && (
@@ -42,8 +44,9 @@ const Login = () => {
                     </Typography>
                 )}
 
+                {/* Email input */}
                 <TextField
-                    label="Email"
+                    label={t('login.emailLabel')}
                     variant="outlined"
                     fullWidth
                     margin="normal"
@@ -53,8 +56,9 @@ const Login = () => {
                     helperText={errors.email}
                 />
 
+                {/* Password input */}
                 <TextField
-                    label="Пароль"
+                    label={t('login.passwordLabel')}
                     type="password"
                     variant="outlined"
                     fullWidth
@@ -65,6 +69,7 @@ const Login = () => {
                     helperText={errors.password}
                 />
 
+                {/* Login button */}
                 <Button
                     variant="contained"
                     color="primary"
@@ -73,15 +78,16 @@ const Login = () => {
                     sx={{ mt: 2 }}
                     disabled={isLoading}
                 >
-                    {isLoading ? <CircularProgress size={24} /> : 'LoginS'}
+                    {isLoading ? <CircularProgress size={24} /> : t('login.loginButton')}
                 </Button>
 
+                {/* Links */}
                 <Box mt={2} display="flex" justifyContent="space-between" width="100%">
                     <Link href="/register" variant="body2">
-                        Нет аккаунта? Зарегистрироваться
+                        {t('login.registerLink')}
                     </Link>
                     <Link href="/forgot-password" variant="body2">
-                        Забыли пароль?
+                        {t('login.forgotPasswordLink')}
                     </Link>
                 </Box>
             </Box>
