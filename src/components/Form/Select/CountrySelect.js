@@ -9,18 +9,18 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
   return (
     <TextField
       select
-      label={t("registration.personalInfo.citizenship")}
+      label={t('registration.personalInfo.citizenship')}
       name={name}
       value={value || ""}
       onChange={(event) => {
-        onChange(event);
+        if (onChange) onChange(event.target.value); // Передача только значения
       }}
       fullWidth
       error={!!error}
       helperText={helperText}
     >
       <MenuItem value="" disabled>
-        {t("registration.personalInfo.selectCountry")}
+        {t('registration.personalInfo.selectCountry')}
       </MenuItem>
       {countries.map((country) => (
         <MenuItem key={country.code} value={country.code}>

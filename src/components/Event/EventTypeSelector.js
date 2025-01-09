@@ -1,30 +1,36 @@
-// src/components/EventTypeSelector.js
 import React from 'react';
 import { Box, Typography, Card, CardActionArea } from '@mui/material';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import NightlifeIcon from '@mui/icons-material/Nightlife';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import { useTranslation } from 'react-i18next';
 
 const eventTypes = [
-    { type: 'party', label: 'Вечеринка', Icon: CelebrationIcon },
-    { type: 'club', label: 'Клубное шоу', Icon: NightlifeIcon },
-    { type: 'concert', label: 'Концерт', Icon: MusicNoteIcon },
+    { type: 'party', labelKey: 'eventType.party', Icon: CelebrationIcon },
+    { type: 'club', labelKey: 'eventType.club', Icon: NightlifeIcon },
+    { type: 'concert', labelKey: 'eventType.concert', Icon: MusicNoteIcon },
 ];
 
 const EventTypeSelector = ({ eventType, setEventType }) => {
+    const { t } = useTranslation();
+
     const handleSelect = (type) => {
-        // Если текущий тип уже выбран, то сбрасываем выбор
+        // Deselect if the same type is clicked
         setEventType(type === eventType ? '' : type);
     };
 
     return (
         <Box>
+            {/* Section title */}
             <Typography variant="h6" gutterBottom>
-                Тип мероприятия
+                {t('eventType.title')}
             </Typography>
+
+            {/* Helper text */}
             <Typography variant="body2" color="textSecondary" gutterBottom>
-                Выберите тип мероприятия
+                {t('eventType.helperText')}
             </Typography>
+
             <Box
                 display="flex"
                 gap={2}
@@ -34,7 +40,7 @@ const EventTypeSelector = ({ eventType, setEventType }) => {
                     flexDirection: { xs: 'column', sm: 'row' },
                 }}
             >
-                {eventTypes.map(({ type, label, Icon }) => (
+                {eventTypes.map(({ type, labelKey, Icon }) => (
                     <Card
                         key={type}
                         sx={{
@@ -73,7 +79,7 @@ const EventTypeSelector = ({ eventType, setEventType }) => {
                                     fontWeight: eventType === type ? 'bold' : 'normal',
                                 }}
                             >
-                                {label}
+                                {t(labelKey)}
                             </Typography>
                         </CardActionArea>
                     </Card>

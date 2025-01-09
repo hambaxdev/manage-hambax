@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Grid, Typography, Button, Divider } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import BasicInfoSection from './UserProfileSections/BasicInfoSection';
 import ContactInfoSection from './UserProfileSections/ContactInfoSection';
 import AddressInfoSection from './UserProfileSections/AddressInfoSection';
 
 const UserProfileForm = ({ profileData, onSave }) => {
+    const { t } = useTranslation();
     const [formData, setFormData] = useState({
         ...profileData,
         address: profileData?.address || {
@@ -40,7 +42,7 @@ const UserProfileForm = ({ profileData, onSave }) => {
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
-                <Typography variant="h4">User Profile</Typography>
+                <Typography variant="h4">{t('profile.title')}</Typography>
             </Grid>
             <Grid item xs={12}>
                 <BasicInfoSection
@@ -68,7 +70,7 @@ const UserProfileForm = ({ profileData, onSave }) => {
                     color="primary"
                     onClick={handleSave}
                 >
-                    Save Changes
+                    {t('profile.saveButton')}
                 </Button>
             </Grid>
         </Grid>

@@ -10,12 +10,12 @@
     "CN": "China"
   },
   "login": {
-    "title": "Login",
+    "title": "Login to Admin Panel",
     "emailLabel": "Email",
     "passwordLabel": "Password",
-    "button": "Login",
-    "registerLink": "Don't have an account? Sign Up",
-    "forgotPasswordLink": "Forgot Password?"
+    "loginButton": "Login",
+    "registerLink": "Don't have an account? Register",
+    "forgotPasswordLink": "Forgot your password?"
   },
   "forgotPassword": {
     "title": "Forgot Password",
@@ -125,14 +125,6 @@
       "allCountries": "All Countries"
     }
   },
-  "events": {
-    "title": "Upcoming Events",
-    "description": "Discover breathtaking locations, vibrant communities, extraordinary talents, and music that transcends the ordinary. Choose the rhythm of your season.",
-    "errorFetching": "Failed to fetch events. Please try again later."
-  },
-  "eventList": {
-    "noEvents": "No upcoming events."
-  },
   "filters": {
     "city": "City",
     "theme": "Theme",
@@ -160,5 +152,119 @@
     "title": "Stripe Onboarding Required",
     "description": "To enable payment features, please complete your Stripe onboarding process.",
     "button": "Go to Stripe Onboarding"
+  },
+  "ageRestriction": {
+    "title": "Age Restriction",
+    "label": "Select an age restriction",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventImage": {
+    "title": "Event Image",
+    "helperText": "Click to select an image for the event",
+    "altText": "Event image",
+    "placeholder": "Click to choose an image"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Event Title",
+    "descriptionLabel": "Description",
+    "clubNameLabel": "Club Name",
+    "dateLabel": "Event Date",
+    "timeLabel": "Start Time"
+  },
+  "eventStepper": {
+    "generalInformation": "General Information",
+    "eventAddress": "Event Address",
+    "tickets": "Tickets"
+  },
+  "createEventPage": {
+    "title": "Create Your Event",
+    "backButton": "Back",
+    "nextButton": "Next",
+    "submitButton": "Create Event",
+    "savedData": "Saved data:"
+  },
+  "eventType": {
+    "title": "Event Type",
+    "helperText": "Select the type of event",
+    "party": "Party",
+    "club": "Club Show",
+    "concert": "Concert"
+  },
+  "eventAddress": {
+    "title": "Event Address",
+    "streetLabel": "Street",
+    "buildingLabel": "Building",
+    "cityLabel": "City",
+    "countryLabel": "Country",
+    "countryHelperText": "Select the country of the event",
+    "postalCodeLabel": "Postal Code"
+  },
+  "events": {
+    "title": "Event List",
+    "createEventButton": "Create Event"
+  },
+  "profile": {
+    "saveButton": "Save",
+    "basicInfo": {
+      "title": "Basic Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "phone": "Phone",
+      "alternatePhone": "Alternate Phone",
+      "website": "Website"
+    },
+    "addressInfo": {
+      "title": "Address Information",
+      "city": "City",
+      "zipCode": "ZIP Code",
+      "streetName": "Street Name",
+      "houseNumber": "House Number",
+      "state": "State"
+    }
+  },
+  "emailInput": {
+    "label": "Enter your email",
+    "sendCodeButton": "Send Code"
+  },
+  "sidebar": {
+    "title": "Hambax",
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "events": "Events",
+    "logout": "Logout"
+  },
+  "register": {
+    "title": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "loading": "Registering...",
+    "submit": "Register",
+    "success": "Registration successful!",
+    "error": "Registration failed. Please try again.",
+    "validation": {
+      "username": "Username is required.",
+      "email": "Invalid email address.",
+      "password": "Password must be at least 6 characters.",
+      "confirmPassword": "Passwords do not match."
+    }
+  },
+  "passwordReset": {
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "resetButton": "Reset Password"
+  },
+  "pricingOptions": {
+    "label": "Pricing Mode",
+    "fixedPrice": "Fixed Price",
+    "ticketPools": "Ticket Pools",
+    "ticketPrice": "Ticket Price"
   }
 }

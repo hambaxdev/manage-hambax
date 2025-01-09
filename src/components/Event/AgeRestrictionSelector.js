@@ -1,13 +1,16 @@
 import React from 'react';
 import { Box, Typography, MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ageRestrictions = [
-    { value: 16, label: '16+' },
-    { value: 18, label: '18+' },
-    { value: 21, label: '21+' },
+    { value: 16, labelKey: 'ageRestriction.16' },
+    { value: 18, labelKey: 'ageRestriction.18' },
+    { value: 21, labelKey: 'ageRestriction.21' },
 ];
 
 const AgeRestrictionSelector = ({ ageRestriction, setAgeRestriction }) => {
+    const { t } = useTranslation();
+
     const handleChange = (event) => {
         setAgeRestriction(event.target.value);
     };
@@ -15,19 +18,19 @@ const AgeRestrictionSelector = ({ ageRestriction, setAgeRestriction }) => {
     return (
         <Box>
             <Typography variant="h6" gutterBottom>
-                Возрастное ограничение
+                {t('ageRestriction.title')}
             </Typography>
             <FormControl fullWidth margin="normal">
-                <InputLabel id="age-restriction-label">Выберите возрастное ограничение</InputLabel>
+                <InputLabel id="age-restriction-label">{t('ageRestriction.label')}</InputLabel>
                 <Select
                     labelId="age-restriction-label"
                     value={ageRestriction}
                     onChange={handleChange}
-                    label="Выберите возрастное ограничение"
+                    label={t('ageRestriction.label')}
                 >
-                    {ageRestrictions.map(({ value, label }) => (
+                    {ageRestrictions.map(({ value, labelKey }) => (
                         <MenuItem key={value} value={value}>
-                            {label}
+                            {t(labelKey)}
                         </MenuItem>
                     ))}
                 </Select>

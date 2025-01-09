@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Alert } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import useForgotPassword from '../hooks/useForgotPassword';
 import EmailInputComponent from '../components/EmailInputComponent';
 import CodeInputComponent from '../components/CodeInputComponent';
 import PasswordResetComponent from '../components/PasswordResetComponent';
 
 const ForgotPasswordScreen = () => {
+  const { t } = useTranslation();
   const {
     isLoading,
     apiMessage,
@@ -43,11 +45,15 @@ const ForgotPasswordScreen = () => {
   return (
     <Container maxWidth="sm">
       <Box display="flex" flexDirection="column" alignItems="center" mt={8}>
+        {/* Localized title */}
         <Typography variant="h4" gutterBottom>
-          Забыли пароль?
+          {t('forgotPassword.title')}
         </Typography>
-        {apiMessage && <Alert severity="info">{apiMessage}</Alert>}
 
+        {/* Localized API message */}
+        {apiMessage && <Alert severity="info">{t(apiMessage)}</Alert>}
+
+        {/* Email input component */}
         {!isCodeSent && (
           <EmailInputComponent
             email={email}
@@ -57,10 +63,12 @@ const ForgotPasswordScreen = () => {
           />
         )}
 
+        {/* Code input component */}
         {isCodeSent && !isCodeValid && (
           <CodeInputComponent code={code} onCodeChange={onCodeChange} />
         )}
 
+        {/* Password reset component */}
         {isCodeValid && (
           <PasswordResetComponent
             newPassword={newPassword}

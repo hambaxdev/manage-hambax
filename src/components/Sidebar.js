@@ -19,17 +19,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useTranslation } from 'react-i18next';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
-    const { isAuthenticated, logout } = useContext(AuthContext); // Доступ к авторизации
+    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { t } = useTranslation(); // Hook for localization
 
-    if (!isAuthenticated) return null; // Не показываем сайдбар, если пользователь не авторизован
+    if (!isAuthenticated) return null;
 
     const menuItems = [
-        { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
-        { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
-        { text: 'Events', icon: <EventIcon />, path: '/events' },
+        { text: t('sidebar.dashboard'), icon: <DashboardIcon />, path: '/' },
+        { text: t('sidebar.profile'), icon: <PersonIcon />, path: '/profile' },
+        { text: t('sidebar.events'), icon: <EventIcon />, path: '/events' },
     ];
 
     const handleLogout = () => {
@@ -65,7 +67,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                             padding: 2,
                         }}
                     >
-                        {isOpen && <Typography variant="h6">Hambax</Typography>}
+                        {isOpen && <Typography variant="h6">{t('sidebar.title')}</Typography>} {/* Localized title */}
                         <IconButton onClick={toggleSidebar}>
                             {isOpen ? <CloseIcon /> : <MenuIcon />}
                         </IconButton>
@@ -103,7 +105,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                         <ListItemIcon sx={{ justifyContent: 'center' }}>
                             <LogoutIcon />
                         </ListItemIcon>
-                        {isOpen && <ListItemText primary="Logout" />}
+                        {isOpen && <ListItemText primary={t('sidebar.logout')} />} {/* Localized logout text */}
                     </ListItem>
                 </Box>
             </Box>

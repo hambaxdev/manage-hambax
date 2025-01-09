@@ -1,11 +1,13 @@
-// src/pages/CreateEventPage.js
 import React, { useState } from 'react';
-import { Container, Typography, Stepper, Step, StepLabel, Button, Box } from '@mui/material';
+import { Container, Typography, Button, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import EventDetailsForm from '../components/Event/EventDetailsForm';
 import AddressForm from '../components/Event/AddressForm';
 import TicketPoolsManager from '../components/Event/TicketPoolsManager';
+import EventStepper from '../components/Event/EventStepper';
 
 const CreateEventPage = () => {
+    const { t } = useTranslation();
     const [activeStep, setActiveStep] = useState(0);
     const [eventData, setEventData] = useState({
         title: '',
@@ -30,8 +32,7 @@ const CreateEventPage = () => {
         },
     });
 
-    const steps = ['Общая информация', 'Адрес мероприятия', 'Билеты'];
-
+    // Handle step navigation
     const handleNext = () => {
         setActiveStep((prevStep) => prevStep + 1);
     };
@@ -40,50 +41,52 @@ const CreateEventPage = () => {
         setActiveStep((prevStep) => prevStep - 1);
     };
 
+    // Handle event submission
     const handleSubmit = () => {
-        console.log('Сохраненные данные:', eventData);
-        // Отправка данных на сервер
+        console.log(t('createEventPage.savedData'), eventData);
+        // Add logic for sending eventData to the server
     };
 
     return (
         <Container maxWidth="md" sx={{ padding: { xs: 2, sm: 4 } }}>
+            {/* Page Title */}
             <Typography variant="h4" gutterBottom align="center">
-                Создание нового мероприятияCreate your Event
+                {t('createEventPage.title')}
             </Typography>
 
-            <Stepper activeStep={activeStep} alternativeLabel sx={{ marginBottom: 4 }}>
-                {steps.map((label) => (
-                    <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                    </Step>
-                ))}
-            </Stepper>
+            {/* Stepper Component */}
+            <EventStepper activeStep={activeStep} />
 
             <Box marginTop={4} sx={{ paddingX: { xs: 2, sm: 4 }, display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {activeStep === 0 && (
                     <EventDetailsForm
-                    title={eventData.title}
-                    setTitle={(title) => setEventData({ ...eventData, title })}
-                    description={eventData.description}
-                    setDescription={(description) => setEventData({ ...eventData, description })}
-                    clubName={eventData.clubName}
-                    setClubName={(clubName) => setEventData({ ...eventData, clubName })}
-                    eventDate={eventData.eventDate}
-                    setEventDate={(eventDate) => setEventData({ ...eventData, eventDate })}
-                    startTime={eventData.startTime}
-                    setStartTime={(startTime) => setEventData({ ...eventData, startTime })}
-                    eventImage={eventData.eventImage}
-                    setEventImage={(eventImage) => setEventData({ ...eventData, eventImage })}
-                    ageRestriction={eventData.ageRestriction}
-                    setAgeRestriction={(ageRestriction) => setEventData({ ...eventData, ageRestriction })}
-                    eventType={eventData.eventType}
-                    setEventType={(eventType) => setEventData({ ...eventData, eventType })}
-                />
+                        title={eventData.title}
+                        setTitle={(title) => setEventData({ ...eventData, title })}
+                        description={eventData.description}
+                        setDescription={(description) => setEventData({ ...eventData, description })}
+                        clubName={eventData.clubName}
+                        setClubName={(clubName) => setEventData({ ...eventData, clubName })}
+                        eventDate={eventData.eventDate}
+                        setEventDate={(eventDate) => setEventData({ ...eventData, eventDate })}
+                        startTime={eventData.startTime}
+                        setStartTime={(startTime) => setEventData({ ...eventData, startTime })}
+                        eventImage={eventData.eventImage}
+                        setEventImage={(eventImage) => setEventData({ ...eventData, eventImage })}
+                        ageRestriction={eventData.ageRestriction}
+                        setAgeRestriction={(ageRestriction) => setEventData({ ...eventData, ageRestriction })}
+                        eventType={eventData.eventType}
+                        setEventType={(eventType) => setEventData({ ...eventData, eventType })}
+                    />
                 )}
                 {activeStep === 1 && (
                     <AddressForm
                         address={eventData.address}
-                        setAddress={(address) => setEventData({ ...eventData, address })}
+                        onChange={(updatedAddress) => 
+                            setEventData((prevData) => ({
+                                ...prevData,
+                                address: updatedAddress,
+                            }))
+                        }
                     />
                 )}
                 {activeStep === 2 && (
@@ -96,6 +99,7 @@ const CreateEventPage = () => {
                 )}
             </Box>
 
+            {/* Navigation Buttons */}
             <Box
                 sx={{
                     display: 'flex',
@@ -111,15 +115,15 @@ const CreateEventPage = () => {
                     disabled={activeStep === 0}
                     onClick={handleBack}
                 >
-                    Назад
+                    {t('createEventPage.backButton')}
                 </Button>
-                {activeStep === steps.length - 1 ? (
+                {activeStep === 2 ? (
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={handleSubmit}
                     >
-                        Создать мероприятие
+                        {t('createEventPage.submitButton')}
                     </Button>
                 ) : (
                     <Button
@@ -127,7 +131,7 @@ const CreateEventPage = () => {
                         color="primary"
                         onClick={handleNext}
                     >
-                        Далее
+                        {t('createEventPage.nextButton')}
                     </Button>
                 )}
             </Box>
@@ -136,5 +140,3 @@ const CreateEventPage = () => {
 };
 
 export default CreateEventPage;
-
-
