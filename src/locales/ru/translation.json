@@ -1,0 +1,164 @@
+{
+  "buyTickets": "Купить билеты",
+  "hambax": "hambax.",
+  "soldOut": "Sold Out",
+  "countries": {
+    "RU": "Russland",
+    "US": "Vereinigte Staaten",
+    "DE": "Deutschland",
+    "FR": "Frankreich",
+    "CN": "China"
+  },
+  "login": {
+    "title": "Вход",
+    "emailLabel": "Электронная почта",
+    "passwordLabel": "Пароль",
+    "button": "Войти",
+    "registerLink": "Нет аккаунта? Зарегистрироваться",
+    "forgotPasswordLink": "Забыли пароль?"
+  },
+  "forgotPassword": {
+    "title": "Восстановление пароля",
+    "emailLabel": "Введите вашу электронную почту",
+    "sendCodeButton": "Отправить код",
+    "newPasswordLabel": "Новый пароль",
+    "confirmPasswordLabel": "Подтвердите пароль",
+    "resetPasswordButton": "Восстановить пароль",
+    "goToLogin": "Перейти к входу"
+  },
+  "validation": {
+    "emailRequired": "Электронная почта обязательна",
+    "emailInvalid": "Некорректный адрес электронной почты",
+    "passwordRequired": "Пароль обязателен",
+    "passwordMinLength": "Пароль должен содержать не менее 6 символов",
+    "confirmPasswordMismatch": "Пароли не совпадают",
+    "firstNameRequired": "Имя обязательно",
+    "lastNameRequired": "Фамилия обязательна",
+    "citizenshipRequired": "Гражданство обязательно",
+    "languageRequired": "Язык обязателен",
+    "countryRequired": "Страна обязательна",
+    "cityRequired": "Город обязателен",
+    "zipCodeRequired": "Почтовый индекс обязателен",
+    "streetNameRequired": "Название улицы обязательно",
+    "houseNumberRequired": "Номер дома обязателен",
+    "phoneRequired": "Телефон обязателен",
+    "phoneInvalid": "Некорректный номер телефона",
+    "websiteInvalid": "Некорректный URL сайта",
+    "dateOfBirthRequired": "Дата рождения обязательна",
+    "genderRequired": "Пол обязателен",
+    "taxIdentificationNumberRequired": "ИНН обязателен"
+  },
+  "api": {
+    "errorSendingCode": "Ошибка при отправке кода. Пожалуйста, попробуйте еще раз.",
+    "invalidCode": "Неверный код. Пожалуйста, проверьте почту.",
+    "errorResettingPassword": "Ошибка при сбросе пароля.",
+    "passwordResetSuccess": "Ваш пароль успешно изменен."
+  },
+  "contact": {
+    "title": "Контакт",
+    "name": "Имя",
+    "email": "Электронная почта",
+    "message": "Сообщение",
+    "submit": "Отправить",
+    "successMessage": "Ваше сообщение успешно отправлено. Мы свяжемся с вами в ближайшее время.",
+    "errorMessage": "Произошла ошибка при отправке сообщения. Пожалуйста, попробуйте позже."
+  },
+  "registration": {
+    "title": "Завершение регистрации",
+    "progress": {
+      "step1": "Личная информация",
+      "step2": "Адрес",
+      "step3": "Контактная информация"
+    },
+    "personalInfo": {
+      "title": "Личная информация",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "citizenship": "Гражданство",
+      "language": "Язык",
+      "dateOfBirth": "Дата рождения",
+      "gender": "Пол",
+      "taxIdentificationNumber": "ИНН",
+      "male": "Мужской",
+      "female": "Женский",
+      "other": "Другой"
+    },
+    "address": {
+      "title": "Адрес",
+      "country": "Страна",
+      "city": "Город",
+      "zipCode": "Почтовый индекс",
+      "streetName": "Название улицы",
+      "houseNumber": "Номер дома"
+    },
+    "contactInfo": {
+      "title": "Контактная информация",
+      "phone": "Номер телефона",
+      "website": "Сайт"
+    },
+    "back": "Назад",
+    "next": "Далее",
+    "submit": "Завершить регистрацию"
+  },
+  "navbar": {
+    "home": "Главная",
+    "events": "Мероприятия",
+    "organizations": "Организации",
+    "contact": "Контакты"
+  },
+  "home": {
+    "heroTitle": "Откройте лучшие мероприятия в вашем городе",
+    "heroSubtitle": "Присоединяйтесь к нашему сообществу и никогда не пропускайте лучшие события рядом с вами.",
+    "exploreEventsButton": "Открыть мероприятия",
+    "upcomingEvents": "Предстоящие мероприятия",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка при загрузке мероприятий."
+  },
+  "organizations": {
+    "recommendedTitle": "Рекомендуемые организации",
+    "error": "Произошла ошибка при загрузке организаций.",
+    "title": "Все организации",
+    "description": "Найдите ведущие организации, создающие яркие события и вдохновляющие сообщества по всему миру.",
+    "avatarAlt": "Аватар организации",
+    "filters": {
+      "country": "Страна",
+      "allCountries": "Все страны"
+    }
+  },
+  "events": {
+    "title": "Предстоящие мероприятия",
+    "description": "Откройте для себя захватывающие места, яркие сообщества, выдающиеся таланты и музыку, которая выходит за пределы привычного. Выберите ритм своего сезона.",
+    "errorFetching": "Не удалось загрузить мероприятия. Попробуйте позже."
+  },
+  "eventList": {
+    "noEvents": "Нет предстоящих мероприятий."
+  },
+  "filters": {
+    "city": "Город",
+    "theme": "Тема",
+    "age": "Возрастное ограничение",
+    "allCities": "Все города",
+    "allThemes": "Все темы",
+    "allAges": "Без ограничений"
+  },
+  "eventDescription": {
+    "title": "О мероприятии",
+    "noDescription": "Описание для этого мероприятия отсутствует."
+  },
+  "location": {
+    "title": "Местоположение",
+    "noAddress": "Адрес недоступен"
+  },
+  "organizer": {
+    "title": "Организатор"
+  },
+  "organization": {
+    "subscribe": "Подписаться"
+  },
+  "stripeNotification": {
+    "loadingError": "Ошибка загрузки профиля пользователя",
+    "title": "Требуется настройка Stripe",
+    "description": "Для включения платежных функций завершите процесс настройки Stripe.",
+    "button": "Перейти к настройке Stripe"
+  }
+}

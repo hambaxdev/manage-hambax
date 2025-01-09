@@ -1,0 +1,164 @@
+{
+  "hambax": "hambax.",
+  "buyTickets": "Tickets kaufen",
+  "soldOut": "Ausverkauft",
+  "countries": {
+    "RU": "Russland",
+    "US": "Vereinigte Staaten",
+    "DE": "Deutschland",
+    "FR": "Frankreich",
+    "CN": "China"
+  },
+  "login": {
+    "title": "Anmeldung",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "button": "Anmelden",
+    "registerLink": "Kein Konto? Registrieren",
+    "forgotPasswordLink": "Passwort vergessen?"
+  },
+  "forgotPassword": {
+    "title": "Passwort vergessen",
+    "emailLabel": "Geben Sie Ihre E-Mail ein",
+    "sendCodeButton": "Code senden",
+    "newPasswordLabel": "Neues Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "resetPasswordButton": "Passwort zurücksetzen",
+    "goToLogin": "Zur Anmeldung"
+  },
+  "validation": {
+    "emailRequired": "E-Mail ist erforderlich",
+    "emailInvalid": "Ungültige E-Mail-Adresse",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordMinLength": "Das Passwort muss mindestens 6 Zeichen lang sein",
+    "confirmPasswordMismatch": "Passwörter stimmen nicht überein",
+    "firstNameRequired": "Vorname ist erforderlich",
+    "lastNameRequired": "Nachname ist erforderlich",
+    "citizenshipRequired": "Staatsangehörigkeit ist erforderlich",
+    "languageRequired": "Sprache ist erforderlich",
+    "countryRequired": "Land ist erforderlich",
+    "cityRequired": "Stadt ist erforderlich",
+    "zipCodeRequired": "Postleitzahl ist erforderlich",
+    "streetNameRequired": "Straßenname ist erforderlich",
+    "houseNumberRequired": "Hausnummer ist erforderlich",
+    "phoneRequired": "Telefonnummer ist erforderlich",
+    "phoneInvalid": "Ungültige Telefonnummer",
+    "websiteInvalid": "Ungültige Website-URL",
+    "dateOfBirthRequired": "Geburtsdatum ist erforderlich",
+    "genderRequired": "Geschlecht ist erforderlich",
+    "taxIdentificationNumberRequired": "Steueridentifikationsnummer ist erforderlich"
+  },
+  "api": {
+    "errorSendingCode": "Fehler beim Senden des Codes. Bitte versuchen Sie es erneut.",
+    "invalidCode": "Ungültiger Code. Bitte überprüfen Sie Ihre E-Mail.",
+    "errorResettingPassword": "Fehler beim Zurücksetzen des Passworts.",
+    "passwordResetSuccess": "Ihr Passwort wurde erfolgreich zurückgesetzt."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "name": "Name",
+    "email": "E-Mail",
+    "message": "Nachricht",
+    "submit": "Absenden",
+    "successMessage": "Ihre Nachricht wurde erfolgreich gesendet. Wir werden uns in Kürze bei Ihnen melden.",
+    "errorMessage": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
+  },
+  "registration": {
+    "title": "Registrierung abschließen",
+    "progress": {
+      "step1": "Persönliche Daten",
+      "step2": "Adresse",
+      "step3": "Kontaktinformation"
+    },
+    "personalInfo": {
+      "title": "Persönliche Informationen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "citizenship": "Staatsangehörigkeit",
+      "selectCountry": "Bitte auswählen",
+      "language": "Sprache",
+      "dateOfBirth": "Geburtsdatum",
+      "gender": "Geschlecht",
+      "taxIdentificationNumber": "Steueridentifikationsnummer",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Divers"
+    },
+    "address": {
+      "title": "Adresse",
+      "country": "Land",
+      "city": "Stadt",
+      "zipCode": "Postleitzahl",
+      "streetName": "Straßenname",
+      "houseNumber": "Hausnummer"
+    },
+    "contactInfo": {
+      "title": "Kontaktinformationen",
+      "phone": "Telefonnummer",
+      "website": "Website"
+    },
+    "back": "Zurück",
+    "next": "Weiter",
+    "submit": "Abschließen"
+  },
+  "navbar": {
+    "home": "Home",
+    "events": "Veranstaltungen",
+    "organizations": "Organisationen",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "heroTitle": "Entdecken Sie die besten Veranstaltungen in Ihrer Stadt",
+    "heroSubtitle": "Treten Sie unserer Gemeinschaft bei und verpassen Sie keine der besten Veranstaltungen in Ihrer Nähe.",
+    "exploreEventsButton": "Veranstaltungen entdecken",
+    "upcomingEvents": "Bevorstehende Veranstaltungen",
+    "loading": "Laden...",
+    "error": "Beim Abrufen der Veranstaltungen ist ein Fehler aufgetreten."
+  },
+  "organizations": {
+    "recommendedTitle": "Empfohlene Organisationen",
+    "error": "Beim Laden der Organisationen ist ein Fehler aufgetreten.",
+    "title": "Alle Organisationen",
+    "avatarAlt": "Organisationsavatar",
+    "description": "Entdecken Sie führende Organisationen, die weltweit lebendige Events gestalten und inspirierende Gemeinschaften schaffen.",
+    "filters": {
+      "country": "Land",
+      "allCountries": "Alle Länder"
+    }
+  },
+  "events": {
+    "title": "Bevorstehende Veranstaltungen",
+    "description": "Entdecken Sie atemberaubende Orte, lebendige Gemeinschaften, außergewöhnliche Talente und Musik, die das Gewöhnliche übertrifft. Wählen Sie den Rhythmus Ihrer Saison.",
+    "errorFetching": "Veranstaltungen konnten nicht geladen werden. Bitte versuchen Sie es später noch einmal."
+  },
+  "eventList": {
+    "noEvents": "Keine bevorstehenden Veranstaltungen."
+  },
+  "filters": {
+    "city": "Stadt",
+    "theme": "Thema",
+    "age": "Altersbeschränkung",
+    "allCities": "Alle Städte",
+    "allThemes": "Alle Themen",
+    "allAges": "Keine Beschränkung"
+  },
+  "eventDescription": {
+    "title": "Über die Veranstaltung",
+    "noDescription": "Für diese Veranstaltung ist keine Beschreibung verfügbar."
+  },
+  "location": {
+    "title": "Standort",
+    "noAddress": "Adresse ist nicht verfügbar"
+  },
+  "organizer": {
+    "title": "Veranstalter"
+  },
+  "organization": {
+    "subscribe": "Abonnieren"
+  },
+  "stripeNotification": {
+    "title": "Stripe-Onboarding erforderlich",
+    "description": "Um Zahlungsfunktionen zu aktivieren, schließen Sie bitte den Stripe-Onboarding-Prozess ab.",
+    "button": "Zum Stripe-Onboarding gehen"
+  }
+}

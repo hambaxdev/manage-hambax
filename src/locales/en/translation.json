@@ -1,0 +1,164 @@
+{
+  "hambax": "hambax.",
+  "buyTickets": "Buy Tickets",
+  "soldOut": "Sold Out",
+  "countries": {
+    "RU": "Russland",
+    "US": "Vereinigte Staaten",
+    "DE": "Deutschland",
+    "FR": "Frankreich",
+    "CN": "China"
+  },
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "button": "Login",
+    "registerLink": "Don't have an account? Sign Up",
+    "forgotPasswordLink": "Forgot Password?"
+  },
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "emailLabel": "Enter your email",
+    "sendCodeButton": "Send Code",
+    "newPasswordLabel": "New Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "resetPasswordButton": "Reset Password",
+    "goToLogin": "Go to Login"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters long",
+    "confirmPasswordMismatch": "Passwords do not match",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "citizenshipRequired": "Citizenship is required",
+    "languageRequired": "Language is required",
+    "countryRequired": "Country is required",
+    "cityRequired": "City is required",
+    "zipCodeRequired": "Zip code is required",
+    "streetNameRequired": "Street name is required",
+    "houseNumberRequired": "House number is required",
+    "phoneRequired": "Phone number is required",
+    "phoneInvalid": "Invalid phone number",
+    "websiteInvalid": "Invalid website URL",
+    "dateOfBirthRequired": "Date of birth is required",
+    "genderRequired": "Gender is required",
+    "taxIdentificationNumberRequired": "Tax Identification Number is required"
+  },
+  "api": {
+    "errorSendingCode": "Error sending code. Please try again.",
+    "invalidCode": "Invalid code. Please check your email.",
+    "errorResettingPassword": "Error resetting password.",
+    "passwordResetSuccess": "Your password has been reset successfully."
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Submit",
+    "successMessage": "Your message has been successfully sent. We will get back to you shortly.",
+    "errorMessage": "There was an error sending your message. Please try again later."
+  },
+  "registration": {
+    "title": "Complete Registration",
+    "progress": {
+      "step1": "Personal Information",
+      "step2": "Address",
+      "step3": "Contact Information"
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "citizenship": "Citizenship",
+      "language": "Language",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "taxIdentificationNumber": "Tax Identification Number",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "address": {
+      "title": "Address",
+      "country": "Country",
+      "city": "City",
+      "zipCode": "Zip Code",
+      "streetName": "Street Name",
+      "houseNumber": "House Number"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "phone": "Phone Number",
+      "website": "Website"
+    },
+    "back": "Back",
+    "next": "Next",
+    "submit": "Complete Registration"
+  },
+  "navbar": {
+    "home": "Home",
+    "events": "Events",
+    "organizations": "Organizations",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroTitle": "Discover the Best Events in Your City",
+    "heroSubtitle": "Join our community and never miss out on the best events around you.",
+    "exploreEventsButton": "Explore Events",
+    "upcomingEvents": "Upcoming Events",
+    "loading": "Loading...",
+    "error": "An error occurred while fetching events."
+  },
+  "organizations": {
+    "recommendedTitle": "Recommended Organizations",
+    "error": "An error occurred while fetching organizations.",
+    "title": "All Organizations",
+    "avatarAlt": "Organization Avatar",
+    "description": "Discover top organizations creating vibrant events and inspiring communities worldwide.",
+    "filters": {
+      "country": "Country",
+      "allCountries": "All Countries"
+    }
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "description": "Discover breathtaking locations, vibrant communities, extraordinary talents, and music that transcends the ordinary. Choose the rhythm of your season.",
+    "errorFetching": "Failed to fetch events. Please try again later."
+  },
+  "eventList": {
+    "noEvents": "No upcoming events."
+  },
+  "filters": {
+    "city": "City",
+    "theme": "Theme",
+    "age": "Age Restriction",
+    "allCities": "All Cities",
+    "allThemes": "All Themes",
+    "allAges": "All Ages"
+  },
+  "eventDescription": {
+    "title": "About the Event",
+    "noDescription": "Description is not available for this event."
+  },
+  "location": {
+    "title": "Location",
+    "noAddress": "Address is not available"
+  },
+  "organizer": {
+    "title": "Organizer"
+  },
+  "organization": {
+    "subscribe": "Subscribe"
+  },
+  "stripeNotification": {
+    "loadingError": "Error loading user profile",
+    "title": "Stripe Onboarding Required",
+    "description": "To enable payment features, please complete your Stripe onboarding process.",
+    "button": "Go to Stripe Onboarding"
+  }
+}
