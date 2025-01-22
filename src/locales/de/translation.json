@@ -46,7 +46,35 @@
     "websiteInvalid": "Ungültige Website-URL",
     "dateOfBirthRequired": "Geburtsdatum ist erforderlich",
     "genderRequired": "Geschlecht ist erforderlich",
-    "taxIdentificationNumberRequired": "Steueridentifikationsnummer ist erforderlich"
+    "taxIdentificationNumberRequired": "Steueridentifikationsnummer ist erforderlich",
+    "eventDetails": {
+            "titleRequired": "Der Titel der Veranstaltung ist erforderlich.",
+            "eventTypeRequired": "Der Veranstaltungstyp ist erforderlich.",
+            "descriptionRequired": "Die Beschreibung der Veranstaltung ist erforderlich.",
+            "descriptionNoLinks": "Die Beschreibung der Veranstaltung darf keine externen Links enthalten.",
+            "eventDateRequired": "Das Veranstaltungsdatum ist erforderlich.",
+            "eventDatePast": "Das Veranstaltungsdatum darf nicht in der Vergangenheit liegen.",
+            "startTimeRequired": "Die Startzeit der Veranstaltung ist erforderlich.",
+            "ageRestrictionRequired": "Die Altersbeschränkung ist erforderlich."
+        },
+    "eventAddress": {
+            "streetRequired": "Die Straße ist erforderlich.",
+            "buildingRequired": "Die Hausnummer ist erforderlich.",
+            "cityRequired": "Die Stadt ist erforderlich.",
+            "countryRequired": "Das Land ist erforderlich.",
+            "postalCodeRequired": "Die Postleitzahl ist erforderlich.",
+            "addressRequired": "Adressinformationen sind erforderlich."
+        },
+      "pricingOptions": {
+          "fixedPriceRequired": "Der Ticketpreis ist erforderlich.",
+          "ticketLimitRequired": "Die maximale Ticketanzahl ist erforderlich, wenn die Begrenzung aktiviert ist.",
+          "poolsRequired": "Sie müssen mindestens zwei Ticketpools ausfüllen.",
+          "poolNameRequired": "Der Name des Ticketpools ist erforderlich.",
+          "poolPriceRequired": "Der Preis des Ticketpools ist erforderlich.",
+          "poolStartDateRequired": "Das Startdatum ist für den Ticketpool erforderlich.",
+          "poolEndDateRequired": "Das Enddatum ist für den Ticketpool erforderlich.",
+          "poolQuantityRequired": "Die Anzahl ist erforderlich, wenn die Ticketbegrenzung aktiviert ist."
+    }
   },
   "api": {
     "errorSendingCode": "Fehler beim Senden des Codes. Bitte versuchen Sie es erneut.",
@@ -132,7 +160,14 @@
     "age": "Altersbeschränkung",
     "allCities": "Alle Städte",
     "allThemes": "Alle Themen",
-    "allAges": "Keine Beschränkung"
+    "allAges": "Keine Beschränkung",
+    "dateSort": "Nach Datum sortieren",
+    "dateAscending": "Datum (aufsteigend)",
+    "dateDescending": "Datum (absteigend)",
+    "cityFilter": "Stadt",
+    "eventTypeFilter": "Veranstaltungstyp",
+    "allEventTypes": "Alle Typen",
+    "showPastEvents": "Vergangene Veranstaltungen anzeigen"
   },
   "eventDescription": {
     "title": "Über die Veranstaltung",
@@ -156,6 +191,7 @@
   "ageRestriction": {
     "title": "Altersbeschränkung",
     "label": "Wählen Sie eine Altersbeschränkung",
+    "noRestrictions": "Keine Beschränkungen",
     "16": "16+",
     "18": "18+",
     "21": "21+"
@@ -266,5 +302,21 @@
     "fixedPrice": "Festpreis",
     "ticketPools": "Ticket-Pools",
     "ticketPrice": "Ticketpreis"
+  },
+  "ticketPools": {
+    "pool": "Pool",
+    "poolName": "Name des Pools",
+    "price": "Preis",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "quantity": "Anzahl",
+    "limitTickets": "Tickets begrenzen",
+    "addPool": "Pool hinzufügen"
+  },
+  "userEvents": {
+    "error": "Ein Fehler ist aufgetreten: {{error}}",
+    "date": "Datum",
+    "city": "Stadt",
+    "noEvents": "Keine verfügbaren Veranstaltungen."
   }
 }

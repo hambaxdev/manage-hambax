@@ -13,7 +13,9 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
       label={t("registration.address.country")}
       name={name}
       value={value}
-      onChange={onChange}
+      onChange={(event) => {
+        if (onChange) onChange(event.target.value);
+      }}
       fullWidth
       error={error}
       helperText={helperText}

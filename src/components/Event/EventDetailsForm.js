@@ -22,6 +22,7 @@ const EventDetailsForm = ({
     setAgeRestriction,
     eventType,
     setEventType,
+    errors = {}, // Errors object for validation
 }) => {
     const { t } = useTranslation();
 
@@ -35,12 +36,15 @@ const EventDetailsForm = ({
                 onChange={(e) => setTitle(e.target.value)}
                 margin="normal"
                 required
+                error={!!errors.title} // Display error if exists
+                helperText={errors.title} // Display error message
             />
-            
+
             {/* Selector for the event type */}
             <EventTypeSelector
                 eventType={eventType}
                 setEventType={setEventType}
+                error={errors.eventType} // Pass error to EventTypeSelector
             />
 
             {/* Input for the event description */}
@@ -53,6 +57,8 @@ const EventDetailsForm = ({
                 multiline
                 rows={4}
                 required
+                error={!!errors.description}
+                helperText={errors.description}
             />
 
             {/* Input for the event date */}
@@ -65,6 +71,8 @@ const EventDetailsForm = ({
                 margin="normal"
                 InputLabelProps={{ shrink: true }}
                 required
+                error={!!errors.eventDate}
+                helperText={errors.eventDate}
             />
 
             {/* Input for the event start time */}
@@ -77,6 +85,8 @@ const EventDetailsForm = ({
                 margin="normal"
                 InputLabelProps={{ shrink: true }}
                 required
+                error={!!errors.startTime}
+                helperText={errors.startTime}
             />
 
             {/* Component for selecting an event image */}
@@ -89,6 +99,7 @@ const EventDetailsForm = ({
             <AgeRestrictionSelector
                 ageRestriction={ageRestriction}
                 setAgeRestriction={setAgeRestriction}
+                error={errors.ageRestriction}
             />
         </Box>
     );

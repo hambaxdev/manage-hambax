@@ -6,7 +6,6 @@ import useRegister from '../hooks/useRegister';
 
 const RegisterPage = () => {
   const { t } = useTranslation(); // Hook for localization
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -15,7 +14,7 @@ const RegisterPage = () => {
   const { isLoading, errorMessage, successMessage, validationErrors, register } = useRegister();
 
   const handleRegister = () => {
-    register({ username, email, password, confirmPassword });
+    register({ email, password });
   };
 
   return (
@@ -29,18 +28,6 @@ const RegisterPage = () => {
         {/* Localized messages */}
         {errorMessage && <Alert severity="error">{t(errorMessage)}</Alert>}
         {successMessage && <Alert severity="success">{t(successMessage)}</Alert>}
-
-        {/* Username input */}
-        <TextField
-          label={t('register.username')}
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          error={!!validationErrors.username}
-          helperText={validationErrors.username && t(validationErrors.username)}
-        />
 
         {/* Email input */}
         <TextField

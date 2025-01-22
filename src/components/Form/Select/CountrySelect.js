@@ -13,7 +13,7 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
       name={name}
       value={value || ""}
       onChange={(event) => {
-        if (onChange) onChange(event.target.value); // Передача только значения
+        if (onChange) onChange(event.target.value);
       }}
       fullWidth
       error={!!error}

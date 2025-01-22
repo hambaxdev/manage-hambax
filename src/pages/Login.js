@@ -19,16 +19,22 @@ const Login = () => {
         const values = { email, password };
         const validationErrors = validateLogin(values);
         setErrors(validationErrors);
-
+    
         if (Object.keys(validationErrors).length === 0) {
-            const { success, isBasicRegistrationComplete } = await handleLogin({ email, password });
-            
+            const result = await handleLogin({ email, password });
+            console.log('Login response:', result);
+    
+            const { success, isBasicRegistrationComplete } = result;
+    
             if (success) {
-                // Redirect the user
+                console.log('Redirecting to:', isBasicRegistrationComplete ? '/admin' : '/complete-registration');
                 navigate(isBasicRegistrationComplete ? '/admin' : '/complete-registration', { replace: true });
+            } else {
+                console.error('Login failed');
             }
         }
     };
+    
 
     return (
         <Container maxWidth="sm">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import UserEvents from '../components/Event/UserEvents';
 
 const Events = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const Events = () => {
                 {t('events.title')}
             </Typography>
             
+            <UserEvents />
             {/* Button to create a new event */}
             <Button variant="contained" color="primary" onClick={handleCreateEvent}>
                 {t('events.createEventButton')}
