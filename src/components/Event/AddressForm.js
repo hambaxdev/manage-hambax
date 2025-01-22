@@ -2,8 +2,9 @@ import React from 'react';
 import { TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import CountrySelect from '../Form/Select/CountrySelect';
+import EUCitizenshipSelect from '../Form/Select/EUCitizenshipSelect';
 
-const AddressForm = ({ address, onChange }) => {
+const AddressForm = ({ address, onChange, errors = {} }) => {
     const { t } = useTranslation();
 
     const handleAddressChange = (field, value) => {
@@ -25,6 +26,8 @@ const AddressForm = ({ address, onChange }) => {
                 onChange={(e) => handleAddressChange('street', e.target.value)}
                 margin="normal"
                 required
+                error={!!errors.street}
+                helperText={errors.street}
             />
 
             {/* Input for the building */}
@@ -35,6 +38,8 @@ const AddressForm = ({ address, onChange }) => {
                 onChange={(e) => handleAddressChange('building', e.target.value)}
                 margin="normal"
                 required
+                error={!!errors.building}
+                helperText={errors.building}
             />
 
             {/* Input for the city */}
@@ -45,14 +50,17 @@ const AddressForm = ({ address, onChange }) => {
                 onChange={(e) => handleAddressChange('city', e.target.value)}
                 margin="normal"
                 required
+                error={!!errors.city}
+                helperText={errors.city}
             />
 
             {/* Country selector */}
-            <CountrySelect
+            <EUCitizenshipSelect
                 name="country"
                 value={address.country}
-                onChange={(value) => handleAddressChange('country', value)} // Получаем только значение
-                helperText={t('eventAddress.countryHelperText')}
+                onChange={(value) => handleAddressChange('country', value)}
+                helperText={errors.country || t('eventAddress.countryHelperText')}
+                error={!!errors.country}
             />
 
             {/* Input for the postal code */}
@@ -63,6 +71,8 @@ const AddressForm = ({ address, onChange }) => {
                 onChange={(e) => handleAddressChange('postalCode', e.target.value)}
                 margin="normal"
                 required
+                error={!!errors.postalCode}
+                helperText={errors.postalCode}
             />
         </>
     );

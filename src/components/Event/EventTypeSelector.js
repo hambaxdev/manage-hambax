@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Card, CardActionArea } from '@mui/material';
+import { Box, Typography, Card, CardActionArea, FormHelperText } from '@mui/material';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import NightlifeIcon from '@mui/icons-material/Nightlife';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
@@ -11,7 +11,7 @@ const eventTypes = [
     { type: 'concert', labelKey: 'eventType.concert', Icon: MusicNoteIcon },
 ];
 
-const EventTypeSelector = ({ eventType, setEventType }) => {
+const EventTypeSelector = ({ eventType, setEventType, error }) => {
     const { t } = useTranslation();
 
     const handleSelect = (type) => {
@@ -85,6 +85,7 @@ const EventTypeSelector = ({ eventType, setEventType }) => {
                     </Card>
                 ))}
             </Box>
+            {error && <FormHelperText error>{error}</FormHelperText>}
         </Box>
     );
 };
