@@ -480,6 +480,7 @@
     "createEventButton": "Добавить мероприятие"
   },
   "profile": {
+    "title": "Профиль",
     "saveButton": "Сохранить",
     "basicInfo": {
       "title": "Основная информация",
@@ -556,5 +557,68 @@
     "date": "Дата",
     "city": "Город",
     "noEvents": "Нет доступных событий."
+  },
+  "registrationReminder": {
+    "completeRegistration": {
+      "message": "Вам нужно завершить регистрацию, чтобы получить доступ ко всем функциям.",
+      "button": "Завершить регистрацию"
+    },
+    "stripeOnboarding": {
+      "message": "Ваш онбординг Stripe не завершен. Пожалуйста, завершите процесс, чтобы использовать функции платежей.",
+      "button": "Завершить онбординг Stripe"
+    }
+  },
+  "actionRestriction": {
+    "completeRegistration": "Вы должны завершить регистрацию, чтобы выполнить это действие.",
+    "completeStripeOnboarding": "Вы должны завершить онбординг Stripe, чтобы выполнить это действие."
+  },
+  "restrictionModal": {
+    "title": "Действие ограничено",
+    "okButton": "ОК"
+  },
+  "eventEditPage": {
+    "title": "Редактирование события",
+    "statisticsTab": "Статистика",
+    "editTab": "Редактировать событие",
+    "statisticsPlaceholder": "Здесь будет отображаться статистика.",
+    "error": "Ошибка загрузки события: {{error}}",
+    "back": "Назад"
+  },
+  "eventEditForm": {
+    "titleLabel": "Название события",
+    "descriptionLabel": "Описание события",
+    "dateLabel": "Дата события",
+    "saveButton": "Сохранить изменения",
+    "success": "Событие успешно обновлено!",
+    "error": "Ошибка обновления события: {{error}}",
+    "authError": "Пользователь не авторизован."
+  },
+  "eventEditForm": {
+    "generalInfo": "Основная информация",
+    "titleLabel": "Название события",
+    "descriptionLabel": "Описание события",
+    "dateLabel": "Дата события",
+    "timeLabel": "Время начала события",
+    "ageRestriction": "Возрастное ограничение",
+    
+    "address": "Адрес",
+    "street": "Улица",
+    "building": "Здание",
+    "city": "Город",
+    "country": "Страна",
+    "postalCode": "Почтовый индекс",
+    
+    "pricing": "Цены",
+    "ticketPrice": "Цена билета",
+    "limitTickets": "Ограничить количество билетов",
+    
+    "stripeIntegration": "Интеграция с Stripe",
+    "stripeProductId": "ID продукта Stripe",
+    "stripePriceId": "ID цены Stripe",
+    
+    "saveButton": "Сохранить изменения",
+    "saving": "Сохранение...",
+    "success": "Событие успешно обновлено!",
+    "error": "Ошибка при обновлении события: {{error}}"
   }
 }

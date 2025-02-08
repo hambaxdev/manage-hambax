@@ -14,7 +14,8 @@ const CreateEventPage = () => {
     const { submitEvent, loading, error, success } = useSubmitEvent();
     const [activeStep, setActiveStep] = useState(0);
     const navigate = useNavigate();
-
+    const [selectedImageFile, setSelectedImageFile] = useState(null);
+    const [previewURL, setPreviewURL] = useState(null);
 
     // Основное состояние для события
     const [eventData, setEventData] = useState({
@@ -82,20 +83,18 @@ const CreateEventPage = () => {
 
     const handleSubmit = async () => {
         let validationErrors = {};
-
-        // Валидация в зависимости от выбранного таба
+    
         if (eventData.pricing.activeTab === 0) {
             validationErrors = validateFixedPrice(fixedPriceData);
         } else if (eventData.pricing.activeTab === 1) {
             validationErrors = validateTicketPools(ticketPoolsData);
         }
-
+    
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
         }
-
-        // Формируем данные для отправки
+    
         const finalEventData = {
             ...eventData,
             pricing: {
@@ -105,14 +104,33 @@ const CreateEventPage = () => {
                     : { ticketPools: ticketPoolsData }),
             },
         };
-
-        // Отправка данных на сервер
-        const response = await submitEvent(finalEventData);
+    
+        console.log("📤 Отправка события:", finalEventData);
+        console.log("📸 Выбранное изображение:", selectedImageFile);
+    
+        const response = await submitEvent(finalEventData, selectedImageFile); // Передаём `File`
+    
         if (response) {
             navigate('/events');
         }
     };
     
+    
+    const handleImageChange = (file) => {
+        console.log("📸 Новый файл изображения:", file);
+    
+        if (file instanceof Blob || file instanceof File) {
+            setSelectedImageFile(file);
+            
+            const objectURL = URL.createObjectURL(file);
+            setPreviewURL(objectURL);
+            
+            return () => URL.revokeObjectURL(objectURL);
+        } else {
+            setPreviewURL(null);
+        }
+    };
+
     return (
         <Container maxWidth="md" sx={{ padding: { xs: 2, sm: 4 } }}>
             <Typography variant="h4" gutterBottom align="center">
@@ -133,6 +151,8 @@ const CreateEventPage = () => {
                         eventDate={eventData.eventDate}
                         setEventDate={(eventDate) => setEventData((prev) => ({ ...prev, eventDate }))}
                         startTime={eventData.startTime}
+                        eventImage={selectedImageFile} // ✅ Передаём объект `File`
+                        setEventImage={handleImageChange} // ✅ Передаём функцию обновления
                         setStartTime={(startTime) => setEventData((prev) => ({ ...prev, startTime }))}
                         ageRestriction={eventData.ageRestriction}
                         setAgeRestriction={(ageRestriction) =>

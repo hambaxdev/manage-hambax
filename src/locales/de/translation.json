@@ -242,6 +242,7 @@
     "createEventButton": "Veranstaltung erstellen"
   },
   "profile": {
+    "title": "Profil",
     "saveButton": "Speichern",
     "basicInfo": {
       "title": "Grundlegende Informationen",
@@ -318,5 +319,68 @@
     "date": "Datum",
     "city": "Stadt",
     "noEvents": "Keine verfügbaren Veranstaltungen."
+  },
+  "registrationReminder": {
+    "completeRegistration": {
+      "message": "Sie müssen Ihre Registrierung abschließen, um alle Funktionen nutzen zu können.",
+      "button": "Registrierung abschließen"
+    },
+    "stripeOnboarding": {
+      "message": "Ihr Stripe-Onboarding ist nicht abgeschlossen. Bitte schließen Sie den Vorgang ab, um Zahlungsfunktionen zu nutzen.",
+      "button": "Stripe-Onboarding abschließen"
+    }
+  },
+  "actionRestriction": {
+    "completeRegistration": "Sie müssen Ihre Registrierung abschließen, um diese Aktion auszuführen.",
+    "completeStripeOnboarding": "Sie müssen Ihr Stripe-Onboarding abschließen, um diese Aktion auszuführen."
+  },
+  "restrictionModal": {
+    "title": "Aktion eingeschränkt",
+    "okButton": "OK"
+  },
+  "eventEditPage": {
+    "title": "Veranstaltung bearbeiten",
+    "statisticsTab": "Statistik",
+    "editTab": "Veranstaltung bearbeiten",
+    "statisticsPlaceholder": "Hier werden Statistiken angezeigt.",
+    "error": "Fehler beim Laden der Veranstaltung: {{error}}",
+    "back": "Zurück"
+  },
+  "eventEditForm": {
+    "titleLabel": "Veranstaltungstitel",
+    "descriptionLabel": "Veranstaltungsbeschreibung",
+    "dateLabel": "Veranstaltungsdatum",
+    "saveButton": "Änderungen speichern",
+    "success": "Veranstaltung erfolgreich aktualisiert!",
+    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}",
+    "authError": "Benutzer ist nicht authentifiziert."
+  },
+  "eventEditForm": {
+    "generalInfo": "Allgemeine Informationen",
+    "titleLabel": "Veranstaltungstitel",
+    "descriptionLabel": "Veranstaltungsbeschreibung",
+    "dateLabel": "Veranstaltungsdatum",
+    "timeLabel": "Veranstaltungsbeginn",
+    "ageRestriction": "Altersbeschränkung",
+    
+    "address": "Adresse",
+    "street": "Straße",
+    "building": "Gebäude",
+    "city": "Stadt",
+    "country": "Land",
+    "postalCode": "Postleitzahl",
+    
+    "pricing": "Preisgestaltung",
+    "ticketPrice": "Ticketpreis",
+    "limitTickets": "Tickets begrenzen",
+    
+    "stripeIntegration": "Stripe-Integration",
+    "stripeProductId": "Stripe-Produkt-ID",
+    "stripePriceId": "Stripe-Preis-ID",
+    
+    "saveButton": "Änderungen speichern",
+    "saving": "Speichern...",
+    "success": "Veranstaltung erfolgreich aktualisiert!",
+    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}"
   }
 }

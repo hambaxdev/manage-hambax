@@ -11,7 +11,7 @@ const AddressStage = ({ formData, handleChange, errors }) => {
     <Box>
       <EUCitizenshipSelect
         name="country"
-        value={formData.country}
+        value={formData.country || ""}
         onChange={handleChange}
         error={!!errors.country}
         helperText={errors.country}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import useAuth from './useAuth';
 
+
 const useLogin = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState('');
@@ -19,7 +20,7 @@ const useLogin = () => {
 
             if (response.status === 200) {
                 const { accessToken, isBasicRegistrationComplete } = response.data;
-                login(accessToken); // Авторизация через контекст
+                login(accessToken, isBasicRegistrationComplete);
                 return { success: true, isBasicRegistrationComplete };
             }
         } catch (error) {

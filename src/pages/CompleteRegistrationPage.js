@@ -13,6 +13,8 @@ import {
 } from "../utils/validation";
 
 const CompleteRegistrationPage = () => {
+
+  console.log('CompleteRegistrationPage');
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
@@ -45,9 +47,15 @@ const CompleteRegistrationPage = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
-  };
+    setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+    }));
+    setErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: "",
+    }));
+};
 
   const validateStep = () => {
     let validationErrors = {};
@@ -70,15 +78,36 @@ const CompleteRegistrationPage = () => {
 
   const handleNext = () => {
     if (validateStep()) {
-      if (activeStep === 2) {
-        // Вызов хука для отправки данных, если это последний шаг
-        completeRegistration(formData);
-        navigate("/admin");
-      } else {
-        setActiveStep((prevStep) => prevStep + 1);
-      }
+        if (activeStep === 2) {
+            // Преобразование данных перед отправкой
+            const payload = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                citizenship: formData.citizenship,
+                language: formData.language,
+                dateOfBirth: formData.dateOfBirth,
+                gender: formData.gender,
+                taxIdentificationNumber: formData.taxIdentificationNumber || null,
+                address: {
+                    country: formData.country,
+                    city: formData.city,
+                    zipCode: formData.zipCode,
+                    streetName: formData.streetName,
+                    houseNumber: formData.houseNumber,
+                },
+                contact: {
+                    phone: formData.phone,
+                    website: formData.website || null,
+                },
+            };
+
+            completeRegistration(payload);
+            navigate("/admin");
+        } else {
+            setActiveStep((prevStep) => prevStep + 1);
+        }
     }
-  };
+};
 
   const handleBack = () => {
     setActiveStep((prevStep) => prevStep - 1);

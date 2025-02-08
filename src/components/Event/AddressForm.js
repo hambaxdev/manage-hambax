@@ -57,8 +57,8 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
             {/* Country selector */}
             <EUCitizenshipSelect
                 name="country"
-                value={address.country}
-                onChange={(value) => handleAddressChange('country', value)}
+                value={address.country || ""} // Гарантируем, что передаем строку
+                onChange={(value) => handleAddressChange('country', value)} // Получаем строку
                 helperText={errors.country || t('eventAddress.countryHelperText')}
                 error={!!errors.country}
             />
