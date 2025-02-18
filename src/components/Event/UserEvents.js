@@ -8,7 +8,7 @@ import EventFilters from './EventFilters';
 const UserEvents = () => {
     const { events, loading, error } = useFetchUserEvents();
     const navigate = useNavigate();
-    const { t } = useTranslation(); // Используем локализацию
+    const { t } = useTranslation();
 
     const [filteredEvents, setFilteredEvents] = useState([]);
 

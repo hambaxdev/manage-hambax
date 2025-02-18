@@ -481,6 +481,7 @@
     "createEventButton": "Create Event"
   },
   "profile": {
+    "title": "Profile",
     "saveButton": "Save",
     "basicInfo": {
       "title": "Basic Information",
@@ -557,5 +558,59 @@
     "date": "Date",
     "city": "City",
     "noEvents": "No events available."
+  },
+ "registrationReminder": {
+    "completeRegistration": {
+      "message": "You need to complete your registration to access all features.",
+      "button": "Complete Registration"
+    },
+    "stripeOnboarding": {
+      "message": "Your Stripe onboarding is not completed. Please finish the process to use payment features.",
+      "button": "Complete Stripe Onboarding"
+    }
+  },
+  "actionRestriction": {
+    "completeRegistration": "You must complete your registration to perform this action.",
+    "completeStripeOnboarding": "You must complete your Stripe onboarding to perform this action."
+  },
+  "restrictionModal": {
+    "title": "Action Restricted",
+    "okButton": "OK"
+  },
+  "eventEditPage": {
+    "title": "Edit Event",
+    "statisticsTab": "Statistics",
+    "editTab": "Edit Event",
+    "statisticsPlaceholder": "Statistics will be displayed here.",
+    "error": "Error loading event: {{error}}",
+    "back": "Go Back"
+  },
+  "eventEditForm": {
+    "generalInfo": "General Information",
+    "titleLabel": "Event Title",
+    "descriptionLabel": "Event Description",
+    "dateLabel": "Event Date",
+    "timeLabel": "Event Start Time",
+    "ageRestriction": "Age Restriction",
+    
+    "address": "Address",
+    "street": "Street",
+    "building": "Building",
+    "city": "City",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    
+    "pricing": "Pricing",
+    "ticketPrice": "Ticket Price",
+    "limitTickets": "Limit Tickets",
+    
+    "stripeIntegration": "Stripe Integration",
+    "stripeProductId": "Stripe Product ID",
+    "stripePriceId": "Stripe Price ID",
+    
+    "saveButton": "Save Changes",
+    "saving": "Saving...",
+    "success": "Event updated successfully!",
+    "error": "Error updating event: {{error}}"
   }
 }

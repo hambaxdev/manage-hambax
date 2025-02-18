@@ -11,7 +11,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
     const { isLoading, apiError, handleLogin } = useLogin();
-    const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
     const { t } = useTranslation();
 
@@ -28,7 +27,7 @@ const Login = () => {
     
             if (success) {
                 console.log('Redirecting to:', isBasicRegistrationComplete ? '/admin' : '/complete-registration');
-                navigate(isBasicRegistrationComplete ? '/admin' : '/complete-registration', { replace: true });
+                navigate(isBasicRegistrationComplete ? '/' : '/complete-registration', { replace: true });
             } else {
                 console.error('Login failed');
             }

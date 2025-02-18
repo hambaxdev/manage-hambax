@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
-    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { isAuthenticated,isBasicRegistrationComplete, logout } = useContext(AuthContext);
     const { t } = useTranslation(); // Hook for localization
 
     if (!isAuthenticated) return null;

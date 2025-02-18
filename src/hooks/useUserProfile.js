@@ -20,7 +20,6 @@ const useUserProfile = () => {
                     },
                 }
             );
-
             setProfileData(response.data);
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при загрузке профиля');
@@ -33,7 +32,6 @@ const useUserProfile = () => {
         try {
             const accessToken = localStorage.getItem('authToken');
 
-            console.log(accessToken);
             const response = await axios.put(
                 `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/user/update-profile`,
                 updatedData,

@@ -9,11 +9,18 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
   return (
     <TextField
       select
+      margin="normal"
       label={t('registration.personalInfo.citizenship')}
       name={name}
       value={value || ""}
       onChange={(event) => {
-        if (onChange) onChange(event.target.value);
+        
+        onChange({
+          target: {
+            name: name,
+            value: event.target.value,
+          },
+        });
       }}
       fullWidth
       error={!!error}

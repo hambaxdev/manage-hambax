@@ -3,9 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const PublicRoute = ({ children }) => {
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, isBasicRegistrationComplete } = useContext(AuthContext);
 
-    return isAuthenticated ? <Navigate to="/" /> : children;
+    if (isAuthenticated) {
+        return isBasicRegistrationComplete ? <Navigate to="/" /> : <Navigate to="/complete-registration" />;
+    }
+
+    return children;
 };
 
 export default PublicRoute;

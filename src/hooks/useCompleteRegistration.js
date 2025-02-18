@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { completeUserRegistration } from '../services/registrationService';
+import useAuth from './useAuth';
 
 const useCompleteRegistration = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
+    const { completeRegistration: updateAuthContext } = useAuth();
 
     const completeRegistration = async (formData) => {
         setIsLoading(true);
@@ -18,6 +20,7 @@ const useCompleteRegistration = () => {
             const response = await completeUserRegistration(formData, token);
             if (response.status === 200) {
                 setSuccessMessage('Registration completed successfully!');
+                updateAuthContext();
             }
         } catch (error) {
             if (error.response?.data?.errors) {

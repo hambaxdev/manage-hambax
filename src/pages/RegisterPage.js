@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, TextField, Button, Typography, Box, Alert, IconButton, InputAdornment } from '@mui/material';
+import { Container, TextField, Button, Typography, Box, Alert, IconButton, InputAdornment, Link } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next'; // Hook for localization
 import useRegister from '../hooks/useRegister';
@@ -105,6 +105,12 @@ const RegisterPage = () => {
         >
           {isLoading ? t('register.loading') : t('register.submit')}
         </Button>
+        {/* Links */}
+        <Box mt={2} display="flex" justifyContent="center" width="100%">
+            <Link href="/login" variant="body2">
+                {t('login.title')}
+            </Link>
+        </Box>
       </Box>
     </Container>
   );

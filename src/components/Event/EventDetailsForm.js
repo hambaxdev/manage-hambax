@@ -10,8 +10,6 @@ const EventDetailsForm = ({
     setTitle,
     description,
     setDescription,
-    clubName,
-    setClubName,
     eventDate,
     setEventDate,
     startTime,

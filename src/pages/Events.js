@@ -3,13 +3,18 @@ import { Container, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import UserEvents from '../components/Event/UserEvents';
+import useActionRestriction from '../hooks/useActionRestriction';
 
 const Events = () => {
     const navigate = useNavigate();
-    const { t } = useTranslation(); // Hook for localization
+    const { t } = useTranslation();
+    const { checkRestriction } = useActionRestriction();
 
     const handleCreateEvent = () => {
-        navigate('/create-event'); // Navigate to the create event page
+        const isAllowed = checkRestriction("createEvent");
+        if (isAllowed) {
+            navigate('/create-event');
+        }
     };
 
     return (

@@ -135,10 +135,10 @@ export const validatePersonalInfoStep = (formData) => {
   } else {
     const today = new Date();
     const birthDate = new Date(formData.dateOfBirth);
-    const age = today.getFullYear() - birthDate.getFullYear();
+    let age = today.getFullYear() - birthDate.getFullYear(); // Используем let вместо const
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+      age--; // Теперь изменение допустимо
     }
 
     if (age < 18) {
@@ -159,6 +159,7 @@ export const validatePersonalInfoStep = (formData) => {
 
   return errors;
 };
+
 
 export const validateAddressStep = (formData) => {
   let errors = {};
