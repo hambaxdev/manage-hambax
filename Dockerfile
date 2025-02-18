@@ -1,19 +1,17 @@
+# Используем Node.js для сборки фронтенда
+FROM node:16-alpine AS builder
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . . 
+RUN npm run build
+
+# Используем Nginx для раздачи статических файлов
 FROM nginx:alpine
-
-# Устанавливаем рабочую директорию в Nginx
 WORKDIR /usr/share/nginx/html
-
-# Удаляем дефолтные файлы Nginx
 RUN rm -rf ./*
+COPY --from=builder /app/build .
 
-# Копируем билд фронтенда в контейнер
-COPY build .
-
-# Копируем кастомный Nginx конфиг
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Открываем порт
 EXPOSE 80
-
-# Запускаем Nginx
 CMD ["nginx", "-g", "daemon off;"]
