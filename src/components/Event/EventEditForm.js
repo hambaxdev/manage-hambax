@@ -36,16 +36,18 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     const handleSave = async () => {
         let cleanData = { ...formData };
         
-        // ✅ Если нет `activeTab`, устанавливаем его
+        if (cleanData.hasOwnProperty('stripeStatistics')) {
+            delete cleanData.stripeStatistics;
+        }
+
         if (!cleanData.pricing?.hasOwnProperty('activeTab')) {
             cleanData.pricing.activeTab = cleanData.pricing?.ticketPools?.length > 0 ? 1 : 0;
         }
     
-        // ✅ Убеждаемся, что ticketPools - всегда массив (даже если пустой)
         if (!Array.isArray(cleanData.pricing.ticketPools)) {
             cleanData.pricing.ticketPools = [];
         }
-    
+            
         console.log("📤 Отправка данных:", cleanData);
     
         const success = await updateEvent(cleanData);
