@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import ActionRestrictionModal from '../components/ActionRestrictionModal';
 import useUserProfile from '../hooks/useUserProfile';
@@ -9,14 +9,11 @@ const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isBasicRegistrationComplete, setIsBasicRegistrationComplete] = useState(false);
     const [loadingAuth, setLoadingAuth] = useState(true);
-    const [modalState, setModalState] = useState({
-        isOpen: false,
-        message: '',
-    });
+    const [modalState, setModalState] = useState({ isOpen: false, message: '' });
 
-    // Подключаем хук профиля
     const { profileData, isLoading: isProfileLoading, error: profileError, updateUserProfile } = useUserProfile();
 
+    const refreshTimeout = useRef(null);
     useEffect(() => {
         const fetchAuthData = async () => {
             setLoadingAuth(true);
@@ -29,9 +26,10 @@ const AuthProvider = ({ children }) => {
 
                     setIsAuthenticated(true);
                     setIsBasicRegistrationComplete(response.data.user.isBasicRegistrationComplete);
+                    scheduleTokenRefresh();
                 }
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error('Ошибка получения данных пользователя:', error);
                 setIsAuthenticated(false);
                 setIsBasicRegistrationComplete(false);
             } finally {
@@ -40,40 +38,94 @@ const AuthProvider = ({ children }) => {
         };
 
         fetchAuthData();
-    }, [profileData]); // Следим за изменениями профиля
+    }, [profileData]);
 
-    const login = (token, basicComplete) => {
-        localStorage.setItem('authToken', token);
+    const login = (accessToken, refreshToken, basicComplete) => {
+        localStorage.setItem('authToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('isBasicRegistrationComplete', basicComplete);
+
         setIsAuthenticated(true);
         setIsBasicRegistrationComplete(basicComplete);
+
+        scheduleTokenRefresh();
     };
 
-    const logout = () => {
+    const logout = async () => {
+        try {
+            const refreshToken = localStorage.getItem('refreshToken');
+            if (refreshToken) {
+                await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, { token: refreshToken });
+            }
+        } catch (error) {
+            console.error('Ошибка выхода:', error);
+        }
+
         localStorage.removeItem('authToken');
+        localStorage.removeItem('refreshToken');
         localStorage.removeItem('isBasicRegistrationComplete');
+
         setIsAuthenticated(false);
         setIsBasicRegistrationComplete(false);
+        clearTimeout(refreshTimeout.current);
     };
 
-    const completeRegistration = () => {
-        setIsBasicRegistrationComplete(true);
-        localStorage.setItem('isBasicRegistrationComplete', 'true');
+    const refreshAccessToken = async () => {
+        try {
+            let refreshToken = localStorage.getItem('refreshToken');
+            if (!refreshToken) {
+                console.warn('🔴 Нет refreshToken, выполняем выход...');
+                logout();
+                return;
+            }
+    
+            console.log('🔄 Попытка обновления токена с refreshToken:', refreshToken);
+    
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/refresh-token`, 
+                { token: refreshToken },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+    
+            if (response.data.accessToken && response.data.refreshToken) {
+                console.log('✅ Сервер вернул новый accessToken и refreshToken:', response.data);
+    
+                // Обязательно сохраняем новый refreshToken!
+                localStorage.setItem('authToken', response.data.accessToken);
+                localStorage.setItem('refreshToken', response.data.refreshToken);
+    
+                scheduleTokenRefresh();
+            } else {
+                console.warn('🔴 Сервер не вернул токены, выполняем выход...');
+                logout();
+            }
+        } catch (error) {
+            console.error('❌ Ошибка обновления токена:', error);
+    
+            if (error.response && error.response.status === 403) {
+                console.warn('⚠️ Сервер отклонил refreshToken, выполняем полный выход...');
+                logout();
+            } else {
+                console.warn('⚠️ Ошибка при обновлении токена, но refreshToken не удаляется.');
+                localStorage.removeItem('authToken');
+            }
+        }
+    };
+    
+    
+
+    const scheduleTokenRefresh = () => {
+        clearTimeout(refreshTimeout.current);
+
+        const tokenExpiryTime = 15 * 60 * 1000;
+        const refreshTime = tokenExpiryTime - 60 * 1000;
+
+        refreshTimeout.current = setTimeout(refreshAccessToken, refreshTime);
     };
 
-    const showRestrictionModal = (message) => {
-        setModalState({
-            isOpen: true,
-            message,
-        });
-    };
-
-    const closeRestrictionModal = () => {
-        setModalState({
-            isOpen: false,
-            message: '',
-        });
-    };
+    useEffect(() => {
+        scheduleTokenRefresh();
+        return () => clearTimeout(refreshTimeout.current);
+    }, []);
 
     if (loadingAuth || isProfileLoading) {
         return <div>Loading...</div>;
@@ -84,18 +136,17 @@ const AuthProvider = ({ children }) => {
             value={{
                 isAuthenticated,
                 isBasicRegistrationComplete,
-                profileData, // Данные профиля
+                profileData,
                 login,
                 logout,
-                completeRegistration,
-                showRestrictionModal,
-                updateUserProfile, // Метод обновления профиля
-                profileError, // Ошибки профиля
+                showRestrictionModal: (message) => setModalState({ isOpen: true, message }),
+                updateUserProfile,
+                profileError,
             }}
         >
             <ActionRestrictionModal
                 open={modalState.isOpen}
-                onClose={closeRestrictionModal}
+                onClose={() => setModalState({ isOpen: false, message: '' })}
                 message={modalState.message}
             />
             {children}

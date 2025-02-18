@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import EventEditForm from '../components/Event/EventEditForm';
 import useFetchEventDetails from '../hooks/useFetchEventDetails';
+import EventStatistics from '../components/Event/EventStatistics';
 
 const EventEditPage = () => {
     const { t } = useTranslation();
@@ -53,6 +54,7 @@ const EventEditPage = () => {
             </Tabs>
 
             <Box>
+                {activeTab === 0 && <EventStatistics eventDetails={eventDetails} />}
                 {activeTab === 1 && (
                     <EventEditForm eventDetails={eventDetails} fetchEventDetails={fetchEventDetails} />
                 )}

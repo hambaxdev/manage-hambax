@@ -11,16 +11,16 @@ const useLogin = () => {
     const handleLogin = async ({ email, password }) => {
         setIsLoading(true);
         setApiError('');
-
+    
         try {
             const response = await axios.post(
                 `${process.env.REACT_APP_API_URL}/auth/login`,
                 { email, password }
             );
-
+    
             if (response.status === 200) {
-                const { accessToken, isBasicRegistrationComplete } = response.data;
-                login(accessToken, isBasicRegistrationComplete);
+                const { accessToken, refreshToken, isBasicRegistrationComplete } = response.data;
+                login(accessToken, refreshToken, isBasicRegistrationComplete);
                 return { success: true, isBasicRegistrationComplete };
             }
         } catch (error) {
