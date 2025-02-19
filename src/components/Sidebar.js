@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useContext(AuthContext);
     const { t } = useTranslation();
-    const isMobile = useMediaQuery('(max-width: 768px)'); // Проверка мобильного экрана
+    const isMobile = useMediaQuery('(max-width: 768px)'); // Проверяем, мобильное ли устройство
 
     if (!isAuthenticated) return null;
 
@@ -53,15 +53,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             )}
 
             <Drawer
-                variant={isMobile ? 'temporary' : 'permanent'}
-                open={isOpen}
+                variant={isMobile ? 'temporary' : 'permanent'} // На мобилках временный, на ПК постоянный
+                open={isMobile ? isOpen : true} // На мобилках зависит от состояния, на ПК всегда открыт
                 onClose={toggleSidebar}
                 sx={{
                     '& .MuiDrawer-paper': {
                         boxSizing: 'border-box',
-                        width: isOpen ? 240 : 0,
+                        width: isMobile ? (isOpen ? 240 : 0) : isOpen ? 240 : 60, // Логика ширины
                         transition: 'width 0.3s',
-                        display: isMobile && !isOpen ? 'none' : 'block'
+                        overflowX: 'hidden', // Убираем горизонтальный скролл
                     },
                 }}
             >
@@ -95,7 +95,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                     key={index}
                                     onClick={() => {
                                         navigate(item.path);
-                                        if (isMobile) toggleSidebar();
+                                        if (isMobile) toggleSidebar(); // Закрываем сайдбар на мобильных
                                     }}
                                     sx={{
                                         justifyContent: isOpen ? 'flex-start' : 'center',
