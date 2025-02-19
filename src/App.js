@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
@@ -17,6 +17,11 @@ import EventEditPage from './pages/EventEditPage';
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
+    const location = useLocation();
+
+    // Маршруты, на которых НЕ должен отображаться Sidebar
+    const authRoutes = ["/login", "/register", "/forgot-password"];
+    const isAuthPage = authRoutes.includes(location.pathname);
 
     const toggleSidebar = () => {
         setSidebarOpen((prev) => !prev);
@@ -24,102 +29,40 @@ const AppContent = () => {
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
-            
             <Box sx={{ display: "flex", flexGrow: 1 }}>
                 <CssBaseline />
-                <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+                {!isAuthPage && <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
                 <Box
                     component="main"
                     sx={{
                         flexGrow: 1,
                         p: 3,
-                        ml: isSidebarOpen ? "240px" : "60px",
+                        ml: !isAuthPage && isSidebarOpen ? "240px" : "0px", // Убираем отступ, если Sidebar скрыт
                         transition: "margin-left 0.3s",
+                        display: "flex",
+                        justifyContent: isAuthPage ? "center" : "flex-start",
+                        alignItems: isAuthPage ? "center" : "flex-start",
                     }}
                 >
                     <Routes>
                         {/* Публичные маршруты */}
-                        <Route
-                            path="/login"
-                            element={
-                                <PublicRoute>
-                                    <Login />
-                                </PublicRoute>
-                            }
-                        />
-                        <Route
-                            path="/register"
-                            element={
-                                <PublicRoute>
-                                    <RegisterPage />
-                                </PublicRoute>
-                            }
-                        />
-                        <Route
-                            path="/forgot-password"
-                            element={
-                                <PublicRoute>
-                                    <ForgotPasswordScreen />
-                                </PublicRoute>
-                            }
-                        />
+                        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+                        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+                        <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
 
                         {/* Защищённые маршруты */}
-                        <Route
-                            path="/"
-                            element={
-                                <ProtectedRoute>
-                                    <Dashboard />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/events"
-                            element={
-                                <ProtectedRoute>
-                                    <Events />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/profile"
-                            element={
-                                <ProtectedRoute>
-                                    <Profile />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/create-event"
-                            element={
-                                <ProtectedRoute>
-                                    <CreateEventPage />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/events/:id" // Новый маршрут для редактирования события
-                            element={
-                                <ProtectedRoute>
-                                    <EventEditPage />
-                                </ProtectedRoute>
-                            }
-                        />
-                        <Route
-                            path="/complete-registration"
-                            element={
-                                <ProtectedRoute>
-                                    <CompleteRegistrationPage />
-                                </ProtectedRoute>
-                            }
-                        />
+                        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+                        <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
+                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+                        <Route path="/create-event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
+                        <Route path="/events/:id" element={<ProtectedRoute><EventEditPage /></ProtectedRoute>} />
+                        <Route path="/complete-registration" element={<ProtectedRoute><CompleteRegistrationPage /></ProtectedRoute>} />
                     </Routes>
                 </Box>
             </Box>
         </Box>
     );
 };
-
 
 const App = () => {
     return (
