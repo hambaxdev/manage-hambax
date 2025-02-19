@@ -3,7 +3,6 @@ import { Container, TextField, Button, Typography, Box, Link, CircularProgress }
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import useLogin from '../hooks/useLogin';
-import useAuth from '../hooks/useAuth';
 import { validateLogin } from '../utils/validation';
 
 const Login = () => {
