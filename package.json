@@ -9,6 +9,7 @@
     "@mui/material": "^6.3.0",
     "axios": "^1.7.9",
     "cra-template-pwa": "2.0.0",
+    "html5-qrcode": "^2.3.8",
     "i18next": "^24.2.0",
     "i18next-browser-languagedetector": "^8.0.2",
     "i18next-http-backend": "^3.0.1",
