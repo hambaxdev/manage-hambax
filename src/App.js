@@ -19,7 +19,7 @@ import ScanQRPage from './pages/ScanQRPage';
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
-    const isMobile = useMediaQuery('(max-width: 768px)'); // Проверка мобильного экрана
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     // Маршруты, на которых НЕ должен отображаться Sidebar
     const authRoutes = ["/login", "/register", "/forgot-password"];
@@ -39,11 +39,8 @@ const AppContent = () => {
                     sx={{
                         flexGrow: 1,
                         p: 3,
-                        ml: !isAuthPage && !isMobile && isSidebarOpen ? "240px" : "0px",
+                        ml: !isAuthPage && !isMobile ? (isSidebarOpen ? "240px" : "60px") : "0px",
                         transition: "margin-left 0.3s",
-                        display: "flex",
-                        justifyContent: isAuthPage ? "center" : "flex-start",
-                        alignItems: isAuthPage ? "center" : "flex-start",
                     }}
                 >
                     <Routes>
