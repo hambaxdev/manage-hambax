@@ -1,24 +1,29 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { BrowserMultiFormatReader } from '@zxing/browser';
+import { BrowserQRCodeReader } from '@zxing/browser';
 
 const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
     const videoRef = useRef(null);
-    const codeReader = useRef(new BrowserMultiFormatReader());
+    const codeReader = useRef(new BrowserQRCodeReader());
 
     useEffect(() => {
         const startScanner = async () => {
             try {
-                const videoInputDevices = await codeReader.current.getVideoInputDevices();
-                const backCamera = videoInputDevices.find(device => device.label.toLowerCase().includes("back"));
-                const deviceId = backCamera ? backCamera.deviceId : videoInputDevices[0]?.deviceId;
+                // Получаем список видеоустройств (камер)
+                const devices = await navigator.mediaDevices.enumerateDevices();
+                const videoDevices = devices.filter(device => device.kind === "videoinput");
 
-                if (!deviceId) {
+                if (videoDevices.length === 0) {
                     console.error("No camera found!");
                     return;
                 }
 
+                // Выбираем заднюю камеру, если есть
+                const backCamera = videoDevices.find(device => device.label.toLowerCase().includes("back"));
+                const deviceId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
+
+                // Запускаем сканирование
                 await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, (result, err) => {
                     if (result) {
                         setQrResult(result.getText());
