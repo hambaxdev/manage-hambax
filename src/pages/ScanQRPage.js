@@ -1,67 +1,49 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
+import { BrowserMultiFormatReader } from '@zxing/browser';
 
-const ScanQRPage = () => {
+const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
-    const scannerRef = useRef(null);
+    const videoRef = useRef(null);
+    const codeReader = useRef(new BrowserMultiFormatReader());
 
     useEffect(() => {
-        // Функция для выбора задней камеры
-        const getBackCameraId = async () => {
-            try {
-                const devices = await Html5Qrcode.getCameras();
-                const backCamera = devices.find(device => device.label.toLowerCase().includes("back"));
-                return backCamera ? backCamera.id : devices[0]?.id; // Выбираем заднюю камеру, если есть
-            } catch (error) {
-                console.error("Ошибка получения камер:", error);
-                return null;
-            }
-        };
-
         const startScanner = async () => {
-            const cameraId = await getBackCameraId();
-            if (!cameraId) {
-                console.error("Камера не найдена");
-                return;
-            }
+            try {
+                const videoInputDevices = await codeReader.current.getVideoInputDevices();
+                const backCamera = videoInputDevices.find(device => device.label.toLowerCase().includes("back"));
+                const deviceId = backCamera ? backCamera.deviceId : videoInputDevices[0]?.deviceId;
 
-            const scanner = new Html5QrcodeScanner("qr-reader", {
-                fps: 10,
-                qrbox: 250,
-                rememberLastUsedCamera: true,
-                disableFlip: true
-            });
-
-            scanner.render(
-                (decodedText) => {
-                    setQrResult(decodedText);
-                    scanner.clear();
-                },
-                (errorMessage) => {
-                    console.log("QR Error: ", errorMessage);
+                if (!deviceId) {
+                    console.error("No camera found!");
+                    return;
                 }
-            );
 
-            scannerRef.current = scanner;
+                await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, (result, err) => {
+                    if (result) {
+                        setQrResult(result.getText());
+                        codeReader.current.reset(); // Останавливаем сканирование после первого успешного считывания
+                    }
+                });
+            } catch (error) {
+                console.error("Error initializing scanner:", error);
+            }
         };
 
         startScanner();
 
         return () => {
-            if (scannerRef.current) {
-                scannerRef.current.clear();
-            }
+            codeReader.current.reset();
         };
     }, []);
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5, width: '100%' }}>
             <Typography variant="h5" gutterBottom>Scan QR Code</Typography>
-            <Box id="qr-reader" sx={{ width: '100%', maxWidth: '500px', height: 'auto' }} />
+            <video ref={videoRef} style={{ width: '100%', maxWidth: '500px', height: 'auto' }} />
             {qrResult && <Typography color="green">Scanned: {qrResult}</Typography>}
         </Box>
     );
 };
 
-export default ScanQRPage;
+export default ZXingScanner;
