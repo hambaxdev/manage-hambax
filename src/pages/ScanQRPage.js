@@ -1,28 +1,52 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box, Typography } from '@mui/material';
-import { Html5QrcodeScanner } from "html5-qrcode";
+import { Html5QrcodeScanner, Html5Qrcode } from "html5-qrcode";
 
 const ScanQRPage = () => {
     const [qrResult, setQrResult] = useState(null);
     const scannerRef = useRef(null);
 
     useEffect(() => {
-        const scanner = new Html5QrcodeScanner(
-            "qr-reader",
-            { fps: 10, qrbox: 250 }
-        );
-
-        scanner.render(
-            (decodedText) => {
-                setQrResult(decodedText);
-                scanner.clear();
-            },
-            (errorMessage) => {
-                console.log("QR Error: ", errorMessage);
+        // Функция для выбора задней камеры
+        const getBackCameraId = async () => {
+            try {
+                const devices = await Html5Qrcode.getCameras();
+                const backCamera = devices.find(device => device.label.toLowerCase().includes("back"));
+                return backCamera ? backCamera.id : devices[0]?.id; // Выбираем заднюю камеру, если есть
+            } catch (error) {
+                console.error("Ошибка получения камер:", error);
+                return null;
             }
-        );
+        };
 
-        scannerRef.current = scanner;
+        const startScanner = async () => {
+            const cameraId = await getBackCameraId();
+            if (!cameraId) {
+                console.error("Камера не найдена");
+                return;
+            }
+
+            const scanner = new Html5QrcodeScanner("qr-reader", {
+                fps: 10,
+                qrbox: 250,
+                rememberLastUsedCamera: true,
+                disableFlip: true
+            });
+
+            scanner.render(
+                (decodedText) => {
+                    setQrResult(decodedText);
+                    scanner.clear();
+                },
+                (errorMessage) => {
+                    console.log("QR Error: ", errorMessage);
+                }
+            );
+
+            scannerRef.current = scanner;
+        };
+
+        startScanner();
 
         return () => {
             if (scannerRef.current) {
@@ -32,9 +56,9 @@ const ScanQRPage = () => {
     }, []);
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 5, width: '100%' }}>
             <Typography variant="h5" gutterBottom>Scan QR Code</Typography>
-            <Box id="qr-reader" sx={{ width: '300px', height: '300px' }} />
+            <Box id="qr-reader" sx={{ width: '100%', maxWidth: '500px', height: 'auto' }} />
             {qrResult && <Typography color="green">Scanned: {qrResult}</Typography>}
         </Box>
     );
