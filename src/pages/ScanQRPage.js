@@ -50,7 +50,7 @@ const ZXingScanner = () => {
             setTimeout(() => {
                 setQrResult(null);
                 setStatusColor(null);
-                codeReader.current.reset(); // Перезапустить сканирование
+                codeReader.current.stopContinuousDecode();
             }, 3000);
         }
     }, [status]);
