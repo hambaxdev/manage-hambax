@@ -5,14 +5,15 @@ import useValidateTicket from "../hooks/useValidateTicket";
 
 const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
-    const [statusColor, setStatusColor] = useState(null);
+    const [statusColor, setStatusColor] = useState("white"); // Цвет экрана
     const videoRef = useRef(null);
     const codeReader = useRef(new BrowserQRCodeReader());
-    const scanningRef = useRef(false); // Флаг, предотвращающий повторное сканирование
+    const scanningRef = useRef(false); // Флаг, чтобы предотвратить повторное сканирование
     const { validateTicket, status } = useValidateTicket();
 
+    // Функция запуска сканера
     const startScanner = useCallback(async () => {
-        if (!videoRef.current) return;
+        if (!videoRef.current || scanningRef.current) return; // Не запускаем повторно
 
         try {
             console.log("🔍 Инициализация сканера...");
@@ -27,17 +28,21 @@ const ZXingScanner = () => {
             const backCamera = videoDevices.find((device) => device.label.toLowerCase().includes("back"));
             const deviceId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
 
-            await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, (result, err) => {
+            await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, async (result, err) => {
                 if (result && !scanningRef.current) {
                     scanningRef.current = true; // Блокируем повторное сканирование
                     console.log("✅ QR-код:", result.getText());
                     setQrResult(result.getText());
-                    validateTicket(result.getText());
 
-                    // Разблокируем сканирование через 3 секунды
+                    // Отправляем запрос на проверку билета
+                    await validateTicket(result.getText());
+
+                    // Ждем 2 секунды для отображения результата
                     setTimeout(() => {
-                        scanningRef.current = false;
-                    }, 3000);
+                        scanningRef.current = false; // Разблокируем сканирование
+                        setQrResult(null);
+                        setStatusColor("white");
+                    }, 2000);
                 }
             });
 
@@ -53,11 +58,6 @@ const ZXingScanner = () => {
     useEffect(() => {
         if (status) {
             setStatusColor(status === "success" ? "green" : "red");
-
-            setTimeout(() => {
-                setQrResult(null);
-                setStatusColor(null);
-            }, 3000);
         }
     }, [status]);
 
@@ -70,7 +70,7 @@ const ZXingScanner = () => {
                 mt: 5,
                 width: "100%",
                 height: "100vh",
-                backgroundColor: statusColor || "white",
+                backgroundColor: statusColor,
                 transition: "background-color 0.5s ease-in-out",
             }}
         >
