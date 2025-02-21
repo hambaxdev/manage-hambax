@@ -7,7 +7,7 @@ const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
     const [statusColor, setStatusColor] = useState(null);
     const videoRef = useRef(null);
-    const codeReader = useRef(new BrowserQRCodeReader());
+    const codeReader = useRef(null);
     const streamRef = useRef(null);
     const scannerControls = useRef(null);
     const { validateTicket, status } = useValidateTicket();
@@ -16,13 +16,18 @@ const ZXingScanner = () => {
     const startScanner = useCallback(async () => {
         if (!videoRef.current) return;
 
+        // Проверяем, есть ли уже активный сканер
+        if (!codeReader.current) {
+            codeReader.current = new BrowserQRCodeReader();
+        }
+
         try {
-            console.log("Инициализация сканера...");
+            console.log("🔍 Инициализация сканера...");
             const devices = await navigator.mediaDevices.enumerateDevices();
             const videoDevices = devices.filter((device) => device.kind === "videoinput");
 
             if (videoDevices.length === 0) {
-                console.error("Камера не найдена!");
+                console.error("🚨 Камера не найдена!");
                 return;
             }
 
@@ -31,7 +36,7 @@ const ZXingScanner = () => {
 
             scannerControls.current = await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, async (result, err) => {
                 if (result) {
-                    console.log("QR-код:", result.getText());
+                    console.log("✅ QR-код:", result.getText());
                     setQrResult(result.getText());
 
                     stopScanner(); // Остановка сканера
@@ -42,7 +47,7 @@ const ZXingScanner = () => {
             // Сохраняем видеопоток для остановки камеры
             streamRef.current = videoRef.current.srcObject;
         } catch (error) {
-            console.error("Ошибка при инициализации сканера:", error);
+            console.error("❌ Ошибка при инициализации сканера:", error);
         }
     }, [validateTicket]);
 
@@ -58,21 +63,21 @@ const ZXingScanner = () => {
             setTimeout(() => {
                 setQrResult(null);
                 setStatusColor(null);
-                startScanner(); // Перезапуск сканера
+                startScanner(); // Перезапуск сканера после 3 секунд
             }, 3000);
         }
     }, [status, startScanner]);
 
+    // Функция остановки сканера
     const stopScanner = () => {
-        console.log("Остановка сканера...");
+        console.log("🛑 Остановка сканера...");
         if (scannerControls.current) {
-            scannerControls.current.stop(); // Остановка `decodeFromVideoDevice`
+            scannerControls.current.stop();
+            scannerControls.current = null;
         }
         if (streamRef.current) {
-            streamRef.current.getTracks().forEach(track => track.stop()); // Остановка видеопотока
-        }
-        if (codeReader.current) {
-            codeReader.current = null; // Удаляем объект код-ридера
+            streamRef.current.getTracks().forEach(track => track.stop());
+            streamRef.current = null;
         }
     };
 
