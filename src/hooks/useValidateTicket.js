@@ -18,7 +18,7 @@ const useValidateTicket = () => {
         }
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/${qrHash}`, {
+            const response = await fetch(`${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/validate/${qrHash}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
