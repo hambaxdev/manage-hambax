@@ -1,47 +1,53 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Box, Typography } from "@mui/material";
 import { BrowserQRCodeReader } from "@zxing/browser";
 import useValidateTicket from "../hooks/useValidateTicket";
 
 const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
-    const [statusColor, setStatusColor] = useState(null); // Цвет экрана
+    const [statusColor, setStatusColor] = useState(null);
     const videoRef = useRef(null);
     const codeReader = useRef(new BrowserQRCodeReader());
+    const streamRef = useRef(null);
+    const scannerControls = useRef(null);
     const { validateTicket, status } = useValidateTicket();
 
-    useEffect(() => {
-        const startScanner = async () => {
-            try {
-                const devices = await navigator.mediaDevices.enumerateDevices();
-                const videoDevices = devices.filter((device) => device.kind === "videoinput");
+    // Функция для запуска сканера, предотвращает ошибку `no-undef`
+    const startScanner = useCallback(async () => {
+        try {
+            console.log("Инициализация сканера...");
+            const devices = await navigator.mediaDevices.enumerateDevices();
+            const videoDevices = devices.filter((device) => device.kind === "videoinput");
 
-                if (videoDevices.length === 0) {
-                    console.error("No camera found!");
-                    return;
-                }
-
-                const backCamera = videoDevices.find((device) => device.label.toLowerCase().includes("back"));
-                const deviceId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
-
-                await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, async (result, err) => {
-                    if (result) {
-                        setQrResult(result.getText());
-                        codeReader.current.reset(); // Остановить камеру
-                        validateTicket(result.getText()); // Отправить код на бэкенд
-                    }
-                });
-            } catch (error) {
-                console.error("Error initializing scanner:", error);
+            if (videoDevices.length === 0) {
+                console.error("Камера не найдена!");
+                return;
             }
-        };
 
+            const backCamera = videoDevices.find((device) => device.label.toLowerCase().includes("back"));
+            const deviceId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
+
+            scannerControls.current = await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, async (result, err) => {
+                if (result) {
+                    console.log("QR-код:", result.getText());
+                    setQrResult(result.getText());
+
+                    stopScanner(); // Остановка сканера
+                    validateTicket(result.getText());
+                }
+            });
+
+            // Сохраняем видеопоток для принудительной остановки
+            streamRef.current = videoRef.current.srcObject;
+        } catch (error) {
+            console.error("Ошибка при инициализации сканера:", error);
+        }
+    }, [validateTicket]);
+
+    useEffect(() => {
         startScanner();
-
-        return () => {
-            codeReader.current.reset();
-        };
-    }, []);
+        return () => stopScanner();
+    }, [startScanner]);
 
     useEffect(() => {
         if (status) {
@@ -50,10 +56,23 @@ const ZXingScanner = () => {
             setTimeout(() => {
                 setQrResult(null);
                 setStatusColor(null);
-                codeReader.current.stopContinuousDecode();
+                startScanner(); // Перезапуск сканера
             }, 3000);
         }
-    }, [status]);
+    }, [status, startScanner]);
+
+    const stopScanner = () => {
+        console.log("Остановка сканера...");
+        if (scannerControls.current) {
+            scannerControls.current.stop(); // Остановка `decodeFromVideoDevice`
+        }
+        if (streamRef.current) {
+            streamRef.current.getTracks().forEach(track => track.stop()); // Остановка видеопотока
+        }
+        if (codeReader.current) {
+            codeReader.current.reset(); // Очистка код-ридера
+        }
+    };
 
     return (
         <Box
@@ -64,7 +83,7 @@ const ZXingScanner = () => {
                 mt: 5,
                 width: "100%",
                 height: "100vh",
-                backgroundColor: statusColor || "white", // Меняем цвет экрана
+                backgroundColor: statusColor || "white",
                 transition: "background-color 0.5s ease-in-out",
             }}
         >
