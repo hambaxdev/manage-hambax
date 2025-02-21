@@ -5,12 +5,12 @@ import useValidateTicket from "../hooks/useValidateTicket";
 
 const ZXingScanner = () => {
     const [qrResult, setQrResult] = useState(null);
-    const [statusColor, setStatusColor] = useState("white"); // Фон экрана
+    const [statusColor, setStatusColor] = useState(null);
     const videoRef = useRef(null);
     const codeReader = useRef(new BrowserQRCodeReader());
+    const scanningRef = useRef(false); // Флаг, предотвращающий повторное сканирование
     const { validateTicket, status } = useValidateTicket();
 
-    // Функция запуска сканера
     const startScanner = useCallback(async () => {
         if (!videoRef.current) return;
 
@@ -28,12 +28,16 @@ const ZXingScanner = () => {
             const deviceId = backCamera ? backCamera.deviceId : videoDevices[0].deviceId;
 
             await codeReader.current.decodeFromVideoDevice(deviceId, videoRef.current, (result, err) => {
-                if (result) {
+                if (result && !scanningRef.current) {
+                    scanningRef.current = true; // Блокируем повторное сканирование
                     console.log("✅ QR-код:", result.getText());
                     setQrResult(result.getText());
-
-                    // Отправляем запрос на проверку билета
                     validateTicket(result.getText());
+
+                    // Разблокируем сканирование через 3 секунды
+                    setTimeout(() => {
+                        scanningRef.current = false;
+                    }, 3000);
                 }
             });
 
@@ -51,8 +55,8 @@ const ZXingScanner = () => {
             setStatusColor(status === "success" ? "green" : "red");
 
             setTimeout(() => {
-                setStatusColor("white");
                 setQrResult(null);
+                setStatusColor(null);
             }, 3000);
         }
     }, [status]);
@@ -66,7 +70,7 @@ const ZXingScanner = () => {
                 mt: 5,
                 width: "100%",
                 height: "100vh",
-                backgroundColor: statusColor, // Меняем цвет экрана
+                backgroundColor: statusColor || "white",
                 transition: "background-color 0.5s ease-in-out",
             }}
         >
