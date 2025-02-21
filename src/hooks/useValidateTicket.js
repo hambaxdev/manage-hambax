@@ -6,7 +6,6 @@ const useValidateTicket = () => {
 
     const validateTicket = async (qrHash) => {
 
-        alert(qrHash);
         setLoading(true);
         setStatus(null);
 
