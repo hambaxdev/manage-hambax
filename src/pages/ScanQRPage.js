@@ -12,8 +12,10 @@ const ZXingScanner = () => {
     const scannerControls = useRef(null);
     const { validateTicket, status } = useValidateTicket();
 
-    // Функция для запуска сканера, предотвращает ошибку `no-undef`
+    // Функция запуска сканера
     const startScanner = useCallback(async () => {
+        if (!videoRef.current) return;
+
         try {
             console.log("Инициализация сканера...");
             const devices = await navigator.mediaDevices.enumerateDevices();
@@ -37,7 +39,7 @@ const ZXingScanner = () => {
                 }
             });
 
-            // Сохраняем видеопоток для принудительной остановки
+            // Сохраняем видеопоток для остановки камеры
             streamRef.current = videoRef.current.srcObject;
         } catch (error) {
             console.error("Ошибка при инициализации сканера:", error);
@@ -70,7 +72,7 @@ const ZXingScanner = () => {
             streamRef.current.getTracks().forEach(track => track.stop()); // Остановка видеопотока
         }
         if (codeReader.current) {
-            codeReader.current.reset(); // Очистка код-ридера
+            codeReader.current = null; // Удаляем объект код-ридера
         }
     };
 
