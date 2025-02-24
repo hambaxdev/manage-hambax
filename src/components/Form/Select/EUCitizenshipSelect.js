@@ -15,7 +15,12 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
       value={value || ""}
       onChange={(event) => {
         if (onChange) {
-          onChange(event.target.value);
+          onChange({
+            target: {
+              name: name,
+              value: event.target.value,
+            },
+          });
         }
       }}
       fullWidth
@@ -36,4 +41,3 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
 };
 
 export default EUCitizenshipSelect;
-

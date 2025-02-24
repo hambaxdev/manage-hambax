@@ -341,6 +341,7 @@
       "firstName": "Имя",
       "lastName": "Фамилия",
       "citizenship": "Гражданство",
+      "selectCountry": "пожалуйста, выберите",
       "language": "Язык",
       "dateOfBirth": "Дата рождения",
       "gender": "Пол",
