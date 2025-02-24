@@ -9,7 +9,6 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
   return (
     <TextField
       select
-      margin="normal"
       label={t('registration.personalInfo.citizenship')}
       name={name}
       value={value || ""}

@@ -244,6 +244,8 @@
   "profile": {
     "title": "Profil",
     "saveButton": "Speichern",
+    "updateSuccess": "Profil wurde gespeichrt",
+    "updateFailure": "Fehler",
     "basicInfo": {
       "title": "Grundlegende Informationen",
       "firstName": "Vorname",
@@ -274,7 +276,8 @@
     "dashboard": "Übersicht",
     "profile": "Profil",
     "events": "Veranstaltungen",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "scan_qr": "QR Scanner"
   },
   "register": {
     "title": "Registrieren",

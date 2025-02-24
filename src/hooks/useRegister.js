@@ -1,7 +1,10 @@
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 import { registerUser } from '../services/registrationService';
 
 const useRegister = () => {
+    const { t } = useTranslation();
+
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -16,7 +19,7 @@ const useRegister = () => {
         try {
             const response = await registerUser(formData);
             if (response.status === 200) {
-                setSuccessMessage('Registration successful! Please check your email.');
+                setSuccessMessage(t("registration.success"));
             }
         } catch (error) {
             if (error.response?.data?.errors) {

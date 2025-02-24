@@ -483,6 +483,8 @@
   "profile": {
     "title": "Профиль",
     "saveButton": "Сохранить",
+    "updateSuccess": "Профиль успешно обновлен",
+    "updateFailure": "Ошибка сохранения",
     "basicInfo": {
       "title": "Основная информация",
       "firstName": "Имя",
@@ -513,7 +515,8 @@
     "dashboard": "Панель управления",
     "profile": "Профиль",
     "events": "Мероприятия",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "scan_qr": "QR Scanner"
   },
   "register": {
     "title": "Регистрация",

@@ -52,7 +52,6 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     
         const success = await updateEvent(cleanData);
         if (success) {
-            alert(t('eventEditForm.success'));
             fetchEventDetails(cleanData._id);
         }
     };

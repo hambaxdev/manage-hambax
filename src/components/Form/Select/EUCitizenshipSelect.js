@@ -11,17 +11,14 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
       select
       label={t("registration.address.country")}
       name={name}
-      margin="normal"
       value={value || ""}
       onChange={(event) => {
-        if (onChange) {
-          onChange({
-            target: {
-              name: name,
-              value: event.target.value,
-            },
-          });
-        }
+        onChange({
+          target: {
+            name: name,
+            value: event.target.value,
+          },
+        });
       }}
       fullWidth
       error={!!error}
@@ -30,7 +27,6 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
       <MenuItem value="" disabled>
         {t("registration.personalInfo.selectCountry")}
       </MenuItem>
-
       {euCountries.map((country) => (
         <MenuItem key={country.code} value={country.code}>
           {t(`countries.${country.code}`, country.name)}

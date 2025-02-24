@@ -26,13 +26,20 @@ const UserProfileForm = ({ profileData, onSave }) => {
     });
 
     const handleChange = (section, key, value) => {
-        setFormData((prev) => ({
-            ...prev,
-            [section]: {
-                ...prev[section],
+        if (section) {
+            setFormData((prev) => ({
+                ...prev,
+                [section]: {
+                    ...prev[section],
+                    [key]: value,
+                },
+            }));
+        } else {
+            setFormData((prev) => ({
+                ...prev,
                 [key]: value,
-            },
-        }));
+            }));
+        }
     };
 
     const handleSave = () => {

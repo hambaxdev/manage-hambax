@@ -42,7 +42,7 @@ const BasicInfoSection = ({ data, onChange }) => {
                 <EUCitizenshipSelect
                     name="citizenship"
                     value={data.citizenship}
-                    onChange={(e) => onChange('citizenship', e.target.value)}
+                    onChange={(e) => onChange(e.target.name, e.target.value)}
                     error={false}
                     helperText=""
                 />

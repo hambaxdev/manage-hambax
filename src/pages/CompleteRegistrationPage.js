@@ -102,7 +102,7 @@ const CompleteRegistrationPage = () => {
             };
 
             completeRegistration(payload);
-            navigate("/admin");
+            navigate("/");
         } else {
             setActiveStep((prevStep) => prevStep + 1);
         }

@@ -484,6 +484,8 @@
   "profile": {
     "title": "Profile",
     "saveButton": "Save",
+    "updateSuccess": "Profile changed successfully",
+    "updateFailure": "Profile saving error",
     "basicInfo": {
       "title": "Basic Information",
       "firstName": "First Name",
@@ -514,7 +516,8 @@
     "dashboard": "Dashboard",
     "profile": "Profile",
     "events": "Events",
-    "logout": "Logout"
+    "logout": "Logout",
+    "scan_qr": "QR Scanner"
   },
   "register": {
     "title": "Register",
