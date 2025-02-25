@@ -325,11 +325,15 @@
     "error": "Failed to resend email"
   },
   "verification": {
-    "title": "Verify Your Email",
-    "message": "We have sent a verification email to {{email}}. Please check your inbox and follow the instructions.",
+    "title": "Email Verification",
+    "message": "We have sent a verification email to {{email}}. Please check your inbox and confirm your email address.",
     "login": "Go to Login",
     "noEmail": "Didn't receive the email?",
-    "resend": "Resend verification"
+    "resend": "Resend Verification Email",
+    "resending": "Sending...",
+    "resentSuccess": "A verification email has been resent to {{email}}.",
+    "resentError": "Failed to resend verification email.",
+    "noEmailProvided": "Email is missing."
   },
   "api": {
     "errorSendingCode": "Error sending code. Please try again.",

@@ -1,13 +1,20 @@
-import React from "react";
-import { Container, Typography, Box, Button, Link } from "@mui/material";
+import React, { useState } from "react";
+import { Container, Typography, Box, Button, Link, Alert } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import useResendVerification from "../hooks/useResendVerification"; // Импортируем хук
 
 const EmailVerificationNotice = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const email = location.state?.email || "ваш email";
+
+  const { isLoading, errorMessage, successMessage, resendVerificationEmail } = useResendVerification();
+
+  const handleResendEmail = () => {
+    resendVerificationEmail(email);
+  };
 
   return (
     <Container maxWidth="sm">
@@ -20,6 +27,11 @@ const EmailVerificationNotice = () => {
           {t("verification.message", { email })}
         </Typography>
 
+        {/* Отображение сообщений */}
+        {errorMessage && <Alert severity="error">{t(errorMessage)}</Alert>}
+        {successMessage && <Alert severity="success">{t(successMessage)}</Alert>}
+
+        {/* Кнопка для входа */}
         <Button
           variant="contained"
           color="primary"
@@ -33,7 +45,13 @@ const EmailVerificationNotice = () => {
         <Box mt={2}>
           <Typography variant="body2">
             {t("verification.noEmail")}{" "}
-            <Link href="/resend-verification">{t("verification.resend")}</Link>
+            <Button
+              variant="text"
+              onClick={handleResendEmail}
+              disabled={isLoading}
+            >
+              {isLoading ? t("verification.sending") : t("verification.resend")}
+            </Button>
           </Typography>
         </Box>
       </Box>

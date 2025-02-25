@@ -86,11 +86,15 @@
     "error": "E-Mail konnte nicht gesendet werden"
   },
   "verification": {
-    "title": "Bestätigen Sie Ihre E-Mail",
-    "message": "Wir haben eine Bestätigungs-E-Mail an {{email}} gesendet. Bitte überprüfen Sie Ihr Postfach und folgen Sie den Anweisungen.",
+    "title": "E-Mail-Bestätigung",
+    "message": "Wir haben eine Bestätigungs-E-Mail an {{email}} gesendet. Bitte überprüfen Sie Ihr Postfach und bestätigen Sie Ihre E-Mail-Adresse.",
     "login": "Zum Login",
-    "noEmail": "E-Mail nicht erhalten?",
-    "resend": "Bestätigungs-E-Mail erneut senden"
+    "noEmail": "Keine E-Mail erhalten?",
+    "resend": "Bestätigungs-E-Mail erneut senden",
+    "resending": "Senden...",
+    "resentSuccess": "Eine Bestätigungs-E-Mail wurde erneut an {{email}} gesendet.",
+    "resentError": "Fehler beim erneuten Senden der Bestätigungs-E-Mail.",
+    "noEmailProvided": "E-Mail fehlt."
   },
   "api": {
     "errorSendingCode": "Fehler beim Senden des Codes. Bitte versuchen Sie es erneut.",
