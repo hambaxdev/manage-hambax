@@ -15,6 +15,8 @@ import Sidebar from './components/Sidebar';
 import CreateEventPage from './pages/CreateEventPage';
 import EventEditPage from './pages/EventEditPage';
 import ScanQRPage from './pages/ScanQRPage';
+import EmailVerificationNotice from "./pages/EmailVerificationNotice";
+import ResendVerificationPage from "./pages/ResendVerificationPage";
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -47,6 +49,8 @@ const AppContent = () => {
                         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
                         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
+                        <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
+                        <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
 
                         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                         <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />

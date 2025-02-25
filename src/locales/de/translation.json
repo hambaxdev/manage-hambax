@@ -77,6 +77,21 @@
           "poolQuantityRequired": "Die Anzahl ist erforderlich, wenn die Ticketbegrenzung aktiviert ist."
     }
   },
+  "resend": {
+    "title": "Bestätigungsmail erneut senden",
+    "email": "Geben Sie Ihre E-Mail-Adresse ein",
+    "loading": "Senden...",
+    "submit": "E-Mail erneut senden",
+    "success": "Bestätigungsmail wurde erneut gesendet",
+    "error": "E-Mail konnte nicht gesendet werden"
+  },
+  "verification": {
+    "title": "Bestätigen Sie Ihre E-Mail",
+    "message": "Wir haben eine Bestätigungs-E-Mail an {{email}} gesendet. Bitte überprüfen Sie Ihr Postfach und folgen Sie den Anweisungen.",
+    "login": "Zum Login",
+    "noEmail": "E-Mail nicht erhalten?",
+    "resend": "Bestätigungs-E-Mail erneut senden"
+  },
   "api": {
     "errorSendingCode": "Fehler beim Senden des Codes. Bitte versuchen Sie es erneut.",
     "invalidCode": "Ungültiger Code. Bitte überprüfen Sie Ihre E-Mail.",

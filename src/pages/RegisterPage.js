@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import { Container, TextField, Button, Typography, Box, Alert, IconButton, InputAdornment, Link } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { useTranslation } from 'react-i18next'; // Hook for localization
+import { useTranslation } from 'react-i18next';
 import useRegister from '../hooks/useRegister';
+import { useNavigate } from "react-router-dom"; 
 
 const RegisterPage = () => {
-  const { t } = useTranslation(); // Hook for localization
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { isLoading, errorMessage, successMessage, validationErrors, register } = useRegister();
+  const navigate = useNavigate(); 
 
-  const handleRegister = () => {
-    register({ email, password });
+  const handleRegister = async () => {
+    const result = await register({ email, password });
+  
+    if (result.success) {
+      navigate("/email-verification", { state: { email } });
+    }
   };
 
   return (

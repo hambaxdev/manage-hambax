@@ -316,6 +316,21 @@
         "poolQuantityRequired": "Quantity is required when ticket limit is enabled."
     }
   },
+  "resend": {
+    "title": "Resend Verification Email",
+    "email": "Enter your email",
+    "loading": "Sending...",
+    "submit": "Resend Email",
+    "success": "Verification email has been resent",
+    "error": "Failed to resend email"
+  },
+  "verification": {
+    "title": "Verify Your Email",
+    "message": "We have sent a verification email to {{email}}. Please check your inbox and follow the instructions.",
+    "login": "Go to Login",
+    "noEmail": "Didn't receive the email?",
+    "resend": "Resend verification"
+  },
   "api": {
     "errorSendingCode": "Error sending code. Please try again.",
     "invalidCode": "Invalid code. Please check your email.",
