@@ -1,5 +1,5 @@
 import i18n from '../i18n';
-
+import isPostalCode from "postcode-validator";
 /**
  * Функция для валидации данных регистрации.
  * @param {Object} values - Объект с полями формы.
@@ -166,7 +166,11 @@ export const validateAddressStep = (formData) => {
 
   if (!formData.country) errors.country = i18n.t("validation.countryRequired");
   if (!formData.city) errors.city = i18n.t("validation.cityRequired");
-  if (!formData.zipCode) errors.zipCode = i18n.t("validation.zipCodeRequired");
+  if (!formData.zipCode) {
+    errors.zipCode = i18n.t("validation.zipCodeRequired");
+  } else if (!isPostalCode(formData.zipCode, formData.country)) {
+    errors.zipCode = i18n.t("validation.invalidZipCode");
+  }
   if (!formData.streetName) errors.streetName = i18n.t("validation.streetNameRequired");
   if (!formData.houseNumber) errors.houseNumber = i18n.t("validation.houseNumberRequired");
 

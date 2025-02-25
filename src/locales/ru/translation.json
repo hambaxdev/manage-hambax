@@ -270,6 +270,7 @@
     "passwordRequired": "Пароль обязателен",
     "passwordMinLength": "Пароль должен содержать не менее 6 символов",
     "confirmPasswordMismatch": "Пароли не совпадают",
+    "invalidZipCode": "Неверный почтовый индекс",
     "firstNameRequired": "Имя обязательно",
     "lastNameRequired": "Фамилия обязательна",
     "citizenshipRequired": "Гражданство обязательно",

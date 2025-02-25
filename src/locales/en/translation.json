@@ -277,6 +277,7 @@
     "languageRequired": "Language is required",
     "countryRequired": "Country is required",
     "cityRequired": "City is required",
+    "invalidZipCode": "Invalid postal code",
     "zipCodeRequired": "Zip code is required",
     "streetNameRequired": "Street name is required",
     "houseNumberRequired": "House number is required",

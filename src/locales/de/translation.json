@@ -37,6 +37,7 @@
     "citizenshipRequired": "Staatsangehörigkeit ist erforderlich",
     "languageRequired": "Sprache ist erforderlich",
     "countryRequired": "Land ist erforderlich",
+    "invalidZipCode": "Falsches PLZ",
     "cityRequired": "Stadt ist erforderlich",
     "zipCodeRequired": "Postleitzahl ist erforderlich",
     "streetNameRequired": "Straßenname ist erforderlich",
