@@ -109,6 +109,7 @@
   },
   "registration": {
     "title": "Registrierung abschließen",
+    "success": "Registrierung erfolgreich!",
     "progress": {
       "step1": "Persönliche Daten",
       "step2": "Adresse",

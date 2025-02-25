@@ -20,6 +20,7 @@ const useRegister = () => {
             const response = await registerUser(formData);
             if (response.status === 200) {
                 setSuccessMessage(t("registration.success"));
+                return { success: true };
             }
         } catch (error) {
             if (error.response?.data?.errors) {
@@ -30,6 +31,8 @@ const useRegister = () => {
         } finally {
             setIsLoading(false);
         }
+    
+        return { success: false };
     };
 
     return { isLoading, errorMessage, successMessage, validationErrors, register };

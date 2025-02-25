@@ -348,6 +348,7 @@
   },
   "registration": {
     "title": "Complete Registration",
+    "success": "Registration successful!",
     "progress": {
       "step1": "Personal Information",
       "step2": "Address",
