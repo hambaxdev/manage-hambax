@@ -1,4 +1,4 @@
-import isPostalCode from "postcode-validator";
+import { postcodeValidator } from "postcode-validator";
 
 /**
  * Проверяет валидность почтового индекса
@@ -7,5 +7,5 @@ import isPostalCode from "postcode-validator";
  * @returns {boolean}
  */
 export const isValidPostalCode = (country, zipCode) => {
-  return isPostalCode(zipCode, country);
+  return postcodeValidator(zipCode, country);
 };
