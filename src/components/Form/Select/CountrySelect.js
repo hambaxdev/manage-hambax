@@ -13,7 +13,6 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
       name={name}
       value={value || ""}
       onChange={(event) => {
-        
         onChange({
           target: {
             name: name,

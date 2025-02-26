@@ -136,6 +136,7 @@ const AuthProvider = ({ children }) => {
             value={{
                 isAuthenticated,
                 isBasicRegistrationComplete,
+                setIsBasicRegistrationComplete,
                 profileData,
                 login,
                 logout,

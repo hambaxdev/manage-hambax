@@ -7,7 +7,7 @@ const useCompleteRegistration = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
-    const { completeRegistration: updateAuthContext, updateUserProfile } = useAuth(); // Добавили updateUserProfile
+    const { completeRegistration: updateAuthContext, updateUserProfile, setIsBasicRegistrationComplete } = useAuth(); // Добавили setIsBasicRegistrationComplete
 
     const completeRegistration = async (formData) => {
         setIsLoading(true);
@@ -20,8 +20,12 @@ const useCompleteRegistration = () => {
             const response = await completeUserRegistration(formData, token);
             if (response.status === 200) {
                 setSuccessMessage('Registration completed successfully!');
-                updateAuthContext(); // Обновляем контекст аутентификации
-                await updateUserProfile(); // Запрашиваем актуальные данные профиля
+                updateAuthContext();
+                await updateUserProfile();
+
+                console.log('setIsBasicRegistrationComplete(true)');
+                // Устанавливаем флаг регистрации в true после успешного обновления профиля
+                setIsBasicRegistrationComplete(true);
             }
         } catch (error) {
             if (error.response?.data?.errors) {
