@@ -17,6 +17,8 @@ import EventEditPage from './pages/EventEditPage';
 import ScanQRPage from './pages/ScanQRPage';
 import EmailVerificationNotice from "./pages/EmailVerificationNotice";
 import ResendVerificationPage from "./pages/ResendVerificationPage";
+import OnboardingRefresh from "./pages/OnboardingRefresh";
+import OnboardingSuccess from "./pages/OnboardingSuccess";
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -52,6 +54,8 @@ const AppContent = () => {
                         <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
                         <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
 
+                        
+
                         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                         <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
                         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
@@ -59,6 +63,8 @@ const AppContent = () => {
                         <Route path="/events/:id" element={<ProtectedRoute><EventEditPage /></ProtectedRoute>} />
                         <Route path="/scan-qr" element={<ProtectedRoute><ScanQRPage /></ProtectedRoute>} />
                         <Route path="/complete-registration" element={<ProtectedRoute><CompleteRegistrationPage /></ProtectedRoute>} />
+                        <Route path="/onboarding/refresh" element={<ProtectedRoute><OnboardingRefresh /></ProtectedRoute>} />
+                        <Route path="/onboarding/success" element={<ProtectedRoute><OnboardingSuccess /></ProtectedRoute>} />
                     </Routes>
                 </Box>
             </Box>
