@@ -74,19 +74,41 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     }}
                 >
                     <Box>
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: isOpen ? 'space-between' : 'center',
-                                padding: 2,
-                            }}
-                        >
-                            {isOpen && <Typography variant="h6">{t('sidebar.title')}</Typography>}
-                            <IconButton onClick={toggleSidebar}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: isOpen ? 'space-between' : 'center',
+                            padding: 2,
+                            position: 'relative',
+                        }}
+                    >
+                        {/* Логотип (показываем только если меню открыто) */}
+                        {isOpen && (
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    marginLeft: isMobile ? '40px' : '0px',
+                                    transition: 'margin-left 0.3s',
+                                }}
+                            >
+                                {t('sidebar.title')}
+                            </Typography>
+                        )}
+
+                        {/* Только одна кнопка: бургер (если закрыто) или крестик (если открыто) */}
+                        {isMobile && (
+                            <IconButton
+                                onClick={toggleSidebar}
+                                sx={{
+                                    position: 'absolute',
+                                    left: '8px',
+                                }}
+                            >
                                 {isOpen ? <CloseIcon /> : <MenuIcon />}
                             </IconButton>
-                        </Box>
+                        )}
+                    </Box>
                         <Divider />
                         <List>
                             {menuItems.map((item, index) => (

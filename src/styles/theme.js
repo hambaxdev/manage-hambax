@@ -28,6 +28,9 @@ const theme = createTheme({
         h3: {
             fontFamily: '"Oswald", "Arial", "sans-serif"',
         },
+        h4: {
+            fontFamily: '"Oswald", "Arial", "sans-serif"',
+        },
         body1: {
             fontFamily: '"Oswald", "Arial", "sans-serif"',
         },
@@ -42,6 +45,13 @@ const theme = createTheme({
                     fontFamily: '"Oswald", "Arial", "sans-serif"',
                     fontWeight: 'bold',
                     color: '#FFFFFF',
+                },
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                h4: {
+                    marginLeft: '24px', // Устанавливает отступ слева для всех h4
                 },
             },
         },
