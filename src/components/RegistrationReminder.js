@@ -9,11 +9,17 @@ const RegistrationReminder = () => {
     const { isBasicRegistrationComplete, profileData } = useAuthContext();
     const navigate = useNavigate();
 
-    const stripeOnboardingIncomplete = profileData && !profileData.stripeOnboardingCompleted && profileData.stripeOnboardingCompleted !== '' && profileData.stripeOnboardingCompleted !== null;
+    const stripeOnboardingIncomplete =
+        isBasicRegistrationComplete && // Stripe Reminder показывается только после завершения основной регистрации
+        profileData &&
+        !profileData.stripeOnboardingCompleted &&
+        profileData.stripeOnboardingCompleted !== "" &&
+        profileData.stripeOnboardingCompleted !== null;
+
     const stripeOnboardingLink = profileData?.stripeOnboardingLink;
 
-    if (isBasicRegistrationComplete && !stripeOnboardingIncomplete) {
-        return null;
+    if (!stripeOnboardingIncomplete && isBasicRegistrationComplete) {
+        return null; // Если все завершено, ничего не показываем
     }
 
     return (
@@ -27,6 +33,7 @@ const RegistrationReminder = () => {
                 mb: 2,
             }}
         >
+            {/* Напоминание о базовой регистрации */}
             {!isBasicRegistrationComplete && (
                 <>
                     <Typography variant="body1" gutterBottom>
@@ -42,6 +49,8 @@ const RegistrationReminder = () => {
                     </Button>
                 </>
             )}
+
+            {/* Напоминание о Stripe онбординге (только если регистрация завершена) */}
             {stripeOnboardingIncomplete && (
                 <>
                     <Typography variant="body1" gutterBottom>

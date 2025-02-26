@@ -4,7 +4,7 @@ import useAuth from "../hooks/useAuth";
 import RegistrationReminder from "./RegistrationReminder";
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, isBasicRegistrationComplete } = useAuth();
     const [loadingAuth, setLoadingAuth] = useState(true);
     const location = useLocation();
 
@@ -17,10 +17,16 @@ const ProtectedRoute = ({ children }) => {
     }
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" />;
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
+    const isProfilePage = location.pathname === "/profile";
     const isCompleteRegistrationPage = location.pathname === "/complete-registration";
+
+    // Если регистрация не завершена, запрещаем доступ только к `/profile`
+    if (!isBasicRegistrationComplete && isProfilePage) {
+        return <Navigate to="/complete-registration" state={{ from: location }} replace />;
+    }
 
     return (
         <>

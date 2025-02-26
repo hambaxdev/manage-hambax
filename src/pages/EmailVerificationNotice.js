@@ -46,9 +46,15 @@ const EmailVerificationNotice = () => {
           <Typography variant="body2">
             {t("verification.noEmail")}{" "}
             <Button
-              variant="text"
+              variant="contained"
+              color="secondary"
               onClick={handleResendEmail}
               disabled={isLoading}
+              sx={{
+                mt: 2,
+                textTransform: "none",
+                visibility: isLoading ? "visible" : "visible",
+              }}
             >
               {isLoading ? t("verification.sending") : t("verification.resend")}
             </Button>
