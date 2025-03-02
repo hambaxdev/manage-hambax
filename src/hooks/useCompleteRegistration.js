@@ -7,7 +7,7 @@ const useCompleteRegistration = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const [validationErrors, setValidationErrors] = useState({});
-    const { completeRegistration: updateAuthContext, updateUserProfile, setIsBasicRegistrationComplete } = useAuth(); // Добавили setIsBasicRegistrationComplete
+    const { completeRegistration: updateAuthContext, updateUserProfile, setIsBasicRegistrationComplete } = useAuth();
 
     const completeRegistration = async (formData) => {
         setIsLoading(true);
