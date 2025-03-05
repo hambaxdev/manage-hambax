@@ -1,7 +1,6 @@
 import React from 'react';
 import { TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import CountrySelect from '../Form/Select/CountrySelect';
 import EUCitizenshipSelect from '../Form/Select/EUCitizenshipSelect';
 
 const AddressForm = ({ address, onChange, errors = {} }) => {
@@ -15,7 +14,7 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
         <>
             {/* Section title */}
             <Typography variant="subtitle1" gutterBottom>
-                {t('eventAddress.title')}
+                {t('eventAddress.subtitle')}
             </Typography>
 
             {/* Input for the street */}

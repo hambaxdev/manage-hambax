@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, Tabs, Tab } from '@mui/material';
+import { Box, Switch, FormControlLabel } from '@mui/material';
 import FixedPriceTab from './FixedPriceTab';
 import TicketPoolsTab from './TicketPoolsTab';
+import InfoTooltip from '../InfoTooltip';
+import { useTranslation } from 'react-i18next';
 
 const PricingOptions = ({
-    activeTab,
-    setActiveTab,
+    useTicketPools,
+    setUseTicketPools,
     ticketPrice,
     setTicketPrice,
     limitTickets,
@@ -16,18 +18,25 @@ const PricingOptions = ({
     setPools,
     errors,
 }) => {
-    const handleTabChange = (event, newValue) => {
-        setActiveTab(newValue);
-    };
+    const { t } = useTranslation();
 
     return (
         <Box>
-            <Tabs value={activeTab} onChange={handleTabChange} variant="fullWidth">
-                <Tab label="Fixed Price" />
-                <Tab label="Ticket Pools" />
-            </Tabs>
+            <Box display="flex" alignItems="center">
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={useTicketPools}
+                            onChange={(e) => setUseTicketPools(e.target.checked)}
+                            color="primary"
+                        />
+                    }
+                    label={t('pricing.useTicketPools')}
+                />
+                <InfoTooltip text={t('pricing.tooltipText')} />
+            </Box>
 
-            {activeTab === 0 && (
+            {!useTicketPools ? (
                 <FixedPriceTab
                     ticketPrice={ticketPrice}
                     setTicketPrice={setTicketPrice}
@@ -37,14 +46,8 @@ const PricingOptions = ({
                     setTicketLimit={setTicketLimit}
                     errors={errors}
                 />
-            )}
-
-            {activeTab === 1 && (
-                <TicketPoolsTab
-                    pools={pools}
-                    setPools={setPools}
-                    errors={errors}
-                />
+            ) : (
+                <TicketPoolsTab pools={pools} setPools={setPools} errors={errors} />
             )}
         </Box>
     );

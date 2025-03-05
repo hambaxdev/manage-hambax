@@ -350,6 +350,10 @@
     "successMessage": "Your message has been successfully sent. We will get back to you shortly.",
     "errorMessage": "There was an error sending your message. Please try again later."
   },
+  "pricing": {
+    "useTicketPools": "Use ticket pools",
+    "tooltipText": "Fixed price means one price for all tickets. Ticket pools allow you to set different prices for different groups of tickets."
+  },
   "registration": {
     "title": "Complete Registration",
     "success": "Registration successful!",
@@ -491,6 +495,7 @@
   },
   "eventAddress": {
     "title": "Event Address",
+    "subtitle": "Help your guests find the event! Enter the exact address, including the street, building number, city, country, and postal code",
     "streetLabel": "Street",
     "buildingLabel": "Building",
     "cityLabel": "City",

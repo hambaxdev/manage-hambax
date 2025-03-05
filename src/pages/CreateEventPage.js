@@ -16,6 +16,7 @@ const CreateEventPage = () => {
     const navigate = useNavigate();
     const [selectedImageFile, setSelectedImageFile] = useState(null);
     const [previewURL, setPreviewURL] = useState(null);
+    const [useTicketPools, setUseTicketPools] = useState(false);
 
     // Основное состояние для события
     const [eventData, setEventData] = useState({
@@ -175,6 +176,8 @@ const CreateEventPage = () => {
                         activeTab={eventData.pricing.activeTab}
                         setActiveTab={handleTabChange}
                         ticketPrice={fixedPriceData.ticketPrice}
+                        useTicketPools={useTicketPools}
+                        setUseTicketPools={setUseTicketPools}
                         setTicketPrice={(value) =>
                             setFixedPriceData((prev) => ({ ...prev, ticketPrice: value }))
                         }

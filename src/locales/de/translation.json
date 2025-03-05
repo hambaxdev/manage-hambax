@@ -111,6 +111,10 @@
     "successMessage": "Ihre Nachricht wurde erfolgreich gesendet. Wir werden uns in Kürze bei Ihnen melden.",
     "errorMessage": "Beim Senden Ihrer Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal."
   },
+  "pricing": {
+    "useTicketPools": "Ticketpools verwenden",
+    "tooltipText": "Festpreis bedeutet ein Preis für alle Tickets. Ticketpools ermöglichen es Ihnen, unterschiedliche Preise für verschiedene Ticketgruppen festzulegen."
+  },
   "registration": {
     "title": "Registrierung abschließen",
     "success": "Registrierung erfolgreich!",
@@ -251,6 +255,7 @@
   },
   "eventAddress": {
     "title": "Veranstaltungsadresse",
+    "subtitle": "Helfen Sie Ihren Gästen, die Veranstaltung zu finden! Geben Sie die genaue Adresse ein, einschließlich Straße, Hausnummer, Stadt, Land und Postleitzahl",
     "streetLabel": "Straße",
     "buildingLabel": "Gebäude",
     "cityLabel": "Stadt",
