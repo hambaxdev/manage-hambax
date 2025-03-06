@@ -44,7 +44,7 @@ const PricingOptions = ({
                     setLimitTickets={setLimitTickets}
                     ticketLimit={ticketLimit}
                     setTicketLimit={setTicketLimit}
-                    errors={errors}
+                    errors={errors} // Передаем ошибки только для фиксированной цены
                 />
             ) : (
                 <TicketPoolsTab pools={pools} setPools={setPools} errors={errors} />

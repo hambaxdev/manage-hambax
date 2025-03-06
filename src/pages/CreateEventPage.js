@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +18,16 @@ const CreateEventPage = () => {
     const [previewURL, setPreviewURL] = useState(null);
     const [useTicketPools, setUseTicketPools] = useState(false);
 
+    useEffect(() => {
+        if (useTicketPools && ticketPoolsData.length < 2) {
+            setTicketPoolsData([
+                { name: '', price: '', quantity: '', startDate: '', endDate: '', limitTickets: false },
+                { name: '', price: '', quantity: '', startDate: '', endDate: '', limitTickets: false },
+            ]);
+        }
+    }, [useTicketPools]);
+
+    
     // Основное состояние для события
     const [eventData, setEventData] = useState({
         title: '',
@@ -46,6 +56,7 @@ const CreateEventPage = () => {
         ticketLimit: '',
     });
 
+    
     const handleTabChange = (newTab) => {
         setEventData((prevData) => ({
             ...prevData,
@@ -59,36 +70,16 @@ const CreateEventPage = () => {
     ]);
 
     const [errors, setErrors] = useState({});
-
+    
     const handleNext = () => {
         let validationErrors = {};
-
+    
         if (activeStep === 0) {
             validationErrors = validateEventDetails(eventData);
         } else if (activeStep === 1) {
             validationErrors = validateAddress(eventData.address);
-        }
-
-        if (Object.keys(validationErrors).length > 0 || Array.isArray(validationErrors) && validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-
-        setActiveStep((prevStep) => prevStep + 1);
-        setErrors({});
-    };
-
-    const handleBack = () => {
-        setActiveStep((prevStep) => prevStep - 1);
-    };
-
-    const handleSubmit = async () => {
-        let validationErrors = {};
-    
-        if (eventData.pricing.activeTab === 0) {
-            validationErrors = validateFixedPrice(fixedPriceData);
-        } else if (eventData.pricing.activeTab === 1) {
-            validationErrors = validateTicketPools(ticketPoolsData);
+        } else if (activeStep === 2) {
+            validationErrors = useTicketPools ? validateTicketPools(ticketPoolsData) : validateFixedPrice(fixedPriceData);
         }
     
         if (Object.keys(validationErrors).length > 0) {
@@ -96,20 +87,41 @@ const CreateEventPage = () => {
             return;
         }
     
+        setErrors({}); // ✅ Сбрасываем ошибки, если всё валидно
+        setActiveStep((prevStep) => prevStep + 1);
+    };
+    
+    
+    
+    const handleBack = () => {
+        setActiveStep((prevStep) => prevStep - 1);
+    };
+
+    const handleSubmit = async () => {
+        let validationErrors = useTicketPools 
+            ? validateTicketPools(ticketPoolsData) 
+            : validateFixedPrice(fixedPriceData);
+    
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+    
+        // ✅ Формируем объект данных (только активный режим)
         const finalEventData = {
             ...eventData,
-            pricing: {
-                ...eventData.pricing,
-                ...(eventData.pricing.activeTab === 0
-                    ? fixedPriceData
-                    : { ticketPools: ticketPoolsData }),
-            },
+            pricing: useTicketPools
+                ? { ticketPools: ticketPoolsData }
+                : { 
+                    ticketPrice: fixedPriceData.ticketPrice, 
+                    limitTickets: fixedPriceData.limitTickets, 
+                    ticketLimit: fixedPriceData.ticketLimit 
+                },
         };
     
         console.log("📤 Отправка события:", finalEventData);
-        console.log("📸 Выбранное изображение:", selectedImageFile);
     
-        const response = await submitEvent(finalEventData, selectedImageFile); // Передаём `File`
+        const response = await submitEvent(finalEventData, selectedImageFile);
     
         if (response) {
             navigate('/events');
@@ -117,6 +129,8 @@ const CreateEventPage = () => {
     };
     
     
+    
+
     const handleImageChange = (file) => {
         console.log("📸 Новый файл изображения:", file);
     

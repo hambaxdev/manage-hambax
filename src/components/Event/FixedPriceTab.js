@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, TextField, Switch, FormControlLabel } from '@mui/material';
 
 const FixedPriceTab = ({
@@ -8,8 +8,18 @@ const FixedPriceTab = ({
     setLimitTickets,
     ticketLimit,
     setTicketLimit,
+    useTicketPools,
     errors = {},
 }) => {
+
+    useEffect(() => {
+        if (useTicketPools) {
+            setTicketPrice('');
+            setLimitTickets(false);
+            setTicketLimit('');
+        }
+    }, [useTicketPools]);
+
     return (
         <Box mt={2}>
             <TextField
@@ -22,6 +32,7 @@ const FixedPriceTab = ({
                 required
                 error={!!errors.ticketPrice}
                 helperText={errors.ticketPrice}
+                disabled={useTicketPools} // ✅ Блокируем поле, если выбраны пулы билетов
             />
             <Box mt={2}>
                 <FormControlLabel
@@ -30,6 +41,7 @@ const FixedPriceTab = ({
                             checked={limitTickets}
                             onChange={(e) => setLimitTickets(e.target.checked)}
                             color="primary"
+                            disabled={useTicketPools} // ✅ Блокируем свитчер
                         />
                     }
                     label="Limit Tickets"
@@ -45,6 +57,7 @@ const FixedPriceTab = ({
                         required
                         error={!!errors.ticketLimit}
                         helperText={errors.ticketLimit}
+                        disabled={useTicketPools} // ✅ Блокируем ввод
                     />
                 )}
             </Box>
