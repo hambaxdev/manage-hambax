@@ -25,8 +25,7 @@ const EventDetailsForm = ({
     const { t } = useTranslation();
 
     return (
-        <Box>
-            {/* Input for the event title */}
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <TextField
                 fullWidth
                 label={t('eventDetailsForm.titleLabel')}
@@ -36,6 +35,7 @@ const EventDetailsForm = ({
                 required
                 error={!!errors.title} // Display error if exists
                 helperText={errors.title} // Display error message
+                sx={{ mt: 3 }}
             />
 
             {/* Selector for the event type */}
@@ -57,6 +57,7 @@ const EventDetailsForm = ({
                 required
                 error={!!errors.description}
                 helperText={errors.description}
+                sx={{ mt: 3 }}
             />
 
             {/* Input for the event date */}
