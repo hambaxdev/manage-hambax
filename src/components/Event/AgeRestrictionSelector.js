@@ -26,7 +26,7 @@ const AgeRestrictionSelector = ({ ageRestriction, setAgeRestriction, error }) =>
 
     return (
         <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
                 {t('ageRestriction.title')}
             </Typography>
             <FormControl fullWidth margin="normal" error={!!error}>

@@ -3,55 +3,36 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#FF8C00',
+            main: '#f3bf6b',
         },
         secondary: {
-            main: '#FFA500',
+            main: '#535bb2',
         },
         text: {
             primary: '#000000',
             secondary: '#555555',
         },
+        background: {
+            card: '#f0f0f5',
+        },
     },
     typography: {
         fontFamily: '"Oswald", "Arial", "Roboto", "sans-serif"',
-        button: {
-            textTransform: 'none',
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        h1: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        h2: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        h3: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        h4: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        body1: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
-        body2: {
-            fontFamily: '"Oswald", "Arial", "sans-serif"',
-        },
+        h1: { color: '#f3bf6b', fontWeight: 'bold' },
+        h2: { color: '#f3bf6b', fontWeight: 'bold' },
+        h3: { color: '#f3bf6b', fontWeight: 'bold' },
+        h4: { color: '#f3bf6b', fontWeight: 'bold' },
+        h5: { color: '#f3bf6b', fontWeight: 'bold' },
+        h6: { color: '#f3bf6b', fontWeight: 'bold' },
     },
     components: {
-        MuiButton: {
+        MuiCard: {
             styleOverrides: {
                 root: {
-                    fontFamily: '"Oswald", "Arial", "sans-serif"',
-                    fontWeight: 'bold',
-                    color: '#FFFFFF',
-                },
-            },
-        },
-        MuiTypography: {
-            styleOverrides: {
-                h4: {
-                    marginLeft: '24px', // Устанавливает отступ слева для всех h4
+                    backgroundColor: '#fdf7ee',
+                    borderRadius: '12px',
+                    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+                    padding: '16px',
                 },
             },
         },
