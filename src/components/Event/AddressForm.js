@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, Typography, Box } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import EUCitizenshipSelect from '../Form/Select/EUCitizenshipSelect';
 
@@ -11,8 +11,9 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
     };
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-            <Typography variant="body2" color="textSecondary" gutterBottom sx={{ mt: 1 }}>
+        <>
+            {/* Section title */}
+            <Typography variant="subtitle1" gutterBottom>
                 {t('eventAddress.subtitle')}
             </Typography>
 
@@ -50,7 +51,6 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 required
                 error={!!errors.city}
                 helperText={errors.city}
-                sx={{ mb: 3 }}
             />
 
             {/* Country selector */}
@@ -58,7 +58,7 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 name="country"
                 value={address.country || ""}
                 onChange={(e) => handleAddressChange(e.target.name, e.target.value)}
-                helperText={(!address.country && errors.country) ? errors.country : ""}
+                helperText={errors.country || t("eventAddress.countryHelperText")}
                 error={!!errors.country}
             />
 
@@ -73,9 +73,8 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 required
                 error={!!errors.postalCode}
                 helperText={errors.postalCode}
-                sx={{ mt: 3 }}
             />
-        </Box>
+        </>
     );
 };
 

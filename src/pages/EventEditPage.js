@@ -31,10 +31,10 @@ const EventEditPage = () => {
 
     if (error) {
         return (
-            <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 4 }}>
-                <Typography color="error" variant="h6">{t('eventEditPage.error', { error })}</Typography>
-                <Typography variant="body1" mt={2}>
-                    <a href="#" onClick={() => navigate(-1)} style={{ textDecoration: 'none', color: '#1976d2' }}>
+            <Container>
+                <Typography color="error">{t('eventEditPage.error', { error })}</Typography>
+                <Typography>
+                    <a href="#" onClick={() => navigate(-1)}>
                         {t('eventEditPage.back')}
                     </a>
                 </Typography>
@@ -44,34 +44,20 @@ const EventEditPage = () => {
 
     return (
         <Container maxWidth="md" sx={{ padding: { xs: 2, sm: 4 } }}>
-            <Typography
-                variant="h4"
-                gutterBottom
-                textAlign="center"
-                sx={{ fontSize: { xs: '1.5rem', sm: '2.5rem' }, mb: { xs: 2, sm: 4 } }}
-            >
+            <Typography variant="h4" gutterBottom>
                 {t('eventEditPage.title')}
             </Typography>
 
-            <Tabs
-                value={activeTab}
-                onChange={handleTabChange}
-                variant="fullWidth"
-                sx={{ mb: 3, borderBottom: 1, borderColor: 'divider' }}
-            >
-                <Tab label={t('eventEditPage.statisticsTab')} sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }} />
-                <Tab label={t('eventEditPage.editTab')} sx={{ fontSize: { xs: '0.8rem', sm: '1rem' } }} />
+            <Tabs value={activeTab} onChange={handleTabChange} variant="fullWidth" sx={{ marginBottom: 2 }}>
+                <Tab label={t('eventEditPage.statisticsTab')} />
+                <Tab label={t('eventEditPage.editTab')} />
             </Tabs>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <Box>
-                    {activeTab === 0 && (
-                        <EventStatistics eventDetails={eventDetails} />
-                    )}
-                    {activeTab === 1 && (
-                        <EventEditForm eventDetails={eventDetails} fetchEventDetails={fetchEventDetails} />
-                    )}
-                </Box>
+            <Box>
+                {activeTab === 0 && <EventStatistics eventDetails={eventDetails} />}
+                {activeTab === 1 && (
+                    <EventEditForm eventDetails={eventDetails} fetchEventDetails={fetchEventDetails} />
+                )}
             </Box>
         </Container>
     );
