@@ -30,6 +30,7 @@ const useUserProfile = () => {
 
     const updateUserProfile = async (updatedData) => {
         try {
+            console.log(updatedData);
             const accessToken = localStorage.getItem('authToken');
 
             const response = await axios.put(
