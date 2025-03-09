@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
                     const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-status`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
-
+    
                     setIsAuthenticated(true);
                     setIsBasicRegistrationComplete(response.data.user.isBasicRegistrationComplete);
                     scheduleTokenRefresh();
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
                 setLoadingAuth(false);
             }
         };
-
+    
         fetchAuthData();
     }, [profileData]);
 

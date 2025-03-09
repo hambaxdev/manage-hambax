@@ -15,17 +15,19 @@ const useCompleteRegistration = () => {
         setSuccessMessage('');
         setValidationErrors({});
         const token = localStorage.getItem('authToken');
-
+    
         try {
             const response = await completeUserRegistration(formData, token);
             if (response.status === 200) {
                 setSuccessMessage('Registration completed successfully!');
-                updateAuthContext();
+                
+                console.log("🔄 Обновляем данные профиля...");
                 await updateUserProfile();
-
-                console.log('setIsBasicRegistrationComplete(true)');
-                // Устанавливаем флаг регистрации в true после успешного обновления профиля
+    
+                console.log("✅ Устанавливаем isBasicRegistrationComplete в true");
                 setIsBasicRegistrationComplete(true);
+                
+                updateAuthContext();
             }
         } catch (error) {
             if (error.response?.data?.errors) {
@@ -36,7 +38,7 @@ const useCompleteRegistration = () => {
         } finally {
             setIsLoading(false);
         }
-    };
+    };    
 
     return { isLoading, errorMessage, successMessage, validationErrors, completeRegistration };
 };
