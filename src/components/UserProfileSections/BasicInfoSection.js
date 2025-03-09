@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import EUCitizenshipSelect from '../../components/Form/Select/EUCitizenshipSelect';
+import CountrySelect from '../../components/Form/Select/CountrySelect';
 
 const BasicInfoSection = ({ data, onChange }) => {
     const { t } = useTranslation();
@@ -39,7 +39,7 @@ const BasicInfoSection = ({ data, onChange }) => {
                 />
             </Grid>
             <Grid item xs={12} md={6}>
-                <EUCitizenshipSelect
+                <CountrySelect
                     name="citizenship"
                     value={data.citizenship}
                     onChange={(e) => onChange(e.target.name, e.target.value)}
