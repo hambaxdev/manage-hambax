@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Box, CssBaseline, useMediaQuery } from '@mui/material';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './externals/dashboard/Dashboard';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
@@ -19,6 +19,7 @@ import EmailVerificationNotice from "./pages/EmailVerificationNotice";
 import ResendVerificationPage from "./pages/ResendVerificationPage";
 import OnboardingRefresh from "./pages/OnboardingRefresh";
 import OnboardingSuccess from "./pages/OnboardingSuccess";
+// import Dashboard from './externals/dashboard/Dashboard';
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
