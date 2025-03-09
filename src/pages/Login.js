@@ -58,9 +58,9 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     error={!!errors.email}
                     helperText={errors.email}
+                    InputLabelProps={{ shrink: true }}
                 />
 
-                {/* Password input */}
                 <TextField
                     label={t('login.passwordLabel')}
                     type="password"
@@ -71,7 +71,9 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     error={!!errors.password}
                     helperText={errors.password}
+                    InputLabelProps={{ shrink: true }}
                 />
+
 
                 {/* Login button */}
                 <Button
