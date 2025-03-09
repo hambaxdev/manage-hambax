@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Copyright from '../internals/components/Copyright';
@@ -38,22 +38,24 @@ const data = [
 
 export default function MainGrid() {
   return (
-    <Box 
+    <Container 
       sx={{
-        width: '100%',
-        maxWidth: "100%", // ✅ Ограничение ширины, чтобы не вылазило за экран
-        px: { xs: 1, sm: 2, md: 4 }, // ✅ Адаптивные отступы
+        display: "flex",
+        flexDirection: "column",
+        maxWidth: "1000px", // ✅ Ограничение ширины
+        px: { xs: 2, sm: 4, md: 6 },
+        mx: "auto", // ✅ Центрируем контейнер
       }}
     >
       {/* Заголовок Overview */}
-      <Typography component="h2" variant="h6" sx={{ mb: 2 }}>
+      <Typography component="h2" variant="h6" sx={{ mb: 2, textAlign: "center" }}>
         Overview
       </Typography>
 
       {/* Карточки (StatCard) */}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         {data.map((card, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}> {/* ✅ Теперь адаптируется */}
+          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
             <StatCard {...card} />
           </Grid>
         ))}
@@ -63,7 +65,7 @@ export default function MainGrid() {
       </Grid>
 
       {/* Графики */}
-      <Grid container spacing={2} sx={{ mt: 2 }}>
+      <Grid container spacing={2} sx={{ mt: 2 }} justifyContent="center">
         <Grid item xs={12} md={6}>
           <SessionsChart />
         </Grid>
@@ -73,15 +75,15 @@ export default function MainGrid() {
       </Grid>
 
       {/* Таблица и сайдбар */}
-      <Typography component="h2" variant="h6" sx={{ mt: 4, mb: 2 }}>
+      <Typography component="h2" variant="h6" sx={{ mt: 4, mb: 2, textAlign: "center" }}>
         Details
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} lg={9}>
           <CustomizedDataGrid />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <Stack gap={2} direction="column"> {/* ✅ Убрано жесткое расположение */}
+          <Stack gap={2} direction="column" alignItems="center">
             <CustomizedTreeView />
             <ChartUserByCountry />
           </Stack>
@@ -89,6 +91,6 @@ export default function MainGrid() {
       </Grid>
 
       <Copyright sx={{ my: 4 }} />
-    </Box>
+    </Container>
   );
 }

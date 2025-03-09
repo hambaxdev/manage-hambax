@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import Header from './components/Header';
 import MainGrid from './components/MainGrid';
 import AppTheme from '../shared-theme/AppTheme';
+import { useMediaQuery } from '@mui/material';
+
 import {
   chartsCustomizations,
   dataGridCustomizations,
@@ -21,30 +23,29 @@ const xThemeComponents = {
 };
 
 export default function Dashboard(props) {
+  const isMobile = useMediaQuery('(max-width: 768px)'); // ✅ Проверяем мобильность
+
   return (
     <AppTheme disableCustomTheme={false} themeComponents={xThemeComponents}>
-      <CssBaseline enableColorScheme />
+      <CssBaseline enableColorScheme />      
       
-      {/* ✅ Исправленный контейнер */}
-      <Box sx={{ flexGrow: 1, display: "flex", width: "100vw", maxWidth: "100%", overflowX: "hidden" }}>
-        
-        {/* ✅ Основной контент теперь адаптивный */}
+        {/* ✅ Основной контент ограниченной ширины */}
         <Box
           component="main"
           sx={(theme) => ({
-            flexGrow: 1,
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
-              : alpha(theme.palette.background.default, 1),
-            overflow: "auto",
-            width: "100%", // ✅ Полная ширина на всех экранах
+            display: isMobile ? "block" : "flex", // ✅ Центрируем только на десктопе
+            justifyContent: isMobile ? "unset" : "center",
+            width: "100vw",
+            minWidth: 0,
+            paddingRight: 5,
+            marginLeft:  isMobile ? "unset" :"-60px"
           })}
         >
           <Stack
             spacing={2}
             sx={{
-              alignItems: 'stretch', // ✅ Теперь контент заполняет всю ширину
-              mx: { xs: 2, md: 4 }, // ✅ Корректные отступы
+              alignItems: 'stretch',
+              mx: { xs: 2, md: 4 },
               pb: { xs: 3, md: 5 },
               mt: { xs: 4, md: 0 },
             }}
@@ -53,7 +54,6 @@ export default function Dashboard(props) {
             <MainGrid />
           </Stack>
         </Box>
-      </Box>
     </AppTheme>
   );
 }
