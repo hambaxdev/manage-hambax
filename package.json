@@ -25,6 +25,7 @@
     "postcode-validator": "^3.10.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-easy-crop": "^5.4.1",
     "react-i18next": "^15.3.0",
     "react-phone-input-2": "^2.15.1",
     "react-router-dom": "^7.1.1",
