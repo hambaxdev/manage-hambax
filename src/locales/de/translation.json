@@ -48,6 +48,7 @@
     "dateOfBirthRequired": "Geburtsdatum ist erforderlich",
     "genderRequired": "Geschlecht ist erforderlich",
     "taxIdentificationNumberRequired": "Steueridentifikationsnummer ist erforderlich",
+    "organizationNameRequired": "Der Name der Organisation ist erforderlich",
     "eventDetails": {
             "titleRequired": "Der Titel der Veranstaltung ist erforderlich.",
             "eventTypeRequired": "Der Veranstaltungstyp ist erforderlich.",
@@ -126,6 +127,7 @@
     "personalInfo": {
       "title": "Persönliche Informationen",
       "firstName": "Vorname",
+      "organizationName": "Organization",
       "lastName": "Nachname",
       "citizenship": "Staatsangehörigkeit",
       "selectCountry": "Bitte auswählen",
@@ -135,7 +137,10 @@
       "taxIdentificationNumber": "Steueridentifikationsnummer",
       "male": "Männlich",
       "female": "Weiblich",
-      "other": "Divers"
+      "other": "Divers",
+      "organizationNameTooltip": "Aus diesem Namen wird ein eindeutiger Bezeichner (Slug) für die Seite Ihrer Organisation generiert. Zum Beispiel wird 'My Party' zu 'myparty'.",
+      "organizationDescription": "Organisationsbeschreibung",
+      "organizationDescriptionTooltip": "Dieser Text wird auf Ihrer öffentlichen Organisationsseite für Käufer angezeigt. Beschreiben Sie hier kurz, was Ihre Organisation macht. Dieses Feld ist optional und kann später im Profil bearbeitet werden."
     },
     "address": {
       "title": "Adresse",
@@ -274,9 +279,12 @@
     "updateFailure": "Fehler",
     "basicInfo": {
       "title": "Grundlegende Informationen",
+      "organizationName": "Organization",
+      "socialMedia": "Social Media",
       "firstName": "Vorname",
       "lastName": "Nachname",
-      "email": "E-Mail"
+      "email": "E-Mail",
+      "organizationDescription": "Organisationsbeschreibung"
     },
     "contactInfo": {
       "title": "Kontaktinformationen",
@@ -411,5 +419,12 @@
     "saving": "Speichern...",
     "success": "Veranstaltung erfolgreich aktualisiert!",
     "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}"
+  },
+  "eventStatistics": {
+    "title": "Event-Statistik",
+    "totalRevenue": "Gesamteinnahmen",
+    "totalTicketsSold": "Gesamtzahl verkaufter Tickets",
+    "scannedTickets": "Gescanntes Tickets",
+    "lastTenDays": "Letzte 10 Tage"
   }
 }

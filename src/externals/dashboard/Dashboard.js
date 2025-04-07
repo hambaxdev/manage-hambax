@@ -33,7 +33,7 @@ export default function Dashboard(props) {
         <Box
           component="main"
           sx={(theme) => ({
-            display: isMobile ? "block" : "flex", // ✅ Центрируем только на десктопе
+            display: isMobile ? "block" : "flex",
             justifyContent: isMobile ? "unset" : "center",
             width: "100vw",
             minWidth: 0,

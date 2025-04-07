@@ -9,6 +9,15 @@ const UserProfileForm = ({ profileData, onSave }) => {
     const { t } = useTranslation();
     const [formData, setFormData] = useState({
         ...profileData,
+        organization: {
+            name: profileData?.organization?.name || '',
+            description: profileData?.organization?.description || '',
+            slug: profileData?.organization?.slug || '',
+            instagram: profileData?.organization?.instagram || '',
+            youtube: profileData?.organization?.youtube || '',
+            twitter: profileData?.organization?.twitter || '',
+            facebook: profileData?.organization?.facebook || '',
+        },
         address: profileData?.address || {
             country: '',
             city: '',
@@ -22,9 +31,9 @@ const UserProfileForm = ({ profileData, onSave }) => {
             alternatePhone: '',
             website: '',
             email: '',
-        },
+        }
     });
-
+    
     const handleChange = (section, key, value) => {
         if (section) {
             setFormData((prev) => ({
@@ -43,34 +52,55 @@ const UserProfileForm = ({ profileData, onSave }) => {
     };
 
     const handleSave = () => {
-        onSave(formData);
+        const org = { ...formData.organization };
+        ['instagram', 'youtube', 'twitter', 'facebook'].forEach((field) => {
+            if (!org[field] || !org[field].trim()) {
+                delete org[field];
+            } else {
+                org[field] = org[field].trim();
+            }
+        });
+    
+        const payload = {
+            ...formData,
+            organization: org,
+        };
+    
+        onSave(payload);
     };
+    
 
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>
                 <Typography variant="h4">{t('profile.title')}</Typography>
             </Grid>
+
             <Grid item xs={12}>
-                <BasicInfoSection
-                    data={formData}
-                    onChange={(key, value) => handleChange(null, key, value)}
-                />
+            <BasicInfoSection
+                data={formData}
+                onChange={(section, key, value) => handleChange(section, key, value)}
+            />
             </Grid>
+
             <Divider sx={{ width: '100%', my: 3 }} />
+
             <Grid item xs={12}>
                 <ContactInfoSection
                     data={formData.contact}
                     onChange={(key, value) => handleChange('contact', key, value)}
                 />
             </Grid>
+
             <Divider sx={{ width: '100%', my: 3 }} />
+
             <Grid item xs={12}>
                 <AddressInfoSection
                     data={formData.address}
                     onChange={(key, value) => handleChange('address', key, value)}
                 />
             </Grid>
+
             <Grid item xs={12}>
                 <Button
                     variant="contained"

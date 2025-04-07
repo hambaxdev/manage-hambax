@@ -55,8 +55,6 @@ const AppContent = () => {
                         <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
                         <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
 
-                        
-
                         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                         <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
                         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />

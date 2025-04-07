@@ -115,6 +115,10 @@ export const validateCompleteRegistration = ({ firstName, lastName, citizenship 
 export const validatePersonalInfoStep = (formData) => {
   const errors = {};
 
+  if (!formData.organizationName || formData.organizationName.trim() === '') {
+    errors.organizationName = i18n.t("validation.organizationNameRequired");
+  }
+  
   if (!formData.firstName) {
     errors.firstName = i18n.t("validation.firstNameRequired");
   }

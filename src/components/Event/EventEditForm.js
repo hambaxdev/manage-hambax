@@ -5,15 +5,41 @@ import useUpdateEvent from '../../hooks/useUpdateEvent';
 import EventDetailsForm from './EventDetailsForm';
 import AddressForm from './AddressForm';
 import FixedPriceTab from './FixedPriceTab';
-import TicketPoolsManager from './TicketPoolsManager';
+import TicketPoolsTab from './TicketPoolsTab';
+import PricingOptions from './PricingOptions';
 
 const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     const { t } = useTranslation();
     const { updateEvent, updating, updateError } = useUpdateEvent();
-    const [formData, setFormData] = useState(eventDetails || {});
+
+    // Гарантируем, что formData.pricing и ticketPools всегда существуют
+    const [formData, setFormData] = useState(() => ({
+        ...eventDetails,
+        eventImage: eventDetails?.eventImage || "",
+        pricing: {
+            ...eventDetails?.pricing,
+            ticketPools: Array.isArray(eventDetails?.pricing?.ticketPools) ? eventDetails.pricing.ticketPools : [],
+        },
+    }));
+
+    // Отдельный state для pools и useTicketPools, чтобы избежать проблем с ререндером
+    const [pools, setPools] = useState(formData.pricing.ticketPools);
+    const [useTicketPools, setUseTicketPools] = useState(pools.length > 0);
 
     useEffect(() => {
-        setFormData(eventDetails ? { ...eventDetails, eventImage: eventDetails.eventImage || "" } : {});
+        setFormData((prev) => ({
+            ...prev,
+            ...eventDetails,
+            eventImage: eventDetails?.eventImage || "",
+            pricing: {
+                ...eventDetails?.pricing,
+                ticketPools: Array.isArray(eventDetails?.pricing?.ticketPools) ? eventDetails.pricing.ticketPools : [],
+            },
+        }));
+
+        // Обновляем pools и useTicketPools при изменении eventDetails
+        setPools(Array.isArray(eventDetails?.pricing?.ticketPools) ? eventDetails.pricing.ticketPools : []);
+        setUseTicketPools(eventDetails?.pricing?.ticketPools?.length > 0);
     }, [eventDetails]);
 
     const handleChange = (field, value, nestedField = null) => {
@@ -23,8 +49,8 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
                     ...prev,
                     [field]: {
                         ...prev[field],
-                        [nestedField]: value
-                    }
+                        [nestedField]: value,
+                    },
                 };
             }
             return { ...prev, [field]: value };
@@ -32,18 +58,14 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     };
 
     const handleSave = async () => {
-        let cleanData = { ...formData };
+        let cleanData = { ...formData, pricing: { ...formData.pricing, ticketPools: pools } };
 
         if (cleanData.hasOwnProperty('stripeStatistics')) {
             delete cleanData.stripeStatistics;
         }
 
         if (!cleanData.pricing?.hasOwnProperty('activeTab')) {
-            cleanData.pricing.activeTab = cleanData.pricing?.ticketPools?.length > 0 ? 1 : 0;
-        }
-
-        if (!Array.isArray(cleanData.pricing.ticketPools)) {
-            cleanData.pricing.ticketPools = [];
+            cleanData.pricing.activeTab = useTicketPools ? 1 : 0;
         }
 
         console.log("📤 Отправка данных:", cleanData);
@@ -91,21 +113,19 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
             <Card sx={{ mb: 3, p: 2 }}>
                 <CardContent>
                     <Typography variant="h6">{t('eventEditForm.pricing')}</Typography>
-                    {formData.pricing?.ticketPrice !== undefined ? (
-                        <FixedPriceTab
-                            ticketPrice={formData.pricing?.ticketPrice}
-                            setTicketPrice={(value) => handleChange('pricing', value, 'ticketPrice')}
-                            limitTickets={formData.pricing?.limitTickets}
-                            setLimitTickets={(value) => handleChange('pricing', value, 'limitTickets')}
-                            ticketLimit={formData.pricing?.ticketLimit}
-                            setTicketLimit={(value) => handleChange('pricing', value, 'ticketLimit')}
-                        />
-                    ) : (
-                        <TicketPoolsManager
-                            pools={formData.pricing?.ticketPools || []}
-                            setPools={(newPools) => handleChange('pricing', newPools, 'ticketPools')}
-                        />
-                    )}
+                    <PricingOptions
+                        useTicketPools={useTicketPools}
+                        setUseTicketPools={setUseTicketPools}
+                        ticketPrice={formData.pricing?.ticketPrice}
+                        setTicketPrice={(value) => handleChange('pricing', value, 'ticketPrice')}
+                        limitTickets={formData.pricing?.limitTickets}
+                        setLimitTickets={(value) => handleChange('pricing', value, 'limitTickets')}
+                        ticketLimit={formData.pricing?.ticketLimit}
+                        setTicketLimit={(value) => handleChange('pricing', value, 'ticketLimit')}
+                        pools={pools}
+                        setPools={setPools}
+                        errors={{}} // Placeholder for error handling
+                    />
                 </CardContent>
             </Card>
 

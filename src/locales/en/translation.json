@@ -287,6 +287,7 @@
     "dateOfBirthRequired": "Date of birth is required",
     "genderRequired": "Gender is required",
     "taxIdentificationNumberRequired": "Tax Identification Number is required",
+    "organizationNameRequired": "Organization name is required",
     "eventDetails": {
           "titleRequired": "Event title is required.",
           "eventTypeRequired": "Event type is required.",
@@ -364,6 +365,7 @@
     },
     "personalInfo": {
       "title": "Personal Information",
+      "organizationName": "Organization name",
       "firstName": "First Name",
       "lastName": "Last Name",
       "citizenship": "Citizenship",
@@ -374,7 +376,10 @@
       "taxIdentificationNumber": "Tax Identification Number",
       "male": "Male",
       "female": "Female",
-      "other": "Other"
+      "other": "Other",
+      "organizationNameTooltip": "This name will be used to generate a unique identifier (slug) for your organization page. For example, 'My Party' will become 'myparty'.",
+      "organizationDescription": "Organization Description",
+      "organizationDescriptionTooltip": "This text will appear on your public organization page for buyers. Use it to briefly describe what your organization does. This field is optional and can be filled out later in your profile settings."
     },
     "address": {
       "title": "Address",
@@ -514,9 +519,12 @@
     "updateFailure": "Profile saving error",
     "basicInfo": {
       "title": "Basic Information",
+      "socialMedia": "Social Media",
+      "organizationName": "Organization name",
       "firstName": "First Name",
       "lastName": "Last Name",
-      "email": "Email"
+      "email": "Email",
+      "organizationDescription": "Organization Description"
     },
     "contactInfo": {
       "title": "Contact Information",
@@ -642,5 +650,12 @@
     "saving": "Saving...",
     "success": "Event updated successfully!",
     "error": "Error updating event: {{error}}"
-  }
+  },
+  "eventStatistics": {
+    "title": "Event Statistics",
+    "totalRevenue": "Total Revenue",
+    "totalTicketsSold": "Total Tickets Sold",
+    "scannedTickets": "Scanned Tickets",
+    "lastTenDays": "Last 10 Days"
+}
 }

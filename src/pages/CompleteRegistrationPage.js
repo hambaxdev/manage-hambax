@@ -18,6 +18,12 @@ const CompleteRegistrationPage = () => {
   const { t } = useTranslation();
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
+    organizationName: "",
+    organizationDescription: "",
+    instagram: "",
+    youtube: "",
+    twitter: "",
+    facebook: "",
     firstName: "",
     lastName: "",
     citizenship: "",
@@ -81,26 +87,33 @@ const CompleteRegistrationPage = () => {
         if (activeStep === 2) {
             // Преобразование данных перед отправкой
             const payload = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                citizenship: formData.citizenship,
-                language: formData.language,
-                dateOfBirth: formData.dateOfBirth,
-                gender: formData.gender,
-                taxIdentificationNumber: formData.taxIdentificationNumber || null,
-                address: {
-                    country: formData.country,
-                    city: formData.city,
-                    zipCode: formData.zipCode,
-                    streetName: formData.streetName,
-                    houseNumber: formData.houseNumber,
-                },
-                contact: {
-                    phone: formData.phone,
-                    website: formData.website || null,
-                },
+              organization: {
+                name: formData.organizationName,
+                description: formData.organizationDescription || '',
+                instagram: formData.instagram || null,
+                youtube: formData.youtube || null,
+                twitter: formData.twitter || null,
+                facebook: formData.facebook || null,
+              },
+              firstName: formData.firstName,
+              lastName: formData.lastName,
+              citizenship: formData.citizenship,
+              language: formData.language,
+              dateOfBirth: formData.dateOfBirth,
+              gender: formData.gender,
+              taxIdentificationNumber: formData.taxIdentificationNumber || null,
+              address: {
+                country: formData.country,
+                city: formData.city,
+                zipCode: formData.zipCode,
+                streetName: formData.streetName,
+                houseNumber: formData.houseNumber,
+              },
+              contact: {
+                phone: formData.phone,
+                website: formData.website || null,
+              },
             };
-
             completeRegistration(payload);
             navigate("/");
         } else {
