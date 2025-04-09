@@ -26,7 +26,7 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 error={!!errors.location}
                 helperText={errors.location}
             />
-            
+
             {/* Input for the street */}
             <TextField
                 fullWidth
@@ -72,7 +72,6 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 helperText={(!address.country && errors.country) ? errors.country : ""}
                 error={!!errors.country}
             />
-
 
             {/* Input for the postal code */}
             <TextField
