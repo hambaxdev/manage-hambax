@@ -299,6 +299,7 @@
           "ageRestrictionRequired": "Age restriction is required."
       },
     "eventAddress": {
+        "locationRequired": "Please enter the venue name or event location",
         "streetRequired": "Street is required.",
         "buildingRequired": "Building number is required.",
         "cityRequired": "City is required.",
@@ -500,6 +501,7 @@
   },
   "eventAddress": {
     "title": "Event Address",
+    "locationLabel": "Location",
     "subtitle": "Help your guests find the event! Enter the exact address, including the street, building number, city, country, and postal code",
     "streetLabel": "Street",
     "buildingLabel": "Building",

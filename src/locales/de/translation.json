@@ -60,13 +60,14 @@
             "ageRestrictionRequired": "Die Altersbeschränkung ist erforderlich."
         },
     "eventAddress": {
-            "streetRequired": "Die Straße ist erforderlich.",
-            "buildingRequired": "Die Hausnummer ist erforderlich.",
-            "cityRequired": "Die Stadt ist erforderlich.",
-            "countryRequired": "Das Land ist erforderlich.",
-            "postalCodeRequired": "Die Postleitzahl ist erforderlich.",
-            "addressRequired": "Adressinformationen sind erforderlich."
-        },
+          "locationRequired": "Bitte geben Sie den Veranstaltungsort oder Namen der Location an",
+          "streetRequired": "Die Straße ist erforderlich.",
+          "buildingRequired": "Die Hausnummer ist erforderlich.",
+          "cityRequired": "Die Stadt ist erforderlich.",
+          "countryRequired": "Das Land ist erforderlich.",
+          "postalCodeRequired": "Die Postleitzahl ist erforderlich.",
+          "addressRequired": "Adressinformationen sind erforderlich."
+      },
       "pricingOptions": {
           "fixedPriceRequired": "Der Ticketpreis ist erforderlich.",
           "ticketLimitRequired": "Die maximale Ticketanzahl ist erforderlich, wenn die Begrenzung aktiviert ist.",
@@ -260,6 +261,7 @@
   },
   "eventAddress": {
     "title": "Veranstaltungsadresse",
+    "locationLabel": "Lokation",
     "subtitle": "Helfen Sie Ihren Gästen, die Veranstaltung zu finden! Geben Sie die genaue Adresse ein, einschließlich Straße, Hausnummer, Stadt, Land und Postleitzahl",
     "streetLabel": "Straße",
     "buildingLabel": "Gebäude",

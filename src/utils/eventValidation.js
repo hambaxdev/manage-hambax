@@ -48,6 +48,11 @@ export const validateEventDetails = (eventData) => {
 export const validateAddress = (address) => {
     const errors = {};
 
+    // Location validation
+    if (!address.location || !address.location.trim()) {
+        errors.location = i18n.t('validation.eventAddress.locationRequired');
+    }
+    
     // Street validation
     if (!address.street.trim()) {
         errors.street = i18n.t('validation.eventAddress.streetRequired');

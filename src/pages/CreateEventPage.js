@@ -38,6 +38,7 @@ const CreateEventPage = () => {
         ageRestriction: '',
         eventImage: '',
         address: {
+            location: '',
             street: '',
             building: '',
             city: '',
@@ -166,8 +167,8 @@ const CreateEventPage = () => {
                         eventDate={eventData.eventDate}
                         setEventDate={(eventDate) => setEventData((prev) => ({ ...prev, eventDate }))}
                         startTime={eventData.startTime}
-                        eventImage={selectedImageFile} // ✅ Передаём объект `File`
-                        setEventImage={handleImageChange} // ✅ Передаём функцию обновления
+                        eventImage={selectedImageFile}
+                        setEventImage={handleImageChange}
                         setStartTime={(startTime) => setEventData((prev) => ({ ...prev, startTime }))}
                         ageRestriction={eventData.ageRestriction}
                         setAgeRestriction={(ageRestriction) =>

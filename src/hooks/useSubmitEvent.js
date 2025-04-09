@@ -26,7 +26,7 @@ const useSubmitEvent = () => {
             // 🔹 Добавляем все текстовые данные
             Object.keys(data).forEach((key) => {
                 if (typeof data[key] === 'object' && data[key] !== null) {
-                    formData.append(key, JSON.stringify(data[key])); // Конвертируем объекты в JSON
+                    formData.append(key, JSON.stringify(data[key]));
                 } else {
                     formData.append(key, data[key]);
                 }

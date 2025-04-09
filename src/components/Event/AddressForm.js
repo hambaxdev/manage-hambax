@@ -16,6 +16,17 @@ const AddressForm = ({ address, onChange, errors = {} }) => {
                 {t('eventAddress.subtitle')}
             </Typography>
 
+            <TextField
+                fullWidth
+                label={t('eventAddress.locationLabel')}
+                value={address.location || ''}
+                onChange={(e) => handleAddressChange('location', e.target.value)}
+                margin="normal"
+                required
+                error={!!errors.location}
+                helperText={errors.location}
+            />
+            
             {/* Input for the street */}
             <TextField
                 fullWidth
