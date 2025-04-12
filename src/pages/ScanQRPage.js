@@ -107,7 +107,7 @@ const ScanQRPage = () => {
       <div
         style={{
           position: 'absolute',
-          bottom: '30px',
+          bottom: 'calc(20px + env(safe-area-inset-bottom))',
           left: 0,
           width: '100%',
           textAlign: 'center',
@@ -115,6 +115,7 @@ const ScanQRPage = () => {
           zIndex: 3,
           padding: '0 16px',
           textShadow: '0 0 8px rgba(0,0,0,0.8)',
+          boxSizing: 'border-box',
         }}
       >
         <h2 style={{ fontSize: '20px', marginBottom: 8 }}>Сканер билетов Hambax</h2>
@@ -135,7 +136,7 @@ const ScanQRPage = () => {
               marginTop: 12,
               background: '#000',
               color: '#fff',
-              padding: '10px 20px',
+              padding: '12px 24px',
               fontSize: '16px',
               borderRadius: '8px',
               border: 'none',
