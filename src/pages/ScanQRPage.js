@@ -59,7 +59,7 @@ const ScanQRPage = () => {
   return (
     <div
       style={{
-        position: 'fixed',
+        position: 'absolute',
         inset: 0,
         width: '100vw',
         height: '100vh',
@@ -108,7 +108,7 @@ const ScanQRPage = () => {
       <div
         style={{
           position: 'absolute',
-          bottom: 'calc(20px + env(safe-area-inset-bottom, 20px))',
+          bottom: 'calc(100px + env(safe-area-inset-bottom, 20px))',
           left: 0,
           width: '100%',
           textAlign: 'center',
