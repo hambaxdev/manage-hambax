@@ -57,79 +57,90 @@ const ScanQRPage = () => {
   }, [status]);
 
   return (
-    <div style={{ position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden' }}>
-      {/* Камера на фоне */}
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: '#000',
+        touchAction: 'none',
+        WebkitOverflowScrolling: 'none',
+      }}
+    >
+      {/* Камера */}
       <Webcam
         ref={webcamRef}
         screenshotFormat="image/png"
         videoConstraints={{
           facingMode: 'environment',
-          width: 1280,
-          height: 720,
+          width: { ideal: 1920 },
+          height: { ideal: 1080 },
         }}
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
-          width: '100%',
           height: '100%',
+          width: '100%',
           objectFit: 'cover',
+          zIndex: 1,
         }}
       />
 
-      {/* Полупрозрачный оверлей результата */}
+      {/* Оверлей состояния */}
       {statusColor && (
         <div
           style={{
             backgroundColor: statusColor,
             position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
+            inset: 0,
             pointerEvents: 'none',
+            zIndex: 2,
             transition: 'background-color 0.4s ease-in-out',
           }}
         />
       )}
 
-      {/* UI-оверлей */}
+      {/* UI поверх */}
       <div
         style={{
           position: 'absolute',
-          bottom: 30,
+          bottom: '30px',
           left: 0,
           width: '100%',
           textAlign: 'center',
-          padding: '0 20px',
           color: '#fff',
-          textShadow: '0 0 10px rgba(0,0,0,0.8)',
+          zIndex: 3,
+          padding: '0 16px',
+          textShadow: '0 0 8px rgba(0,0,0,0.8)',
         }}
       >
-        <h2 style={{ marginBottom: 10 }}>Сканер билетов Hambax</h2>
+        <h2 style={{ fontSize: '20px', marginBottom: 8 }}>Сканер билетов Hambax</h2>
 
         {qrResult && (
-          <p style={{ fontSize: 18 }}>
+          <p style={{ fontSize: 16, wordWrap: 'break-word' }}>
             📦 Код билета: <strong>{qrResult}</strong>
           </p>
         )}
 
-        {status === 'success' && <p style={{ fontSize: 20, color: '#0f0' }}>✅ Билет действителен</p>}
-        {status === 'error' && <p style={{ fontSize: 20, color: '#f00' }}>❌ Билет недействителен</p>}
+        {status === 'success' && <p style={{ fontSize: 18, color: '#0f0' }}>✅ Билет действителен</p>}
+        {status === 'error' && <p style={{ fontSize: 18, color: '#f00' }}>❌ Билет недействителен</p>}
 
         {!scanning && (
           <button
             onClick={() => setScanning(true)}
             style={{
-              marginTop: 20,
+              marginTop: 12,
               background: '#000',
               color: '#fff',
-              padding: '12px 24px',
+              padding: '10px 20px',
               fontSize: '16px',
               borderRadius: '8px',
               border: 'none',
               cursor: 'pointer',
-              boxShadow: '0 0 10px rgba(0,0,0,0.4)',
+              boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             }}
           >
             📷 Начать сканирование
