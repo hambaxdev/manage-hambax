@@ -58,19 +58,17 @@ const ScanQRPage = () => {
 
   return (
     <div
-        style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            textAlign: 'center',
-            color: '#fff',
-            zIndex: 3,
-            padding: '0 16px',
-            paddingBottom: 'calc(40px + env(safe-area-inset-bottom))', // фикс
-            textShadow: '0 0 8px rgba(0,0,0,0.8)',
-            boxSizing: 'border-box',
-        }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+        backgroundColor: '#000',
+        touchAction: 'none',
+        WebkitOverflowScrolling: 'none',
+        zIndex: 0,
+      }}
     >
       {/* Камера */}
       <Webcam
@@ -106,11 +104,11 @@ const ScanQRPage = () => {
         />
       )}
 
-      {/* UI поверх */}
+      {/* UI поверх камеры */}
       <div
         style={{
           position: 'absolute',
-          bottom: 'calc(20px + env(safe-area-inset-bottom))',
+          bottom: 'calc(20px + env(safe-area-inset-bottom, 20px))',
           left: 0,
           width: '100%',
           textAlign: 'center',
