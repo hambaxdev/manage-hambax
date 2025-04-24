@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, List, ListItem, ListItemText, CircularProgress } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next'; // Хук для локализации
+import {
+    Box,
+    Typography,
+    CircularProgress,
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import useFetchUserEvents from '../../hooks/useFetchUserEvents';
+import useDeleteEvent from '../../hooks/useDeleteEvent';
 import EventFilters from './EventFilters';
+import UserEventCard from './UserEventCard';
+import DeleteEventDialog from './DeleteEventDialog';
 
 const UserEvents = () => {
     const { events, loading, error } = useFetchUserEvents();
-    const navigate = useNavigate();
+    const { deleteEvent } = useDeleteEvent();
     const { t } = useTranslation();
 
     const [filteredEvents, setFilteredEvents] = useState([]);
+    const [eventToDelete, setEventToDelete] = useState(null);
 
     useEffect(() => {
         setFilteredEvents(events);
@@ -19,19 +26,16 @@ const UserEvents = () => {
     const handleFilterChange = ({ dateSortOrder, selectedCity, showPastEvents }) => {
         let filtered = [...events];
 
-        // Сортировка по дате
         if (dateSortOrder === 'asc') {
             filtered.sort((a, b) => new Date(a.eventDate) - new Date(b.eventDate));
         } else if (dateSortOrder === 'desc') {
             filtered.sort((a, b) => new Date(b.eventDate) - new Date(a.eventDate));
         }
 
-        // Фильтрация по городу
         if (selectedCity) {
             filtered = filtered.filter((event) => event.address.city === selectedCity);
         }
 
-        // Показать/Скрыть прошедшие события
         if (!showPastEvents) {
             const currentDate = new Date();
             filtered = filtered.filter((event) => new Date(event.eventDate) >= currentDate);
@@ -40,39 +44,42 @@ const UserEvents = () => {
         setFilteredEvents(filtered);
     };
 
+    const handleConfirmDelete = async () => {
+        if (eventToDelete) {
+            const success = await deleteEvent(eventToDelete);
+            if (success) {
+                setFilteredEvents((prev) => prev.filter(e => e._id !== eventToDelete));
+            }
+        }
+        setEventToDelete(null);
+    };
+
     return (
         <Box sx={{ width: '100%' }}>
-            {/* Фильтры */}
             <EventFilters events={events} onFilterChange={handleFilterChange} />
 
-            {/* Загрузка */}
             {loading && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
                     <CircularProgress />
                 </Box>
             )}
 
-            {/* Ошибка */}
             {error && (
                 <Typography color="error" variant="body1" gutterBottom>
                     {t('userEvents.error', { error })}
                 </Typography>
             )}
 
-            {/* Список событий */}
             {!loading && !error && filteredEvents.length > 0 ? (
-                <List>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2, mb: 5 }}>
                     {filteredEvents.map((event) => (
-                        <ListItem key={event._id} button onClick={() => navigate(`/events/${event._id}`)}>
-                            <ListItemText
-                                primary={event.title}
-                                secondary={`${t('userEvents.date')}: ${new Date(event.eventDate).toLocaleDateString()} | ${t(
-                                    'userEvents.city'
-                                )}: ${event.address.city}`}
-                            />
-                        </ListItem>
+                        <UserEventCard
+                            key={event._id}
+                            event={event}
+                            onDelete={(id) => setEventToDelete(id)}
+                        />
                     ))}
-                </List>
+                </Box>
             ) : (
                 !loading &&
                 !error && (
@@ -81,6 +88,12 @@ const UserEvents = () => {
                     </Typography>
                 )
             )}
+
+            <DeleteEventDialog
+                open={!!eventToDelete}
+                onClose={() => setEventToDelete(null)}
+                onConfirm={handleConfirmDelete}
+            />
         </Box>
     );
 };

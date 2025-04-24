@@ -1,19 +1,29 @@
-import React, { createContext, useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from '../services/axiosInstance';
 import ActionRestrictionModal from '../components/ActionRestrictionModal';
 import useUserProfile from '../hooks/useUserProfile';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [isBasicRegistrationComplete, setIsBasicRegistrationComplete] = useState(false);
+    const [isBasicRegistrationComplete, setIsBasicRegistrationComplete] = useState(() => {
+        const stored = localStorage.getItem('isBasicRegistrationComplete');
+        return stored === 'true';
+    });
     const [loadingAuth, setLoadingAuth] = useState(true);
     const [modalState, setModalState] = useState({ isOpen: false, message: '' });
+    const [authToken, setAuthToken] = useState(localStorage.getItem('authToken'));
+    const [isInitialLogin, setIsInitialLogin] = useState(false);
 
-    const { profileData, isLoading: isProfileLoading, error: profileError, updateUserProfile } = useUserProfile();
+    const {
+        profileData,
+        isLoading: isProfileLoading,
+        error: profileError,
+        updateUserProfile
+    } = useUserProfile();
 
-    const refreshTimeout = useRef(null);
     useEffect(() => {
         const fetchAuthData = async () => {
             setLoadingAuth(true);
@@ -23,10 +33,9 @@ const AuthProvider = ({ children }) => {
                     const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-status`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
-    
+
                     setIsAuthenticated(true);
                     setIsBasicRegistrationComplete(response.data.user.isBasicRegistrationComplete);
-                    scheduleTokenRefresh();
                 }
             } catch (error) {
                 console.error('Ошибка получения данных пользователя:', error);
@@ -36,99 +45,45 @@ const AuthProvider = ({ children }) => {
                 setLoadingAuth(false);
             }
         };
-    
-        fetchAuthData();
-    }, [profileData]);
+
+        if (!isInitialLogin) {
+            fetchAuthData();
+        } else {
+            setIsInitialLogin(false);
+        }
+    }, [authToken, profileData]);
 
     const login = (accessToken, refreshToken, basicComplete) => {
         localStorage.setItem('authToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('isBasicRegistrationComplete', basicComplete);
 
+        setAuthToken(accessToken);
         setIsAuthenticated(true);
         setIsBasicRegistrationComplete(basicComplete);
-
-        scheduleTokenRefresh();
+        setIsInitialLogin(true);
     };
 
-    const logout = async () => {
-        try {
-            const refreshToken = localStorage.getItem('refreshToken');
-            if (refreshToken) {
-                await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, { token: refreshToken });
-            }
-        } catch (error) {
-            console.error('Ошибка выхода:', error);
-        }
-
+    const logout = () => {
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('isBasicRegistrationComplete');
 
         setIsAuthenticated(false);
         setIsBasicRegistrationComplete(false);
-        clearTimeout(refreshTimeout.current);
     };
-
-    const refreshAccessToken = async () => {
-        try {
-            let refreshToken = localStorage.getItem('refreshToken');
-            if (!refreshToken) {
-                console.warn('🔴 Нет refreshToken, выполняем выход...');
-                logout();
-                return;
-            }
-    
-            console.log('🔄 Попытка обновления токена с refreshToken:', refreshToken);
-    
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/refresh-token`, 
-                { token: refreshToken },
-                { headers: { 'Content-Type': 'application/json' } }
-            );
-    
-            if (response.data.accessToken && response.data.refreshToken) {
-                console.log('✅ Сервер вернул новый accessToken и refreshToken:', response.data);
-    
-                // Обязательно сохраняем новый refreshToken!
-                localStorage.setItem('authToken', response.data.accessToken);
-                localStorage.setItem('refreshToken', response.data.refreshToken);
-    
-                scheduleTokenRefresh();
-            } else {
-                console.warn('🔴 Сервер не вернул токены, выполняем выход...');
-                logout();
-            }
-        } catch (error) {
-            console.error('❌ Ошибка обновления токена:', error);
-    
-            if (error.response && error.response.status === 403) {
-                console.warn('⚠️ Сервер отклонил refreshToken, выполняем полный выход...');
-                logout();
-            } else {
-                console.warn('⚠️ Ошибка при обновлении токена, но refreshToken не удаляется.');
-                localStorage.removeItem('authToken');
-            }
-        }
-    };
-    
-    
-
-    const scheduleTokenRefresh = () => {
-        clearTimeout(refreshTimeout.current);
-
-        const tokenExpiryTime = 15 * 60 * 1000;
-        const refreshTime = tokenExpiryTime - 60 * 1000;
-
-        refreshTimeout.current = setTimeout(refreshAccessToken, refreshTime);
-    };
-
-    useEffect(() => {
-        scheduleTokenRefresh();
-        return () => clearTimeout(refreshTimeout.current);
-    }, []);
 
     if (loadingAuth || isProfileLoading) {
-        return <div>Loading...</div>;
+        return (
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '100vh',
+            }}>
+                <CircularProgress />
+            </div>
+        );
     }
 
     return (
@@ -143,6 +98,7 @@ const AuthProvider = ({ children }) => {
                 showRestrictionModal: (message) => setModalState({ isOpen: true, message }),
                 updateUserProfile,
                 profileError,
+                loading: loadingAuth || isProfileLoading, // добавлено
             }}
         >
             <ActionRestrictionModal

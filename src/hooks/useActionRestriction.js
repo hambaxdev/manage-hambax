@@ -3,15 +3,25 @@ import useAuth from "./useAuth";
 
 const useActionRestriction = () => {
     const { t } = useTranslation();
-    const { isBasicRegistrationComplete, showRestrictionModal, profileData } = useAuth();
+    const {
+        isBasicRegistrationComplete,
+        profileData,
+        showRestrictionModal,
+        loading,
+    } = useAuth();
 
     const checkRestriction = (action) => {
+        if (loading || profileData?.stripeOnboardingCompleted === undefined) {
+            console.debug("Данные ещё загружаются. Блокируем действие:", action);
+            return false;
+        }
+
         if (!isBasicRegistrationComplete) {
             showRestrictionModal(t("actionRestriction.completeRegistration"));
             return false;
         }
 
-        if (!profileData?.stripeOnboardingCompleted) {
+        if (!profileData.stripeOnboardingCompleted) {
             showRestrictionModal(t("actionRestriction.completeStripeOnboarding"));
             return false;
         }

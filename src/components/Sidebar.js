@@ -16,6 +16,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonIcon from '@mui/icons-material/Person';
 import EventIcon from '@mui/icons-material/Event';
 import LogoutIcon from '@mui/icons-material/Logout';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import CloseIcon from '@mui/icons-material/Close';
 import { useNavigate } from 'react-router-dom';
@@ -27,7 +28,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useContext(AuthContext);
     const { t } = useTranslation();
-    const isMobile = useMediaQuery('(max-width: 768px)'); // Проверяем, мобильное ли устройство
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
     if (!isAuthenticated) return null;
 
@@ -35,7 +36,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { text: t('sidebar.dashboard'), icon: <DashboardIcon />, path: '/' },
         { text: t('sidebar.profile'), icon: <PersonIcon />, path: '/profile' },
         { text: t('sidebar.events'), icon: <EventIcon />, path: '/events' },
-        { text: t('sidebar.scan_qr'), icon: <QrCodeScannerIcon />, path: '/scan-qr' }, // Новый пункт меню
+        { text: t('sidebar.scan_qr'), icon: <QrCodeScannerIcon />, path: '/scan-qr' },
+        { text: t('sidebar.payouts'), icon: <AttachMoneyIcon />, path: '/payouts' },
     ];
 
     const handleLogout = () => {
@@ -45,7 +47,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
     return (
         <>
-            {/* Иконка для открытия сайдбара на мобильных устройствах */}
             {isMobile && (
                 <IconButton onClick={toggleSidebar} sx={{ position: 'absolute', top: 16, left: 16, zIndex: 1300 }}>
                     <MenuIcon />
@@ -53,15 +54,15 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             )}
 
             <Drawer
-                variant={isMobile ? 'temporary' : 'permanent'} // На мобилках временный, на ПК постоянный
-                open={isMobile ? isOpen : true} // На мобилках зависит от состояния, на ПК всегда открыт
+                variant={isMobile ? 'temporary' : 'permanent'}
+                open={isMobile ? isOpen : true}
                 onClose={toggleSidebar}
                 sx={{
                     '& .MuiDrawer-paper': {
                         boxSizing: 'border-box',
-                        width: isMobile ? (isOpen ? 240 : 0) : isOpen ? 240 : 60, // Логика ширины
+                        width: isMobile ? (isOpen ? 240 : 0) : isOpen ? 240 : 60,
                         transition: 'width 0.3s',
-                        overflowX: 'hidden', // Убираем горизонтальный скролл
+                        overflowX: 'hidden',
                     },
                 }}
             >
@@ -117,7 +118,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                                     key={index}
                                     onClick={() => {
                                         navigate(item.path);
-                                        if (isMobile) toggleSidebar(); // Закрываем сайдбар на мобильных
+                                        if (isMobile) toggleSidebar();
                                     }}
                                     sx={{
                                         justifyContent: isOpen ? 'flex-start' : 'center',

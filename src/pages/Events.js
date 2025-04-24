@@ -18,7 +18,7 @@ const Events = () => {
     };
 
     return (
-        <Container>
+        <Container sx={{mt: 5}}>
             {/* Page title */}
             <Typography variant="h4" gutterBottom>
                 {t('events.title')}

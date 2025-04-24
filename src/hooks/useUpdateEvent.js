@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from '../services/axiosInstance';
 
 const useUpdateEvent = () => {
     const [updating, setUpdating] = useState(false);
@@ -11,7 +12,7 @@ const useUpdateEvent = () => {
         const token = localStorage.getItem('authToken');
 
         if (!token) {
-            setUpdateError('User is not authenticated.');
+            setUpdateError('Пользователь не авторизован.');
             setUpdating(false);
             return false;
         }
@@ -19,45 +20,39 @@ const useUpdateEvent = () => {
         try {
             const formData = new FormData();
 
-            // 🔹 Добавляем все текстовые данные
+            // Добавляем все поля из eventData
             Object.keys(eventData).forEach((key) => {
                 if (typeof eventData[key] === 'object' && eventData[key] !== null && key !== 'eventImage') {
-                    formData.append(key, JSON.stringify(eventData[key])); // Конвертируем объекты в JSON
+                    formData.append(key, JSON.stringify(eventData[key]));
                 } else {
                     formData.append(key, eventData[key]);
                 }
             });
 
-            // ✅ Добавляем файл, если он есть
+            // Добавляем файл, если он есть
             if (eventImageFile) {
-                console.log("📸 Adding event image to FormData:", eventImageFile.name);
+                console.log("📸 Добавление изображения события:", eventImageFile.name);
                 formData.append('eventImage', eventImageFile);
             }
 
-            console.log('📤 FormData перед отправкой:');
+            console.log('📤 Данные формы для отправки:');
             for (let pair of formData.entries()) {
-                console.log(pair[0], pair[1]); // Проверяем, что передаём и текст, и файл
+                console.log(pair[0], pair[1]);
             }
 
-            const response = await fetch(
+            const response = await axios.put(
                 `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/events/${eventData._id}`,
+                formData,
                 {
-                    method: 'PUT',
                     headers: {
-                        Authorization: `Bearer ${token}`, // ❌ НЕ указываем `Content-Type`!
+                        Authorization: `Bearer ${token}`,
                     },
-                    body: formData, // ✅ Используем `FormData`
                 }
             );
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Error updating event');
-            }
-
-            return await response.json();
+            return response.data;
         } catch (err) {
-            setUpdateError(err.message || 'Something went wrong.');
+            setUpdateError(err.response?.data?.message || 'Ошибка при обновлении события');
             return false;
         } finally {
             setUpdating(false);

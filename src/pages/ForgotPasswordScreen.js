@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Alert } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import useForgotPassword from '../hooks/useForgotPassword';
+// import useForgotPassword from '../hooks/useForgotPassword';
 import EmailInputComponent from '../components/EmailInputComponent';
 import CodeInputComponent from '../components/CodeInputComponent';
 import PasswordResetComponent from '../components/PasswordResetComponent';
+
+const useForgotPassword = null;
 
 const ForgotPasswordScreen = () => {
   const { t } = useTranslation();

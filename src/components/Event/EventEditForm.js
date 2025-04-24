@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography, Card, CardContent } from '@mui/material';
+import { Box, Button, Typography, Card, CardContent, Switch, FormControlLabel  } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import useUpdateEvent from '../../hooks/useUpdateEvent';
 import EventDetailsForm from './EventDetailsForm';
@@ -16,6 +16,7 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     const [formData, setFormData] = useState(() => ({
         ...eventDetails,
         eventImage: eventDetails?.eventImage || "",
+        isActive: eventDetails?.isActive ?? true,
         pricing: {
             ...eventDetails?.pricing,
             ticketPools: Array.isArray(eventDetails?.pricing?.ticketPools) ? eventDetails.pricing.ticketPools : [],
@@ -128,6 +129,22 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
                     />
                 </CardContent>
             </Card>
+
+            <Card sx={{ mb: 3, p: 2 }}>
+                <CardContent>
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={formData.isActive}
+                                onChange={(e) => handleChange('isActive', e.target.checked)}
+                                color="primary"
+                            />
+                        }
+                        label={formData.isActive ? t('eventEditForm.active') : t('eventEditForm.inactive')}
+                    />
+                </CardContent>
+            </Card>
+
 
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
                 <Button variant="contained" color="primary" onClick={handleSave} disabled={updating}>

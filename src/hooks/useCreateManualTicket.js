@@ -1,14 +1,15 @@
 import { useState, useCallback } from 'react';
 import axios from '../services/axiosInstance';
 
-const useFetchEventDetails = () => {
-    const [eventDetails, setEventDetails] = useState(null);
+const useCreateManualTicket = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [responseData, setResponseData] = useState(null);
 
-    const fetchEventDetails = useCallback(async (eventId) => {
+    const createTickets = useCallback(async (ticketData) => {
         setLoading(true);
         setError(null);
+        setResponseData(null);
 
         const token = localStorage.getItem('authToken');
         if (!token) {
@@ -18,8 +19,9 @@ const useFetchEventDetails = () => {
         }
 
         try {
-            const response = await axios.get(
-                `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/events/${eventId}`,
+            const response = await axios.post(
+                `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/manual`,
+                ticketData,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -27,16 +29,16 @@ const useFetchEventDetails = () => {
                 }
             );
 
-            setEventDetails(response.data);
-            console.log(response.data);
+            setResponseData(response.data);
+            return response.data;
         } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка при загрузке данных события');
+            setError(err.response?.data?.message || 'Ошибка при создании билета');
         } finally {
             setLoading(false);
         }
     }, []);
 
-    return { eventDetails, loading, error, fetchEventDetails };
+    return { createTickets, loading, error, responseData };
 };
 
-export default useFetchEventDetails;
+export default useCreateManualTicket;

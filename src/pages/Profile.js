@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import UserProfileForm from "../components/UserProfileForm";
 import UserAvatar from "../components/UserAvatar";
 import useUserProfile from "../hooks/useUserProfile";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // Suppress ResizeObserver warning globally (only in dev)
 if (typeof window !== 'undefined') {
@@ -19,10 +20,11 @@ const Profile = () => {
   const { profileData, isLoading, error, updateUserProfile } = useUserProfile();
   const [avatar, setAvatar] = useState("/default-avatar.png");
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
-
+  console.log('profileData', profileData);
   useEffect(() => {
-    if (profileData?.avatar && !profileData.avatar.startsWith("blob:")) {
-      setAvatar(profileData.avatar);
+    
+    if (profileData?.organization.avatar ) {
+      setAvatar(profileData.organization.avatar);
     }
   }, [profileData]);
 
@@ -51,7 +53,13 @@ const Profile = () => {
     setSuccessSnackbarOpen(false);
   };
 
-  if (isLoading) return <p>{t("profile.loading")}</p>;
+  if (isLoading) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", mt: 8 }}>
+        <CircularProgress />
+      </Box>
+    );
+  }
   if (error) return <p>{t("profile.error", { error })}</p>;
   if (!profileData) return <p>{t("profile.noData")}</p>;
 

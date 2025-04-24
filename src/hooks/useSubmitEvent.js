@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from '../services/axiosInstance';
 
 const useSubmitEvent = () => {
     const [loading, setLoading] = useState(false);
@@ -13,9 +14,8 @@ const useSubmitEvent = () => {
         setSuccess(false);
 
         const token = localStorage.getItem('authToken');
-
         if (!token) {
-            setError('User is not authenticated. JWT token is missing.');
+            setError('Пользователь не авторизован. JWT отсутствует.');
             setLoading(false);
             return;
         }
@@ -23,7 +23,6 @@ const useSubmitEvent = () => {
         try {
             const formData = new FormData();
 
-            // 🔹 Добавляем все текстовые данные
             Object.keys(data).forEach((key) => {
                 if (typeof data[key] === 'object' && data[key] !== null) {
                     formData.append(key, JSON.stringify(data[key]));
@@ -32,31 +31,25 @@ const useSubmitEvent = () => {
                 }
             });
 
-            // ✅ Добавляем файл, если он есть
             if (imageFile) {
                 formData.append('eventImage', imageFile);
             }
 
             console.log('📤 FormData перед отправкой:');
             for (let pair of formData.entries()) {
-                console.log(pair[0], pair[1]); // Проверяем, что передаём и текст, и файл
+                console.log(pair[0], pair[1]);
             }
 
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: { Authorization: `Bearer ${token}` },
-                body: formData, // НЕ указываем Content-Type, браузер сам добавит boundary
+            const response = await axios.post(endpoint, formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'An error occurred');
-            }
-
             setSuccess(true);
-            return await response.json();
+            return response.data;
         } catch (err) {
-            setError(err.message || 'Something went wrong');
+            setError(err.response?.data?.message || 'Ошибка при создании события');
         } finally {
             setLoading(false);
         }

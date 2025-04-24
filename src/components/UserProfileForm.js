@@ -52,24 +52,28 @@ const UserProfileForm = ({ profileData, onSave }) => {
     };
 
     const handleSave = () => {
-        const org = { ...formData.organization };
-        ['instagram', 'youtube', 'twitter', 'facebook'].forEach((field) => {
-            if (!org[field] || !org[field].trim()) {
-                delete org[field];
-            } else {
-                org[field] = org[field].trim();
-            }
-        });
-    
-        const payload = {
-            ...formData,
-            organization: org,
+        const org = {
+          ...formData.organization,
+          currentName: profileData?.organization?.name || '',
         };
-    
-        onSave(payload);
-    };
-    
+      
+        ['instagram', 'youtube', 'twitter', 'facebook'].forEach((field) => {
+          if (!org[field] || !org[field].trim()) {
+            delete org[field];
+          } else {
+            org[field] = org[field].trim();
+          }
+        });
+      
+        const payload = {
+          ...formData,
+          organization: org,
+        };
 
+        onSave(payload);
+      };
+      
+    console.log(formData);
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>

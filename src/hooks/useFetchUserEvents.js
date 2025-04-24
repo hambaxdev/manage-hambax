@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import axios from '../services/axiosInstance';
 
 const useFetchUserEvents = () => {
     const [events, setEvents] = useState([]);
@@ -10,35 +11,25 @@ const useFetchUserEvents = () => {
     const fetchUserEvents = async () => {
         setLoading(true);
         setError(null);
-    
+
         const token = localStorage.getItem('authToken');
-    
+
         if (!token) {
-            setError('User is not authenticated. JWT token is missing.');
+            setError('Пользователь не авторизован. JWT отсутствует.');
             setLoading(false);
             return;
         }
-    
+
         try {
-            const response = await fetch(endpoint, {
-                method: 'GET',
+            const response = await axios.get(endpoint, {
                 headers: {
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`,
                 },
             });
-    
-            if (!response.ok) {
-                // Проверяем, есть ли тело ответа с ошибкой
-                const errorData = await response.json().catch(() => null);
-                const errorMessage = errorData?.error || response.statusText || 'Error fetching events';
-                throw new Error(errorMessage);
-            }
-    
-            const data = await response.json();
-            setEvents(data);
+
+            setEvents(response.data || []);
         } catch (err) {
-            setError(err.message || 'Something went wrong.');
+            setError(err.response?.data?.message || 'Ошибка при загрузке событий');
         } finally {
             setLoading(false);
         }

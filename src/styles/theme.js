@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#f3bf6b',
+            main: '#ff5722',
         },
         secondary: {
             main: '#535bb2',
@@ -18,12 +18,12 @@ const theme = createTheme({
     },
     typography: {
         fontFamily: '"Oswald", "Arial", "Roboto", "sans-serif"',
-        h1: { color: '#f3bf6b', fontWeight: 'bold' },
-        h2: { color: '#f3bf6b', fontWeight: 'bold' },
-        h3: { color: '#f3bf6b', fontWeight: 'bold' },
-        h4: { color: '#f3bf6b', fontWeight: 'bold' },
-        h5: { color: '#f3bf6b', fontWeight: 'bold' },
-        h6: { color: '#f3bf6b', fontWeight: 'bold' },
+        h1: { color: '#ff5722', fontWeight: 'bold' },
+        h2: { color: '#ff5722', fontWeight: 'bold' },
+        h3: { color: '#ff5722', fontWeight: 'bold' },
+        h4: { color: '#ff5722', fontWeight: 'bold' },
+        h5: { color: '#ff5722', fontWeight: 'bold' },
+        h6: { color: '#ff5722', fontWeight: 'bold' },
     },
     components: {
         MuiCard: {

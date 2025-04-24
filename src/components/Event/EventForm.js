@@ -16,7 +16,7 @@ const EventForm = ({ onSubmit, onCancel }) => {
         country: '',
         postalCode: '',
     });
-    const [pricingMode, setPricingMode] = useState('fixed'); // 'fixed' or 'pools'
+    const [pricingMode, setPricingMode] = useState('fixed');
     const [ticketPrice, setTicketPrice] = useState('');
     const [pools, setPools] = useState([
         { name: '', price: '', quantity: '' },

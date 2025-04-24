@@ -1,40 +1,36 @@
-import { useState } from "react";
+import { useState } from 'react';
+import axios from '../services/axiosInstance';
 
 const useValidateTicket = () => {
     const [status, setStatus] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const validateTicket = async (qrHash) => {
-
         setLoading(true);
         setStatus(null);
 
         const token = localStorage.getItem('authToken');
         if (!token) {
-            setStatus('User is not authenticated.');
+            setStatus('unauthenticated');
             setLoading(false);
             return;
         }
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/validate/${qrHash}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            await axios.post(
+                `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/validate/${qrHash}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
 
-            const data = await response.json();
-
-            if (response.ok) {
-                setStatus("success");
-            } else {
-                setStatus("error");
-            }
+            setStatus('success');
         } catch (error) {
-            console.error("Error validating ticket:", error);
-            setStatus("error");
+            console.error('Error validating ticket:', error);
+            setStatus('error');
         } finally {
             setLoading(false);
         }

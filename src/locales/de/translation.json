@@ -386,15 +386,6 @@
     "back": "Zurück"
   },
   "eventEditForm": {
-    "titleLabel": "Veranstaltungstitel",
-    "descriptionLabel": "Veranstaltungsbeschreibung",
-    "dateLabel": "Veranstaltungsdatum",
-    "saveButton": "Änderungen speichern",
-    "success": "Veranstaltung erfolgreich aktualisiert!",
-    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}",
-    "authError": "Benutzer ist nicht authentifiziert."
-  },
-  "eventEditForm": {
     "generalInfo": "Allgemeine Informationen",
     "titleLabel": "Veranstaltungstitel",
     "descriptionLabel": "Veranstaltungsbeschreibung",
@@ -420,13 +411,41 @@
     "saveButton": "Änderungen speichern",
     "saving": "Speichern...",
     "success": "Veranstaltung erfolgreich aktualisiert!",
-    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}"
+    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}",
+    "authError": "Benutzer ist nicht authentifiziert.",
+    "active": "Event aktiv setzen",
+    "inactive": "Event inaaktiv setzen"
   },
   "eventStatistics": {
-    "title": "Event-Statistik",
+    "title": "Veranstaltungsstatistik",
+    "createTicket": "Ticket erstellen",
+    "eventNotLoaded": "Veranstaltung nicht geladen",
     "totalRevenue": "Gesamteinnahmen",
-    "totalTicketsSold": "Gesamtzahl verkaufter Tickets",
-    "scannedTickets": "Gescanntes Tickets",
-    "lastTenDays": "Letzte 10 Tage"
+    "totalTickets": "Gesamttickets",
+    "generatedFree": "Kostenlos erstellt",
+    "lastTenDays": "Letzte 10 Tage",
+    "scannedTickets": "Gescannt"
+  },
+  "deleteEventDialog": {
+    "title": "Veranstaltung löschen",
+    "message": "Das Löschen der Veranstaltung führt zum Verlust aller Statistikdaten und stoppt den Ticketverkauf vollständig.",
+    "suggestion": "Wir empfehlen, die Veranstaltung in den Einstellungen zu deaktivieren, anstatt sie zu löschen.",
+    "cancel": "Abbrechen",
+    "confirm": "Löschen"
+  },
+  "payouts": {
+    "title": "Auszahlungen",
+    "summary": {
+      "upcomingAmount": "Ausstehender Betrag",
+      "nextPayoutDate": "Nächstes Auszahlungsdatum",
+      "accountStatus": "Kontostatus"
+    },
+    "table": {
+      "title": "Bevorstehende Auszahlungen",
+      "date": "Datum",
+      "amount": "Betrag",
+      "status": "Status",
+      "empty": "Keine bevorstehenden Auszahlungen"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Box, CssBaseline, useMediaQuery } from '@mui/material';
+
 import Dashboard from './externals/dashboard/Dashboard';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
@@ -15,18 +16,18 @@ import Sidebar from './components/Sidebar';
 import CreateEventPage from './pages/CreateEventPage';
 import EventEditPage from './pages/EventEditPage';
 import ScanQRPage from './pages/ScanQRPage';
-import EmailVerificationNotice from "./pages/EmailVerificationNotice";
-import ResendVerificationPage from "./pages/ResendVerificationPage";
-import OnboardingRefresh from "./pages/OnboardingRefresh";
-import OnboardingSuccess from "./pages/OnboardingSuccess";
-// import Dashboard from './externals/dashboard/Dashboard';
+import EmailVerificationNotice from './pages/EmailVerificationNotice';
+import ResendVerificationPage from './pages/ResendVerificationPage';
+import OnboardingRefresh from './pages/OnboardingRefresh';
+import OnboardingSuccess from './pages/OnboardingSuccess';
+import CreateTicketPage from './pages/CreateTicketPage';
+import PayoutsPage from './pages/PayoutsPage';
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
     const isMobile = useMediaQuery('(max-width: 768px)');
 
-    // Маршруты, на которых НЕ должен отображаться Sidebar
     const authRoutes = ["/login", "/register", "/forgot-password"];
     const isAuthPage = authRoutes.includes(location.pathname);
 
@@ -34,6 +35,7 @@ const AppContent = () => {
         setSidebarOpen((prev) => !prev);
     };
 
+    console.log(localStorage.getItem('refreshToken'));
     return (
         <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
             <Box sx={{ display: "flex", flexGrow: 1 }}>
@@ -49,21 +51,25 @@ const AppContent = () => {
                     }}
                 >
                     <Routes>
+                        {/* Публичные маршруты */}
                         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
                         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
                         <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
                         <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
 
+                        {/* Приватные маршруты */}
                         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
                         <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
                         <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
                         <Route path="/create-event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
                         <Route path="/events/:id" element={<ProtectedRoute><EventEditPage /></ProtectedRoute>} />
+                        <Route path="/events/:id/create-ticket" element={<ProtectedRoute><CreateTicketPage /></ProtectedRoute>} />
                         <Route path="/scan-qr" element={<ProtectedRoute><ScanQRPage /></ProtectedRoute>} />
                         <Route path="/complete-registration" element={<ProtectedRoute><CompleteRegistrationPage /></ProtectedRoute>} />
                         <Route path="/onboarding/refresh" element={<ProtectedRoute><OnboardingRefresh /></ProtectedRoute>} />
                         <Route path="/onboarding/success" element={<ProtectedRoute><OnboardingSuccess /></ProtectedRoute>} />
+                        <Route path="/payouts" element={<ProtectedRoute><PayoutsPage /></ProtectedRoute>} />
                     </Routes>
                 </Box>
             </Box>

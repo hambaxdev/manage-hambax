@@ -651,13 +651,40 @@
     "saveButton": "Save Changes",
     "saving": "Saving...",
     "success": "Event updated successfully!",
-    "error": "Error updating event: {{error}}"
+    "error": "Error updating event: {{error}}",
+    "active": "Set event inactive",
+    "inactive": "Set event active"
   },
   "eventStatistics": {
     "title": "Event Statistics",
+    "createTicket": "Create Ticket",
+    "eventNotLoaded": "Event not loaded",
     "totalRevenue": "Total Revenue",
-    "totalTicketsSold": "Total Tickets Sold",
-    "scannedTickets": "Scanned Tickets",
-    "lastTenDays": "Last 10 Days"
-}
+    "totalTickets": "Total Tickets",
+    "generatedFree": "Generated for Free",
+    "lastTenDays": "Last 10 days",
+    "scannedTickets": "Scanned"
+  },
+  "deleteEventDialog": {
+    "title": "Delete Event",
+    "message": "Deleting this event will result in the loss of all statistics and will stop ticket sales completely.",
+    "suggestion": "We recommend going to event settings and deactivating it instead.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "payouts": {
+    "title": "Payouts",
+    "summary": {
+      "upcomingAmount": "Upcoming Amount",
+      "nextPayoutDate": "Next Payout Date",
+      "accountStatus": "Account Status"
+    },
+    "table": {
+      "title": "Upcoming Payouts",
+      "date": "Date",
+      "amount": "Amount",
+      "status": "Status",
+      "empty": "No upcoming payouts"
+    }
+  }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from '../services/axiosInstance';
 
-const useFetchEventStatistics = (eventId) => {
+const useEventStatistics = (eventId) => {
     const [stats, setStats] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,39 +9,38 @@ const useFetchEventStatistics = (eventId) => {
     useEffect(() => {
         if (!eventId) return;
 
-        const fetchStatistics = async () => {
+        const fetchStats = async () => {
             setLoading(true);
             setError(null);
 
             const token = localStorage.getItem('authToken');
             if (!token) {
-                setError("Пользователь не авторизован");
+                setError('Пользователь не авторизован. JWT отсутствует.');
                 setLoading(false);
                 return;
             }
 
             try {
                 const response = await axios.get(
-                    `${process.env.REACT_APP_API_URL}/event/${eventId}/statistics`,
+                    `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/tickets/stats/event/${eventId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },
                     }
                 );
-
                 setStats(response.data);
-            } catch (error) {
-                setError(error.response?.data?.message || 'Ошибка загрузки статистики');
+            } catch (err) {
+                setError(err.response?.data?.error || 'Ошибка при загрузке статистики');
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchStatistics();
+        fetchStats();
     }, [eventId]);
 
     return { stats, loading, error };
 };
 
-export default useFetchEventStatistics;
+export default useEventStatistics;

@@ -46,7 +46,7 @@ const EventTypeSelector = ({ eventType, setEventType, error }) => {
                         sx={{
                             flex: { xs: '1 1 100%', sm: '1 1 calc(33.333% - 16px)' },
                             border: eventType === type ? '2px solidrgb(255, 255, 255)' : '1px solid #e0e0e0',
-                            backgroundColor: eventType === type ? '#e28743' : 'white',
+                            backgroundColor: eventType === type ? '#ff5722' : 'white',
                             cursor: 'pointer',
                             display: 'flex',
                             flexDirection: 'column',
