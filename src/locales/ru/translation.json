@@ -551,7 +551,8 @@
     "profile": "Профиль",
     "events": "Мероприятия",
     "logout": "Выйти",
-    "scan_qr": "QR Scanner"
+    "scan_qr": "QR Scanner",
+    "payouts": "Выплаты"
   },
   "register": {
     "title": "Регистрация",

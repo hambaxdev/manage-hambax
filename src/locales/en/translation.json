@@ -553,7 +553,8 @@
     "profile": "Profile",
     "events": "Events",
     "logout": "Logout",
-    "scan_qr": "QR Scanner"
+    "scan_qr": "QR Scanner",
+    "payouts": "Payouts"
   },
   "register": {
     "title": "Register",
