@@ -7,23 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { ArrowDropUp, ArrowDropDown, Remove } from '@mui/icons-material';
 import { SparkLineChart } from '@mui/x-charts/SparkLineChart';
 import { areaElementClasses } from '@mui/x-charts/LineChart';
-
-function getDaysInMonth(month, year) {
-  const date = new Date(year, month, 0);
-  const monthName = date.toLocaleDateString('en-US', {
-    month: 'short',
-  });
-  const daysInMonth = date.getDate();
-  const days = [];
-  let i = 1;
-  while (days.length < daysInMonth) {
-    days.push(`${monthName} ${i}`);
-    i += 1;
-  }
-  return days;
-}
 
 function AreaGradient({ color, id }) {
   return (
@@ -41,9 +27,8 @@ AreaGradient.propTypes = {
   id: PropTypes.string.isRequired,
 };
 
-function StatCard({ title, value, interval, trend, data }) {
+function StatCard({ title, value, interval, trend, change, data }) {
   const theme = useTheme();
-  const daysInWeek = getDaysInMonth(4, 2024);
 
   const trendColors = {
     up:
@@ -68,7 +53,18 @@ function StatCard({ title, value, interval, trend, data }) {
 
   const color = labelColors[trend];
   const chartColor = trendColors[trend];
-  const trendValues = { up: '+25%', down: '-25%', neutral: '+5%' };
+
+  const trendIcon = {
+    up: <ArrowDropUp fontSize="small" />,
+    down: <ArrowDropDown fontSize="small" />,
+    neutral: <Remove fontSize="small" />,
+  }[trend];
+
+  const daysInRange = data.map((_, i) => {
+    const baseDate = new Date();
+    baseDate.setDate(baseDate.getDate() - (data.length - 1 - i));
+    return baseDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  });
 
   return (
     <Card variant="outlined" sx={{ height: '100%', flexGrow: 1 }}>
@@ -88,7 +84,12 @@ function StatCard({ title, value, interval, trend, data }) {
               <Typography variant="h4" component="p">
                 {value}
               </Typography>
-              <Chip size="small" color={color} label={trendValues[trend]} />
+              <Chip
+                size="small"
+                color={color}
+                icon={trendIcon}
+                label={`${trend === 'up' ? '+' : trend === 'down' ? '-' : ''}${Math.abs(change)}%`}
+              />
             </Stack>
             <Typography variant="caption" sx={{ color: 'text.secondary' }}>
               {interval}
@@ -103,7 +104,7 @@ function StatCard({ title, value, interval, trend, data }) {
               showTooltip
               xAxis={{
                 scaleType: 'band',
-                data: daysInWeek, // Use the correct property 'data' for xAxis
+                data: daysInRange,
               }}
               sx={{
                 [`& .${areaElementClasses.root}`]: {
@@ -126,6 +127,7 @@ StatCard.propTypes = {
   title: PropTypes.string.isRequired,
   trend: PropTypes.oneOf(['down', 'neutral', 'up']).isRequired,
   value: PropTypes.string.isRequired,
+  change: PropTypes.number.isRequired,
 };
 
 export default StatCard;

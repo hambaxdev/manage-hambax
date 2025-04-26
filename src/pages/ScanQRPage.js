@@ -8,7 +8,7 @@ const ScanQRPage = () => {
   const [scanning, setScanning] = useState(false);
   const [qrResult, setQrResult] = useState(null);
   const [statusColor, setStatusColor] = useState(null);
-  const { validateTicket, status } = useValidateTicket();
+  const { validateTicket, status, errorReason } = useValidateTicket();
 
   useEffect(() => {
     if (!scanning) return;
@@ -55,6 +55,18 @@ const ScanQRPage = () => {
       setStatusColor('rgba(255, 0, 0, 0.3)');
     }
   }, [status]);
+
+  // Дополнительное отображение причины ошибки
+  const getErrorMessage = () => {
+    if (errorReason === 'not_found') {
+      return ' — билет не найден';
+    } else if (errorReason === 'already_scanned') {
+      return ' — билет уже использован';
+    } else if (errorReason) {
+      return ` — ошибка (${errorReason})`;
+    }
+    return '';
+  };
 
   return (
     <div
@@ -121,14 +133,15 @@ const ScanQRPage = () => {
       >
         <h2 style={{ fontSize: '20px', marginBottom: 8 }}>Сканер билетов Hambax</h2>
 
-        {qrResult && (
-          <p style={{ fontSize: 16, wordWrap: 'break-word' }}>
-            📦 Код билета: <strong>{qrResult}</strong>
-          </p>
+        {status === 'success' && (
+          <p style={{ fontSize: 18, color: '#0f0' }}>✅ Билет действителен</p>
         )}
 
-        {status === 'success' && <p style={{ fontSize: 18, color: '#0f0' }}>✅ Билет действителен</p>}
-        {status === 'error' && <p style={{ fontSize: 18, color: '#f00' }}>❌ Билет недействителен</p>}
+        {status === 'error' && (
+          <p style={{ fontSize: 18, color: '#f00' }}>
+            ❌ Билет недействителен{getErrorMessage()}
+          </p>
+        )}
 
         {!scanning && (
           <button
