@@ -38,6 +38,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { text: t('sidebar.events'), icon: <EventIcon />, path: '/events' },
         { text: t('sidebar.scan_qr'), icon: <QrCodeScannerIcon />, path: '/scan-qr' },
         { text: t('sidebar.payouts'), icon: <AttachMoneyIcon />, path: '/payouts' },
+        { text: t('sidebar.staff_management'), icon: <PersonIcon />, path: '/staff' }
     ];
 
     const handleLogout = () => {

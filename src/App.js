@@ -22,6 +22,7 @@ import OnboardingRefresh from './pages/OnboardingRefresh';
 import OnboardingSuccess from './pages/OnboardingSuccess';
 import CreateTicketPage from './pages/CreateTicketPage';
 import PayoutsPage from './pages/PayoutsPage';
+import StaffManagementPage from './pages/StaffManagementPage';
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -70,6 +71,7 @@ const AppContent = () => {
                         <Route path="/onboarding/refresh" element={<ProtectedRoute><OnboardingRefresh /></ProtectedRoute>} />
                         <Route path="/onboarding/success" element={<ProtectedRoute><OnboardingSuccess /></ProtectedRoute>} />
                         <Route path="/payouts" element={<ProtectedRoute><PayoutsPage /></ProtectedRoute>} />
+                        <Route path="/staff" element={<ProtectedRoute><StaffManagementPage /></ProtectedRoute>} />
                     </Routes>
                 </Box>
             </Box>
