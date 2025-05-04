@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Typography, Button, Stack } from '@mui/material';
 import StaffList from '../components/StaffList';
 import CreateStaffDialog from '../components/CreateStaffDialog';
@@ -12,6 +12,10 @@ const StaffManagementPage = () => {
         setOpenCreateDialog,
         fetchStaff
     } = useStaffManagement();
+
+    useEffect(() => {
+        fetchStaff();
+    }, [fetchStaff]);
 
     return (
         <Container maxWidth="md">

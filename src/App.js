@@ -23,6 +23,8 @@ import OnboardingSuccess from './pages/OnboardingSuccess';
 import CreateTicketPage from './pages/CreateTicketPage';
 import PayoutsPage from './pages/PayoutsPage';
 import StaffManagementPage from './pages/StaffManagementPage';
+import SetStaffPasswordPage from './pages/SetStaffPasswordPage';
+import StaffDashboard from './pages/StaffDashboard';
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -58,6 +60,7 @@ const AppContent = () => {
                         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
                         <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
                         <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
+                        <Route path="/staff/set-password" element={<PublicRoute><SetStaffPasswordPage /></PublicRoute>} />
 
                         {/* Приватные маршруты */}
                         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -72,6 +75,7 @@ const AppContent = () => {
                         <Route path="/onboarding/success" element={<ProtectedRoute><OnboardingSuccess /></ProtectedRoute>} />
                         <Route path="/payouts" element={<ProtectedRoute><PayoutsPage /></ProtectedRoute>} />
                         <Route path="/staff" element={<ProtectedRoute><StaffManagementPage /></ProtectedRoute>} />
+                        <Route path="/staff-dashboard" element={<ProtectedRoute><StaffDashboard /></ProtectedRoute>} />
                     </Routes>
                 </Box>
             </Box>

@@ -7,7 +7,7 @@ const useUserProfile = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const authToken = localStorage.getItem('authToken'); // токен напрямую
+    const authToken = localStorage.getItem('authToken');
 
     const fetchUserProfile = async () => {
         setIsLoading(true);

@@ -4,7 +4,12 @@ import useAuth from "../hooks/useAuth";
 import RegistrationReminder from "./RegistrationReminder";
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated, isBasicRegistrationComplete } = useAuth();
+    const {
+        isAuthenticated,
+        isBasicRegistrationComplete,
+        userRole,
+    } = useAuth();
+
     const [loadingAuth, setLoadingAuth] = useState(true);
     const location = useLocation();
 
@@ -23,9 +28,20 @@ const ProtectedRoute = ({ children }) => {
     const isProfilePage = location.pathname === "/profile";
     const isCompleteRegistrationPage = location.pathname === "/complete-registration";
 
-    // Если регистрация не завершена, запрещаем доступ только к `/profile`
     if (!isBasicRegistrationComplete && isProfilePage) {
         return <Navigate to="/complete-registration" state={{ from: location }} replace />;
+    }
+
+    const allowedForScanner = ["/staff-dashboard", "/scan-qr"];
+
+    if (userRole === "scanner") {
+        if (location.pathname === "/") {
+            return <Navigate to="/staff-dashboard" replace />;
+        }
+
+        if (!allowedForScanner.includes(location.pathname)) {
+            return <Navigate to="/staff-dashboard" replace />;
+        }
     }
 
     return (
@@ -35,5 +51,6 @@ const ProtectedRoute = ({ children }) => {
         </>
     );
 };
+
 
 export default ProtectedRoute;

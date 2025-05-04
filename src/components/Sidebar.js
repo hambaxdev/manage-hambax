@@ -26,13 +26,13 @@ import { useTranslation } from 'react-i18next';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
     const navigate = useNavigate();
-    const { isAuthenticated, logout } = useContext(AuthContext);
+    const { isAuthenticated, logout, userRole } = useContext(AuthContext);
     const { t } = useTranslation();
     const isMobile = useMediaQuery('(max-width: 768px)');
 
     if (!isAuthenticated) return null;
 
-    const menuItems = [
+    const allMenuItems = [
         { text: t('sidebar.dashboard'), icon: <DashboardIcon />, path: '/' },
         { text: t('sidebar.profile'), icon: <PersonIcon />, path: '/profile' },
         { text: t('sidebar.events'), icon: <EventIcon />, path: '/events' },
@@ -40,6 +40,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { text: t('sidebar.payouts'), icon: <AttachMoneyIcon />, path: '/payouts' },
         { text: t('sidebar.staff_management'), icon: <PersonIcon />, path: '/staff' }
     ];
+
+    const filteredMenuItems = userRole === 'scanner'
+        ? allMenuItems.filter(item =>
+            item.path === '/' || item.path === '/scan-qr'
+        )
+        : allMenuItems;
 
     const handleLogout = () => {
         logout();
@@ -76,44 +82,38 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                     }}
                 >
                     <Box>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: isOpen ? 'space-between' : 'center',
-                            padding: 2,
-                            position: 'relative',
-                        }}
-                    >
-                        {/* Логотип (показываем только если меню открыто) */}
-                        {isOpen && (
-                            <Typography
-                                variant="h6"
-                                sx={{
-                                    marginLeft: isMobile ? '40px' : '0px',
-                                    transition: 'margin-left 0.3s',
-                                }}
-                            >
-                                {t('sidebar.title')}
-                            </Typography>
-                        )}
-
-                        {/* Только одна кнопка: бургер (если закрыто) или крестик (если открыто) */}
-                        {isMobile && (
-                            <IconButton
-                                onClick={toggleSidebar}
-                                sx={{
-                                    position: 'absolute',
-                                    left: '8px',
-                                }}
-                            >
-                                {isOpen ? <CloseIcon /> : <MenuIcon />}
-                            </IconButton>
-                        )}
-                    </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: isOpen ? 'space-between' : 'center',
+                                padding: 2,
+                                position: 'relative',
+                            }}
+                        >
+                            {isOpen && (
+                                <Typography
+                                    variant="h6"
+                                    sx={{
+                                        marginLeft: isMobile ? '40px' : '0px',
+                                        transition: 'margin-left 0.3s',
+                                    }}
+                                >
+                                    {t('sidebar.title')}
+                                </Typography>
+                            )}
+                            {isMobile && (
+                                <IconButton
+                                    onClick={toggleSidebar}
+                                    sx={{ position: 'absolute', left: '8px' }}
+                                >
+                                    {isOpen ? <CloseIcon /> : <MenuIcon />}
+                                </IconButton>
+                            )}
+                        </Box>
                         <Divider />
                         <List>
-                            {menuItems.map((item, index) => (
+                            {filteredMenuItems.map((item, index) => (
                                 <ListItem
                                     button
                                     key={index}

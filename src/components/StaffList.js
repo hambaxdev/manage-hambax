@@ -1,19 +1,26 @@
 import React from 'react';
 import { List, ListItem, ListItemText, CircularProgress, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const StaffList = ({ staff, loading }) => {
+    const navigate = useNavigate();
+
     if (loading) {
         return <CircularProgress />;
     }
 
-    if (staff.length === 0) {
+    if (!Array.isArray(staff) || staff.length === 0) {
         return <Typography>No staff members found.</Typography>;
     }
 
     return (
         <List>
             {staff.map((user) => (
-                <ListItem key={user._id}>
+                <ListItem
+                    button
+                    key={user._id}
+                    onClick={() => navigate(`/staff/${user._id}`)}
+                >
                     <ListItemText
                         primary={user.email}
                         secondary={

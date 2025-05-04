@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import axios from '../services/axiosInstance';
 import ActionRestrictionModal from '../components/ActionRestrictionModal';
 import useUserProfile from '../hooks/useUserProfile';
@@ -11,6 +12,18 @@ const AuthProvider = ({ children }) => {
     const [isBasicRegistrationComplete, setIsBasicRegistrationComplete] = useState(() => {
         const stored = localStorage.getItem('isBasicRegistrationComplete');
         return stored === 'true';
+    });
+    const [userRole, setUserRole] = useState(() => {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            try {
+                const decoded = jwtDecode(token);
+                return decoded.role;
+            } catch {
+                return null;
+            }
+        }
+        return null;
     });
     const [loadingAuth, setLoadingAuth] = useState(true);
     const [modalState, setModalState] = useState({ isOpen: false, message: '' });
@@ -30,6 +43,9 @@ const AuthProvider = ({ children }) => {
             try {
                 const token = localStorage.getItem('authToken');
                 if (token) {
+                    const decoded = jwtDecode(token);
+                    setUserRole(decoded.role);
+
                     const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-status`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
@@ -41,6 +57,7 @@ const AuthProvider = ({ children }) => {
                 console.error('Ошибка получения данных пользователя:', error);
                 setIsAuthenticated(false);
                 setIsBasicRegistrationComplete(false);
+                setUserRole(null);
             } finally {
                 setLoadingAuth(false);
             }
@@ -58,6 +75,13 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('isBasicRegistrationComplete', basicComplete);
 
+        try {
+            const decoded = jwtDecode(accessToken);
+            setUserRole(decoded.role);
+        } catch {
+            setUserRole(null);
+        }
+
         setAuthToken(accessToken);
         setIsAuthenticated(true);
         setIsBasicRegistrationComplete(basicComplete);
@@ -71,6 +95,7 @@ const AuthProvider = ({ children }) => {
 
         setIsAuthenticated(false);
         setIsBasicRegistrationComplete(false);
+        setUserRole(null);
     };
 
     if (loadingAuth || isProfileLoading) {
@@ -91,6 +116,7 @@ const AuthProvider = ({ children }) => {
             value={{
                 isAuthenticated,
                 isBasicRegistrationComplete,
+                userRole,
                 setIsBasicRegistrationComplete,
                 profileData,
                 login,
@@ -98,7 +124,7 @@ const AuthProvider = ({ children }) => {
                 showRestrictionModal: (message) => setModalState({ isOpen: true, message }),
                 updateUserProfile,
                 profileError,
-                loading: loadingAuth || isProfileLoading, // добавлено
+                loading: loadingAuth || isProfileLoading,
             }}
         >
             <ActionRestrictionModal

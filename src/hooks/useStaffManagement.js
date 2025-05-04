@@ -11,8 +11,8 @@ const useStaffManagement = () => {
         setIsLoading(true);
         setError(null);
         try {
-            const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/auth/api/staff/list`);
-            setStaff(data);
+            const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/user/staff-members`);
+            setStaff(data.staff);
         } catch (error) {
             console.error('Failed to fetch staff:', error);
             setError(error?.response?.data?.message || 'Failed to fetch staff.');
