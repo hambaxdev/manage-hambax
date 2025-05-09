@@ -314,7 +314,8 @@
     "events": "Veranstaltungen",
     "logout": "Abmelden",
     "scan_qr": "QR Scanner",
-    "payouts": "Auszahlungen"
+    "payouts": "Auszahlungen",
+    "staff_management": "Personal"
   },
   "register": {
     "title": "Registrieren",

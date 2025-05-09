@@ -14,6 +14,45 @@ import EventDetailsForm from './EventDetailsForm';
 import AddressForm from './AddressForm';
 import PricingOptions from './PricingOptions';
 
+const normalizeTicketPools = (pools) =>
+  pools.map((pool) => ({
+    name: pool.name?.trim() || '',
+    price: parseFloat(pool.price) || 0,
+    quantity: parseInt(pool.quantity) || 0,
+    limitTickets: !!pool.limitTickets,
+    startDate: pool.startDate?.slice(0, 10) || '',
+    endDate: pool.endDate?.slice(0, 10) || '',
+  }));
+
+const getModifiedFields = (original, updated) => {
+  const result = {};
+
+  Object.keys(updated).forEach((key) => {
+    if (
+      typeof updated[key] === 'object' &&
+      updated[key] !== null &&
+      !(updated[key] instanceof File)
+    ) {
+      if (Array.isArray(updated[key])) {
+        if (
+          JSON.stringify(original[key] || []) !== JSON.stringify(updated[key])
+        ) {
+          result[key] = updated[key];
+        }
+      } else {
+        const nestedDiff = getModifiedFields(original[key] || {}, updated[key]);
+        if (Object.keys(nestedDiff).length > 0) {
+          result[key] = nestedDiff;
+        }
+      }
+    } else if (updated[key] !== original[key]) {
+      result[key] = updated[key];
+    }
+  });
+
+  return result;
+};
+
 const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
   const { t } = useTranslation();
   const { updateEvent, updating, updateError } = useUpdateEvent();
@@ -30,27 +69,23 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     },
   }));
 
-  const [pools, setPools] = useState(formData.pricing.ticketPools);
+  const [pools, setPools] = useState(normalizeTicketPools(formData.pricing.ticketPools));
   const [useTicketPools, setUseTicketPools] = useState(pools.length > 0);
 
   useEffect(() => {
+    const normalizedPools = normalizeTicketPools(eventDetails?.pricing?.ticketPools || []);
+
     setFormData((prev) => ({
       ...prev,
       ...eventDetails,
       eventImage: eventDetails?.eventImage || "",
       pricing: {
         ...eventDetails?.pricing,
-        ticketPools: Array.isArray(eventDetails?.pricing?.ticketPools)
-          ? eventDetails.pricing.ticketPools
-          : [],
+        ticketPools: normalizedPools,
       },
     }));
-    setPools(
-      Array.isArray(eventDetails?.pricing?.ticketPools)
-        ? eventDetails.pricing.ticketPools
-        : []
-    );
-    setUseTicketPools(eventDetails?.pricing?.ticketPools?.length > 0);
+    setPools(normalizedPools);
+    setUseTicketPools(normalizedPools.length > 0);
   }, [eventDetails]);
 
   const handleChange = (field, value, nestedField = null) => {
@@ -68,41 +103,14 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
     });
   };
 
-  const getModifiedFields = (original, updated) => {
-    const result = {};
-
-    Object.keys(updated).forEach((key) => {
-      if (
-        typeof updated[key] === 'object' &&
-        updated[key] !== null &&
-        !(updated[key] instanceof File)
-      ) {
-        if (Array.isArray(updated[key])) {
-          if (
-            JSON.stringify(original[key] || []) !== JSON.stringify(updated[key])
-          ) {
-            result[key] = updated[key];
-          }
-        } else {
-          const nestedDiff = getModifiedFields(original[key] || {}, updated[key]);
-          if (Object.keys(nestedDiff).length > 0) {
-            result[key] = nestedDiff;
-          }
-        }
-      } else if (updated[key] !== original[key]) {
-        result[key] = updated[key];
-      }
-    });
-
-    return result;
-  };
-
   const handleSave = async () => {
+    const normalizedPools = normalizeTicketPools(pools);
+
     const updatedData = {
       ...formData,
       pricing: {
         ...formData.pricing,
-        ticketPools: pools,
+        ticketPools: normalizedPools,
       },
     };
 
@@ -110,7 +118,7 @@ const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
       ...eventDetails,
       pricing: {
         ...eventDetails.pricing,
-        ticketPools: eventDetails.pricing?.ticketPools || [],
+        ticketPools: normalizeTicketPools(eventDetails.pricing?.ticketPools || []),
       },
     };
 

@@ -7,28 +7,23 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
     const { t } = useTranslation();
 
     useEffect(() => {
-        console.log("🔄 useEffect triggered! useTicketPools =", useTicketPools);
     
         if (useTicketPools === undefined) {
-            console.log("⚠️ useTicketPools === undefined, ничего не делаем!");
             return;
         }
     
         if (useTicketPools) {
             setPools((prevPools) => {
                 if (prevPools.length > 0) {
-                    console.log("✅ Pools уже есть, НЕ сбрасываем:", prevPools);
                     return prevPools;
                 }
     
-                console.log("🆕 Создаём 2 дефолтных пула!");
                 return [
                     { name: '', price: '', quantity: '', limitTickets: false, startDate: '', endDate: '' },
                     { name: '', price: '', quantity: '', limitTickets: false, startDate: '', endDate: '' },
                 ];
             });
         } else {
-            console.log("❌ useTicketPools выключен, очищаем пулы!");
             setPools([]); 
         }
     }, [useTicketPools]);
@@ -118,7 +113,7 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
                                     fullWidth
                                     type="date"
                                     label={t('ticketPools.startDate')}
-                                    value={pool.startDate}
+                                    value={pool.startDate ? pool.startDate.slice(0, 10) : ''}
                                     onChange={(e) => handlePoolChange(index, 'startDate', e.target.value)}
                                     InputLabelProps={{ shrink: true }}
                                     required
@@ -131,7 +126,7 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
                                     fullWidth
                                     type="date"
                                     label={t('ticketPools.endDate')}
-                                    value={pool.endDate}
+                                    value={pool.endDate ? pool.endDate.slice(0, 10) : ''}
                                     onChange={(e) => handlePoolChange(index, 'endDate', e.target.value)}
                                     InputLabelProps={{ shrink: true }}
                                     required

@@ -552,7 +552,8 @@
     "events": "Мероприятия",
     "logout": "Выйти",
     "scan_qr": "QR Scanner",
-    "payouts": "Выплаты"
+    "payouts": "Выплаты",
+    "staff_management": "Персонал"
   },
   "register": {
     "title": "Регистрация",

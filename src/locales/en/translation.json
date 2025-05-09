@@ -554,7 +554,8 @@
     "events": "Events",
     "logout": "Logout",
     "scan_qr": "QR Scanner",
-    "payouts": "Payouts"
+    "payouts": "Payouts",
+    "staff_management": "Staff"
   },
   "register": {
     "title": "Register",
