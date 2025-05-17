@@ -11,7 +11,7 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const { isLoading, apiError, handleLogin } = useLogin();
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t } = useTranslation('auth');
 
     const onLogin = async () => {
         const values = { email, password };

@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { countries } from "../../../data/countries";
 
 const CountrySelect = ({ name, value, onChange, error, helperText }) => {
-  const { t } = useTranslation(['registration', 'countries']);
+  const { t } = useTranslation(['profile', 'countries']);
 
   return (
     <TextField
       select
-      label={t('personalInfo.citizenship', { ns: 'registration' })}
+      label={t('personalInfo.citizenship')}
       name={name}
       value={value || ""}
       onChange={(event) => {

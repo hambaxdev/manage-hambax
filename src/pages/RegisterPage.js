@@ -6,7 +6,7 @@ import useRegister from '../hooks/useRegister';
 import { useNavigate } from "react-router-dom"; 
 
 const RegisterPage = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

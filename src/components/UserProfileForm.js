@@ -6,7 +6,7 @@ import ContactInfoSection from './UserProfileSections/ContactInfoSection';
 import AddressInfoSection from './UserProfileSections/AddressInfoSection';
 
 const UserProfileForm = ({ profileData, onSave }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
     const [formData, setFormData] = useState({
         ...profileData,
         organization: {

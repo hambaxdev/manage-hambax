@@ -1,0 +1,62 @@
+{
+    "profile": {
+    "title": "Profile",
+    "saveButton": "Save",
+    "updateSuccess": "Profile changed successfully",
+    "updateFailure": "Profile saving error",
+    "basicInfo": {
+      "title": "Basic Information",
+      "socialMedia": "Social Media",
+      "organizationName": "Organization name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "organizationDescription": "Organization Description"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "phone": "Phone",
+      "alternatePhone": "Alternate Phone",
+      "website": "Website"
+    },
+    "addressInfo": {
+      "title": "Address Information",
+      "city": "City",
+      "zipCode": "ZIP Code",
+      "streetName": "Street Name",
+      "houseNumber": "House Number",
+      "state": "State"
+    }
+  },
+  "personalInfo": {
+      "title": "Personal Information",
+      "organizationName": "Organization name",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "citizenship": "Citizenship",
+      "selectCountry": "Please select",
+      "language": "Language",
+      "dateOfBirth": "Date of Birth",
+      "gender": "Gender",
+      "taxIdentificationNumber": "Tax Identification Number",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "organizationNameTooltip": "This name will be used to generate a unique identifier (slug) for your organization page. For example, 'My Party' will become 'myparty'.",
+      "organizationDescription": "Organization Description",
+      "organizationDescriptionTooltip": "This text will appear on your public organization page for buyers. Use it to briefly describe what your organization does. This field is optional and can be filled out later in your profile settings."
+    },
+    "address": {
+      "title": "Address",
+      "country": "Country",
+      "city": "City",
+      "zipCode": "Zip Code",
+      "streetName": "Street Name",
+      "houseNumber": "House Number"
+    },
+    "contactInfo": {
+      "title": "Contact Information",
+      "phone": "Phone Number",
+      "website": "Website"
+    }
+}

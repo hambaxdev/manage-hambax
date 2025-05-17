@@ -1,0 +1,61 @@
+{
+    "profile": {
+    "title": "Профиль",
+    "saveButton": "Сохранить",
+    "updateSuccess": "Профиль успешно обновлен",
+    "updateFailure": "Ошибка сохранения",
+    "basicInfo": {
+      "title": "Основная информация",
+      "socialMedia": "Социальные сети",
+      "organizationName": "Имя организации",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "email": "Электронная почта",
+      "organizationDescription": "Описание организации"
+    },
+    "contactInfo": {
+      "title": "Контактная информация",
+      "phone": "Телефон",
+      "alternatePhone": "Дополнительный телефон",
+      "website": "Веб-сайт"
+    },
+    "addressInfo": {
+      "title": "Адресная информация",
+      "city": "Город",
+      "zipCode": "Почтовый индекс",
+      "streetName": "Улица",
+      "houseNumber": "Дом",
+      "state": "Область"
+    }
+  }, 
+  "personalInfo": {
+      "title": "Личная информация",
+      "organizationName": "Организация",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "citizenship": "Гражданство",
+      "selectCountry": "пожалуйста, выберите",
+      "language": "Язык",
+      "dateOfBirth": "Дата рождения",
+      "gender": "Пол",
+      "taxIdentificationNumber": "ИНН",
+      "male": "Мужской",
+      "female": "Женский",
+      "other": "Другой",
+      "organizationNameTooltip": "Из этого названия будет создан уникальный идентификатор (slug) страницы вашей организации. Например, «My Party» превратится в «myparty».",
+      "organizationDescription": "Описание организации",
+      "organizationDescriptionTooltip": "Этот текст будет отображаться на странице вашей организации для покупателей. Здесь вы можете кратко рассказать, чем занимается ваша организация. Это поле необязательно и его можно заполнить позже на странице редактирования профиля."    },
+    "address": {
+      "title": "Адрес",
+      "country": "Страна",
+      "city": "Город",
+      "zipCode": "Почтовый индекс",
+      "streetName": "Название улицы",
+      "houseNumber": "Номер дома"
+    },
+    "contactInfo": {
+      "title": "Контактная информация",
+      "phone": "Номер телефона",
+      "website": "Сайт"
+    }
+}

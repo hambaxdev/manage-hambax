@@ -13,7 +13,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 function SocialLinksSection({ data, onChange }) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('profile');
 
   const socialLinks = [
     { key: 'instagram', label: 'Instagram', Icon: InstagramIcon },

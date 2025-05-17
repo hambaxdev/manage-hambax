@@ -248,14 +248,7 @@
     "ZW": "Zimbabwe"
   },
   
-  "login": {
-    "title": "Login to Admin Panel",
-    "emailLabel": "Email",
-    "passwordLabel": "Password",
-    "loginButton": "Login",
-    "registerLink": "Don't have an account? Register",
-    "forgotPasswordLink": "Forgot your password?"
-  },
+  
   "forgotPassword": {
     "title": "Forgot Password",
     "emailLabel": "Enter your email",
@@ -513,35 +506,6 @@
   "events": {
     "title": "Event List",
     "createEventButton": "Create Event"
-  },
-  "profile": {
-    "title": "Profile",
-    "saveButton": "Save",
-    "updateSuccess": "Profile changed successfully",
-    "updateFailure": "Profile saving error",
-    "basicInfo": {
-      "title": "Basic Information",
-      "socialMedia": "Social Media",
-      "organizationName": "Organization name",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "organizationDescription": "Organization Description"
-    },
-    "contactInfo": {
-      "title": "Contact Information",
-      "phone": "Phone",
-      "alternatePhone": "Alternate Phone",
-      "website": "Website"
-    },
-    "addressInfo": {
-      "title": "Address Information",
-      "city": "City",
-      "zipCode": "ZIP Code",
-      "streetName": "Street Name",
-      "houseNumber": "House Number",
-      "state": "State"
-    }
   },
   "emailInput": {
     "label": "Enter your email",
