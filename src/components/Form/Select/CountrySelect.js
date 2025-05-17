@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { countries } from "../../../data/countries";
 
 const CountrySelect = ({ name, value, onChange, error, helperText }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['registration', 'countries']);
 
   return (
     <TextField
       select
-      label={t('registration.personalInfo.citizenship')}
+      label={t('personalInfo.citizenship', { ns: 'registration' })}
       name={name}
       value={value || ""}
       onChange={(event) => {
@@ -25,11 +25,11 @@ const CountrySelect = ({ name, value, onChange, error, helperText }) => {
       helperText={helperText}
     >
       <MenuItem value="" disabled>
-        {t('registration.personalInfo.selectCountry')}
+        {t('personalInfo.selectCountry', { ns: 'registration' })}
       </MenuItem>
       {countries.map((country) => (
         <MenuItem key={country.code} value={country.code}>
-          {t(`countries.${country.code}`, country.name)}
+          {t(country.code, { ns: 'countries', defaultValue: country.name })}
         </MenuItem>
       ))}
     </TextField>

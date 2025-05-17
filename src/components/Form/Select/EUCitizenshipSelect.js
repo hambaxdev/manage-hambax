@@ -4,12 +4,12 @@ import { useTranslation } from "react-i18next";
 import { euCountries } from "../../../data/euCountries";
 
 const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['registration', 'countries']);
 
   return (
     <TextField
       select
-      label={t("registration.address.country")}
+      label={t("address.country", { ns: "registration" })}
       name={name}
       value={value || ""}
       onChange={(event) => {
@@ -25,11 +25,11 @@ const EUCitizenshipSelect = ({ name, value, onChange, error, helperText }) => {
       helperText={helperText}
     >
       <MenuItem value="" disabled>
-        {t("registration.personalInfo.selectCountry")}
+        {t("personalInfo.selectCountry", { ns: "registration" })}
       </MenuItem>
       {euCountries.map((country) => (
         <MenuItem key={country.code} value={country.code}>
-          {t(`countries.${country.code}`, country.name)}
+          {t(country.code, { ns: "countries", defaultValue: country.name })}
         </MenuItem>
       ))}
     </TextField>
