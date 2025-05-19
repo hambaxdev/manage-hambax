@@ -41,7 +41,7 @@ const StatBox = ({ title, value }) => (
 
 
 const EventStatistics = ({ eventDetails }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const navigate = useNavigate();
 
     const eventId = eventDetails?._id;

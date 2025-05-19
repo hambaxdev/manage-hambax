@@ -1,0 +1,17 @@
+{
+    "payouts": {
+    "title": "Payouts",
+    "summary": {
+      "upcomingAmount": "Upcoming Amount",
+      "nextPayoutDate": "Next Payout Date",
+      "accountStatus": "Account Status"
+    },
+    "table": {
+      "title": "Upcoming Payouts",
+      "date": "Date",
+      "amount": "Amount",
+      "status": "Status",
+      "empty": "No upcoming payouts"
+    }
+  }
+}

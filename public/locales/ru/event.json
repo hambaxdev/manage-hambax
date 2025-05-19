@@ -1,0 +1,123 @@
+{
+    "events": {
+    "title": "Список мероприятий",
+    "createEventButton": "Добавить мероприятие"
+  },
+  "filters": {
+    "city": "Город",
+    "theme": "Тема",
+    "age": "Возрастное ограничение",
+    "allCities": "Все города",
+    "allThemes": "Все темы",
+    "allAges": "Без ограничений",
+    "dateSort": "Сортировка по дате",
+    "dateAscending": "Дата (по возрастанию)",
+    "dateDescending": "Дата (по убыванию)",
+    "cityFilter": "Город",
+    "eventTypeFilter": "Тип мероприятия",
+    "allEventTypes": "Все типы",
+    "showPastEvents": "Показать прошедшие события"
+  },
+  "eventEditPage": {
+    "title": "Редактирование события",
+    "statisticsTab": "Статистика",
+    "editTab": "Редактировать событие",
+    "statisticsPlaceholder": "Здесь будет отображаться статистика.",
+    "error": "Ошибка загрузки события: {{error}}",
+    "back": "Назад"
+  },
+  "eventStatistics": {
+    "title": "Статистика события",
+    "createTicket": "Создать билет",
+    "eventNotLoaded": "Событие не загружено",
+    "totalRevenue": "Общая выручка",
+    "totalTickets": "Всего билетов",
+    "generatedFree": "Сгенерировано бесплатно",
+    "lastTenDays": "Последние 10 дней",
+    "scannedTickets": "Отсканировано"
+  },
+  "eventEditForm": {
+    "generalInfo": "Основная информация",
+    "titleLabel": "Название события",
+    "descriptionLabel": "Описание события",
+    "dateLabel": "Дата события",
+    "timeLabel": "Время начала события",
+    "ageRestriction": "Возрастное ограничение",
+    
+    "address": "Адрес",
+    "street": "Улица",
+    "building": "Здание",
+    "city": "Город",
+    "country": "Страна",
+    "postalCode": "Почтовый индекс",
+    
+    "pricing": "Цены",
+    "ticketPrice": "Цена билета",
+    "limitTickets": "Ограничить количество билетов",
+    
+    "stripeIntegration": "Интеграция с Stripe",
+    "stripeProductId": "ID продукта Stripe",
+    "stripePriceId": "ID цены Stripe",
+    
+    "saveButton": "Сохранить изменения",
+    "saving": "Сохранение...",
+    "success": "Событие успешно обновлено!",
+    "error": "Ошибка при обновлении события: {{error}}",
+    "authError": "Пользователь не авторизован.",
+    "active": "Деактивировать ивент",
+    "inactive": "Активировать ивент"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Название",
+    "descriptionLabel": "Описание",
+    "clubNameLabel": "Название клуба",
+    "dateLabel": "Дата мероприятия",
+    "timeLabel": "Время начала"
+  },
+  "eventType": {
+    "title": "Тип мероприятия",
+    "helperText": "Выберите тип мероприятия",
+    "party": "Вечеринка",
+    "club": "Клубное шоу",
+    "concert": "Концерт"
+  },
+  "eventImage": {
+    "title": "Изображение мероприятия",
+    "helperText": "Нажмите, чтобы выбрать изображение для мероприятия",
+    "altText": "Изображение мероприятия",
+    "placeholder": "Нажмите для выбора изображения"
+  },
+  "ageRestriction": {
+    "title": "Возрастное ограничение",
+    "label": "Выберите возрастное ограничение",
+    "noRestrictions": "Без ограничений",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventAddress": {
+    "title": "Адрес мероприятия",
+    "locationLabel": "Название площадки",
+    "subtitle": "Помогите вашим гостям найти мероприятие! Укажите точный адрес, включая улицу, номер здания, город, страну и почтовый индекс",
+    "streetLabel": "Улица",
+    "buildingLabel": "Здание",
+    "cityLabel": "Город",
+    "countryLabel": "Страна",
+    "countryHelperText": "Выберите страну для мероприятия",
+    "postalCodeLabel": "Почтовый индекс"
+  },
+  "pricing": {
+    "useTicketPools": "Использовать пулы билетов",
+    "tooltipText": "Фиксированная цена – это одна цена на все билеты. Пулы билетов позволяют устанавливать разные цены для разных групп билетов."
+  },
+  "ticketPools": {
+    "pool": "Пул",
+    "poolName": "Название пула",
+    "price": "Цена",
+    "startDate": "Дата начала",
+    "endDate": "Дата окончания",
+    "quantity": "Количество",
+    "limitTickets": "Ограничить количество билетов",
+    "addPool": "Добавить пул"
+  }
+}

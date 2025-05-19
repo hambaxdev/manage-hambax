@@ -22,7 +22,7 @@ const EventDetailsForm = ({
     setEventType,
     errors = {}, // Errors object for validation
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -7,7 +7,7 @@ import useFetchEventDetails from '../hooks/useFetchEventDetails';
 import EventStatistics from '../components/Event/EventStatistics';
 
 const EventEditPage = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const { id } = useParams();
     const navigate = useNavigate();
     const [activeTab, setActiveTab] = useState(0);

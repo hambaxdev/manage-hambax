@@ -18,7 +18,7 @@ const PricingOptions = ({
     setPools,
     errors,
 }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     return (
         <Box>

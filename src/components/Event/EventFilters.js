@@ -3,7 +3,7 @@ import { Box, MenuItem, Select, FormControl, InputLabel, Switch, FormControlLabe
 import { useTranslation } from 'react-i18next';
 
 const EventFilters = ({ events, onFilterChange }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const [dateSortOrder, setDateSortOrder] = useState('asc');
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedEventType, setSelectedEventType] = useState('');

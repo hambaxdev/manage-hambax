@@ -18,7 +18,7 @@ const ageRestrictions = [
 ];
 
 const AgeRestrictionSelector = ({ ageRestriction, setAgeRestriction, error }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     const handleChange = (event) => {
         setAgeRestriction(event.target.value);

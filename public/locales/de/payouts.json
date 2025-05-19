@@ -1,0 +1,17 @@
+{
+    "payouts": {
+    "title": "Auszahlungen",
+    "summary": {
+      "upcomingAmount": "Ausstehender Betrag",
+      "nextPayoutDate": "Nächstes Auszahlungsdatum",
+      "accountStatus": "Kontostatus"
+    },
+    "table": {
+      "title": "Bevorstehende Auszahlungen",
+      "date": "Datum",
+      "amount": "Betrag",
+      "status": "Status",
+      "empty": "Keine bevorstehenden Auszahlungen"
+    }
+  }
+}

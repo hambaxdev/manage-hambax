@@ -36,7 +36,7 @@ const statusChip = (status) => {
 };
 
 const PayoutsPage = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('payouts');
     const { isLoading, apiError, summary, payouts } = usePayouts();
 
     const columns = [

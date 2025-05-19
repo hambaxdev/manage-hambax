@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from 'react-i18next';
 
 const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, useTicketPools }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     useEffect(() => {
     

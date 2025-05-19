@@ -1,0 +1,17 @@
+{
+    "payouts": {
+    "title": "Выплаты",
+    "summary": {
+      "upcomingAmount": "Сумма к выплате",
+      "nextPayoutDate": "Ближайшая дата выплаты",
+      "accountStatus": "Статус аккаунта"
+    },
+    "table": {
+      "title": "Предстоящие выплаты",
+      "date": "Дата",
+      "amount": "Сумма",
+      "status": "Статус",
+      "empty": "Нет предстоящих выплат"
+    }
+  }
+}
