@@ -632,22 +632,22 @@
     "dateLabel": "Дата события",
     "timeLabel": "Время начала события",
     "ageRestriction": "Возрастное ограничение",
-    
+
     "address": "Адрес",
     "street": "Улица",
     "building": "Здание",
     "city": "Город",
     "country": "Страна",
     "postalCode": "Почтовый индекс",
-    
+
     "pricing": "Цены",
     "ticketPrice": "Цена билета",
     "limitTickets": "Ограничить количество билетов",
-    
+
     "stripeIntegration": "Интеграция с Stripe",
     "stripeProductId": "ID продукта Stripe",
     "stripePriceId": "ID цены Stripe",
-    
+
     "saveButton": "Сохранить изменения",
     "saving": "Сохранение...",
     "success": "Событие успешно обновлено!",
@@ -659,6 +659,8 @@
   "eventStatistics": {
     "title": "Статистика события",
     "createTicket": "Создать билет",
+    "share": "Поделиться",
+    "linkCopied": "Ссылка на событие скопирована в буфер обмена",
     "eventNotLoaded": "Событие не загружено",
     "totalRevenue": "Общая выручка",
     "totalTickets": "Всего билетов",

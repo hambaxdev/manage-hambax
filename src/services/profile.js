@@ -1,7 +1,8 @@
 // src/services/profile.js
 import axios from '../services/axiosInstance';
+import config from '../config';
 
-const API_URL = process.env.REACT_APP_API_URL;
+const API_URL = config.apiUrl;
 
 export const getProfile = async () => {
     const response = await axios.get(`${API_URL}/profile`);
