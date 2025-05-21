@@ -394,22 +394,22 @@
     "dateLabel": "Veranstaltungsdatum",
     "timeLabel": "Veranstaltungsbeginn",
     "ageRestriction": "Altersbeschränkung",
-    
+
     "address": "Adresse",
     "street": "Straße",
     "building": "Gebäude",
     "city": "Stadt",
     "country": "Land",
     "postalCode": "Postleitzahl",
-    
+
     "pricing": "Preisgestaltung",
     "ticketPrice": "Ticketpreis",
     "limitTickets": "Tickets begrenzen",
-    
+
     "stripeIntegration": "Stripe-Integration",
     "stripeProductId": "Stripe-Produkt-ID",
     "stripePriceId": "Stripe-Preis-ID",
-    
+
     "saveButton": "Änderungen speichern",
     "saving": "Speichern...",
     "success": "Veranstaltung erfolgreich aktualisiert!",
@@ -421,6 +421,8 @@
   "eventStatistics": {
     "title": "Veranstaltungsstatistik",
     "createTicket": "Ticket erstellen",
+    "share": "Teilen",
+    "linkCopied": "Veranstaltungslink in die Zwischenablage kopiert",
     "eventNotLoaded": "Veranstaltung nicht geladen",
     "totalRevenue": "Gesamteinnahmen",
     "totalTickets": "Gesamttickets",

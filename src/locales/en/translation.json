@@ -247,7 +247,7 @@
     "ZM": "Zambia",
     "ZW": "Zimbabwe"
   },
-  
+
   "login": {
     "title": "Login to Admin Panel",
     "emailLabel": "Email",
@@ -634,22 +634,22 @@
     "dateLabel": "Event Date",
     "timeLabel": "Event Start Time",
     "ageRestriction": "Age Restriction",
-    
+
     "address": "Address",
     "street": "Street",
     "building": "Building",
     "city": "City",
     "country": "Country",
     "postalCode": "Postal Code",
-    
+
     "pricing": "Pricing",
     "ticketPrice": "Ticket Price",
     "limitTickets": "Limit Tickets",
-    
+
     "stripeIntegration": "Stripe Integration",
     "stripeProductId": "Stripe Product ID",
     "stripePriceId": "Stripe Price ID",
-    
+
     "saveButton": "Save Changes",
     "saving": "Saving...",
     "success": "Event updated successfully!",
@@ -660,6 +660,8 @@
   "eventStatistics": {
     "title": "Event Statistics",
     "createTicket": "Create Ticket",
+    "share": "Share",
+    "linkCopied": "Event link copied to clipboard",
     "eventNotLoaded": "Event not loaded",
     "totalRevenue": "Total Revenue",
     "totalTickets": "Total Tickets",

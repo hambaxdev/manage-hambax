@@ -69,15 +69,44 @@ npm install
 
 Configure environment variables:
 
-    Create a .env file in the root directory.
-    Add the following variables:
+    The project uses different environment configurations for development and production:
 
-    REACT_APP_API_URL=http://localhost:8000
-    NODE_ENV=development
+    - For local development (using Docker backend):
+      Use the .env.development file with:
+      ```
+      REACT_APP_API_URL=http://localhost:8000
+      REACT_APP_HAMBAX_NEW_API_URL=http://localhost:8000
+      NODE_ENV=development
+      ```
+
+    - For production:
+      Use the .env.production file with:
+      ```
+      REACT_APP_API_URL=https://api.hambax.com
+      REACT_APP_HAMBAX_NEW_API_URL=https://api.hambax.com
+      NODE_ENV=production
+      ```
+
+    The application automatically selects the right configuration based on the NODE_ENV value
+    using the src/config.js file. This means you don't need to manually specify which
+    environment file to use - it will be determined by the NODE_ENV value.
 
 Start the development server:
 
+For local development with Docker backend:
+```
+npm run start:dev
+```
+
+For production environment:
+```
+npm run start:prod
+```
+
+Or use the default environment:
+```
 npm start
+```
 
 Run Docker for backend services:
 
@@ -110,9 +139,12 @@ hambax/
 │   ├── context/          # Context providers for global state
 │   ├── utils/            # Helper functions and validation
 │   ├── locales/          # i18n localization files
+│   ├── config.js         # Environment configuration based on NODE_ENV
 │   ├── App.js            # Main app component
 │   └── index.js          # Entry point
-├── .env                  # Environment variables
+├── .env                  # Default environment variables
+├── .env.development      # Development environment variables (local Docker backend)
+├── .env.production       # Production environment variables
 ├── docker-compose.yml    # Docker configuration
 ├── package.json          # NPM dependencies
 └── README.md             # Project documentation

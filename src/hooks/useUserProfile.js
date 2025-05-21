@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from '../services/axiosInstance';
+import config from '../config';
 
 const useUserProfile = () => {
     const [profileData, setProfileData] = useState(null);
@@ -15,10 +16,10 @@ const useUserProfile = () => {
 
         try {
             const [profileRes, organizationRes] = await Promise.all([
-                axios.get(`${process.env.REACT_APP_HAMBAX_NEW_API_URL}/user/profile`, {
+                axios.get(`${config.hambaxNewApiUrl}/user/profile`, {
                     headers: { Authorization: `Bearer ${authToken}` }
                 }),
-                axios.get(`${process.env.REACT_APP_HAMBAX_NEW_API_URL}/api/organization/my`, {
+                axios.get(`${config.hambaxNewApiUrl}/api/organization/my`, {
                     headers: { Authorization: `Bearer ${authToken}` }
                 })
             ]);
@@ -38,7 +39,7 @@ const useUserProfile = () => {
     const updateUserProfile = async (updatedData) => {
         try {
             const response = await axios.put(
-                `${process.env.REACT_APP_HAMBAX_NEW_API_URL}/user/update-profile`,
+                `${config.hambaxNewApiUrl}/user/update-profile`,
                 updatedData,
                 {
                     headers: {

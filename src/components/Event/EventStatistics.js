@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Container,
     Typography,
@@ -8,7 +8,10 @@ import {
     CircularProgress,
     Alert,
     Paper,
+    Snackbar,
+    ButtonGroup,
 } from '@mui/material';
+import ShareIcon from '@mui/icons-material/Share';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import useEventStatistics from '../../hooks/useEventStatistics';
@@ -43,6 +46,7 @@ const StatBox = ({ title, value }) => (
 const EventStatistics = ({ eventDetails }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const eventId = eventDetails?._id;
     const { stats, loading, error } = useEventStatistics(eventId);
@@ -51,6 +55,21 @@ const EventStatistics = ({ eventDetails }) => {
         navigate(`/events/${eventId}/create-ticket`, {
             state: { eventDetails },
         });
+    };
+
+    const handleShare = () => {
+        const eventUrl = `https://hambax.com/events/${eventId}`;
+        navigator.clipboard.writeText(eventUrl)
+            .then(() => {
+                setSnackbarOpen(true);
+            })
+            .catch((error) => {
+                console.error('Failed to copy link: ', error);
+            });
+    };
+
+    const handleCloseSnackbar = () => {
+        setSnackbarOpen(false);
     };
 
     // Расчёт сканированных билетов и процента
@@ -72,10 +91,27 @@ const EventStatistics = ({ eventDetails }) => {
                 mb={3}
             >
                 <Typography variant="h4">{t('eventStatistics.title')}</Typography>
-                <Button variant="contained" onClick={handleCreateTicket} disabled={!eventId}>
-                    {t('eventStatistics.createTicket')}
-                </Button>
+                <ButtonGroup variant="contained" aria-label="event actions">
+                    <Button onClick={handleCreateTicket} disabled={!eventId}>
+                        {t('eventStatistics.createTicket')}
+                    </Button>
+                    <Button 
+                        onClick={handleShare} 
+                        disabled={!eventId}
+                        startIcon={<ShareIcon />}
+                    >
+                        {t('eventStatistics.share')}
+                    </Button>
+                </ButtonGroup>
             </Box>
+
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={3000}
+                onClose={handleCloseSnackbar}
+                message={t('eventStatistics.linkCopied')}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            />
 
             {!eventId && (
                 <Alert severity="warning" sx={{ mt: 2 }}>
