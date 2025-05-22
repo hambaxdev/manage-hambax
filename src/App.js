@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, Suspense } from 'react';
+import React, { useState, useCallback, useMemo, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Box, CssBaseline, useMediaQuery, CircularProgress } from '@mui/material';
 
@@ -6,6 +6,7 @@ import AuthProvider from './context/AuthContext';
 import Sidebar from './components/Sidebar';
 import ErrorBoundary from './components/ErrorBoundary';
 import { allRoutes, authRoutes } from './routes';
+import { trackPageView } from './utils/analytics';
 
 // Loading component for Suspense
 const LoadingFallback = () => (
@@ -18,6 +19,11 @@ const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
     const isMobile = useMediaQuery('(max-width: 768px)');
+
+    // Track page views
+    useEffect(() => {
+        trackPageView(location.pathname);
+    }, [location]);
 
     // Memoize isAuthPage check
     const isAuthPage = useMemo(() => {

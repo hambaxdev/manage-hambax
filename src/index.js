@@ -6,6 +6,10 @@ import App from './App';
 import theme from './styles/theme';
 import './fonts.css';
 import './i18n';
+import { initGA } from './utils/analytics';
+
+// Initialize Google Analytics
+initGA();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
