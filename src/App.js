@@ -33,7 +33,11 @@ const AppContent = () => {
     const mainContentStyles = useMemo(() => ({
         flexGrow: 1,
         p: 3,
-        ml: !isAuthPage && !isMobile ? (isSidebarOpen ? "240px" : "60px") : "0px",
+        ml: !isAuthPage 
+            ? (isMobile 
+                ? "0px" // Mobile: no margin (overlay)
+                : (isSidebarOpen ? "240px" : "60px")) // Desktop: margin based on sidebar state
+            : "0px", // Auth pages: no margin
         transition: "margin-left 0.3s",
     }), [isAuthPage, isMobile, isSidebarOpen]);
 
