@@ -454,5 +454,25 @@
       "status": "Status",
       "empty": "Keine bevorstehenden Auszahlungen"
     }
+  },
+  "footer": {
+    "privacyPolicy": "Datenschutzerklärung",
+    "dataRequest": "Datenanfrage",
+    "contact": "Kontakt"
+  },
+  "cookieConsent": {
+    "title": "Cookie-Einwilligung",
+    "message": "Diese Website verwendet Cookies, um Ihre Erfahrung zu verbessern. Durch die weitere Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu.",
+    "accept": "Alle akzeptieren",
+    "decline": "Alle ablehnen",
+    "customize": "Anpassen",
+    "necessary": "Notwendig",
+    "necessaryDescription": "Diese Cookies sind für das ordnungsgemäße Funktionieren der Website unerlässlich.",
+    "analytics": "Analyse",
+    "analyticsDescription": "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren.",
+    "marketing": "Marketing",
+    "marketingDescription": "Diese Cookies werden verwendet, um Besucher über Websites hinweg zu verfolgen und relevante Werbung anzuzeigen.",
+    "save": "Einstellungen speichern",
+    "moreInfo": "Weitere Informationen"
   }
 }

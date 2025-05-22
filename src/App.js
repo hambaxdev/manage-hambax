@@ -5,6 +5,8 @@ import { Box, CssBaseline, useMediaQuery, CircularProgress } from '@mui/material
 import AuthProvider from './context/AuthContext';
 import Sidebar from './components/Sidebar';
 import ErrorBoundary from './components/ErrorBoundary';
+import CookieConsent from './components/CookieConsent';
+import Footer from './components/Footer';
 import { allRoutes, authRoutes } from './routes';
 import { trackPageView } from './utils/analytics';
 
@@ -69,8 +71,10 @@ const AppContent = () => {
                             </Routes>
                         </Suspense>
                     </ErrorBoundary>
+                    <CookieConsent />
                 </Box>
             </Box>
+            <Footer />
         </Box>
     );
 };

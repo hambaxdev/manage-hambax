@@ -1,0 +1,179 @@
+{
+  "cookieConsent": {
+    "title": "Cookie-Zustimmung",
+    "description": "Wir verwenden Cookies, um Ihr Surferlebnis zu verbessern, den Website-Verkehr zu analysieren und Inhalte zu personalisieren. Durch Klicken auf \"Alle akzeptieren\" stimmen Sie der Verwendung von Cookies zu.",
+    "privacyPolicy": "Datenschutzerklärung",
+    "showOptions": "Einstellungen anpassen",
+    "hideOptions": "Einstellungen ausblenden",
+    "acceptAll": "Alle akzeptieren",
+    "acceptSelected": "Ausgewählte akzeptieren",
+    "reject": "Ablehnen",
+    "necessary": {
+      "title": "Notwendige Cookies",
+      "description": "Diese Cookies sind für das ordnungsgemäße Funktionieren der Website unerlässlich und können nicht deaktiviert werden."
+    },
+    "analytics": {
+      "title": "Analyse-Cookies",
+      "description": "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, was uns hilft, unsere Dienste zu verbessern."
+    },
+    "marketing": {
+      "title": "Marketing-Cookies",
+      "description": "Diese Cookies werden verwendet, um Besucher über Websites hinweg zu verfolgen, um relevante Werbung anzuzeigen."
+    }
+  },
+  "privacyPolicy": {
+    "title": "Datenschutzerklärung",
+    "lastUpdated": "Zuletzt aktualisiert",
+    "date": "24. Mai 2023",
+    "introduction": "Bei Hambax verpflichten wir uns, Ihre Privatsphäre und persönlichen Daten zu schützen. Diese Datenschutzerklärung erläutert, wie wir Ihre persönlichen Informationen sammeln, verwenden und weitergeben, wenn Sie unsere Website und Dienste nutzen. Durch die Nutzung unserer Dienste stimmen Sie den Bedingungen dieser Datenschutzerklärung zu.",
+    "sections": {
+      "dataCollection": {
+        "title": "Informationen, die wir sammeln",
+        "content": "Wir sammeln Informationen, die Sie uns direkt zur Verfügung stellen, Informationen, die wir automatisch sammeln, wenn Sie unsere Dienste nutzen, und Informationen von Dritten.",
+        "personalData": {
+          "title": "Persönliche Daten",
+          "content": "Wir können die folgenden Arten von persönlichen Daten sammeln:",
+          "items": {
+            "name": "Name und Kontaktdaten (wie E-Mail-Adresse, Telefonnummer)",
+            "email": "E-Mail-Adresse für Kontoerstellung und Kommunikation",
+            "phone": "Telefonnummer für Verifizierung und Kommunikation",
+            "address": "Adressinformationen für Veranstaltungsorte und Abrechnung",
+            "payment": "Zahlungsinformationen (sicher verarbeitet durch unsere Zahlungsabwickler)"
+          }
+        }
+      },
+      "cookies": {
+        "title": "Cookies und ähnliche Technologien",
+        "content": "Wir verwenden Cookies und ähnliche Tracking-Technologien, um Informationen über Ihre Browsing-Aktivitäten auf unserer Website zu sammeln. Cookies sind kleine Textdateien, die auf Ihrem Gerät gespeichert werden, wenn Sie eine Website besuchen.",
+        "types": {
+          "title": "Arten von Cookies, die wir verwenden",
+          "necessary": {
+            "title": "Notwendige Cookies",
+            "description": "Diese Cookies sind für das ordnungsgemäße Funktionieren der Website unerlässlich und können nicht deaktiviert werden."
+          },
+          "analytics": {
+            "title": "Analyse-Cookies",
+            "description": "Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, was uns hilft, unsere Dienste zu verbessern."
+          },
+          "marketing": {
+            "title": "Marketing-Cookies",
+            "description": "Diese Cookies werden verwendet, um Besucher über Websites hinweg zu verfolgen, um relevante Werbung anzuzeigen."
+          }
+        },
+        "management": "Sie können Ihre Cookie-Präferenzen über unser Cookie-Zustimmungsbanner oder durch Anpassung Ihrer Browsereinstellungen verwalten. Das Deaktivieren bestimmter Cookies kann jedoch die Funktionalität unserer Website beeinträchtigen."
+      },
+      "dataUse": {
+        "title": "Wie wir Ihre Informationen verwenden",
+        "content": "Wir verwenden die gesammelten Informationen für verschiedene Zwecke, darunter:",
+        "purposes": {
+          "service": "Um unsere Dienste bereitzustellen, zu warten und zu verbessern",
+          "communication": "Um mit Ihnen über unsere Dienste zu kommunizieren, auf Ihre Anfragen zu antworten und Ihnen Updates zu senden",
+          "improvement": "Um unsere Dienste zu analysieren und zu verbessern und neue Produkte und Funktionen zu entwickeln",
+          "legal": "Um gesetzlichen Verpflichtungen nachzukommen und unsere Rechte zu schützen"
+        }
+      },
+      "dataSharing": {
+        "title": "Wie wir Ihre Informationen teilen",
+        "content": "Wir können Ihre Informationen mit den folgenden Kategorien von Empfängern teilen:",
+        "recipients": {
+          "serviceProviders": "Dienstleister, die Dienstleistungen in unserem Namen erbringen, wie Zahlungsabwicklung, Datenanalyse und Kundenservice",
+          "legal": "Strafverfolgungsbehörden, Gerichte oder andere Regierungsbehörden, wenn gesetzlich vorgeschrieben",
+          "business": "Im Zusammenhang mit einer Geschäftstransaktion, wie einer Fusion, Übernahme oder Veräußerung von Vermögenswerten"
+        }
+      },
+      "dataRetention": {
+        "title": "Datenspeicherung",
+        "content": "Wir speichern Ihre persönlichen Daten so lange, wie es für die Zwecke, für die wir sie gesammelt haben, erforderlich ist, einschließlich der Erfüllung gesetzlicher, buchhalterischer oder berichtspflichtiger Anforderungen. Um die angemessene Aufbewahrungsfrist zu bestimmen, berücksichtigen wir die Menge, Art und Sensibilität der persönlichen Daten, das potenzielle Risiko einer Schädigung durch unbefugte Nutzung oder Offenlegung und die Zwecke, für die wir die Daten verarbeiten."
+      },
+      "userRights": {
+        "title": "Ihre Rechte",
+        "content": "Je nach Ihrem Standort haben Sie möglicherweise bestimmte Rechte bezüglich Ihrer persönlichen Daten, darunter:",
+        "rights": {
+          "access": {
+            "title": "Recht auf Zugang",
+            "description": "Sie haben das Recht, eine Kopie der persönlichen Daten anzufordern, die wir über Sie gespeichert haben."
+          },
+          "rectification": {
+            "title": "Recht auf Berichtigung",
+            "description": "Sie haben das Recht zu verlangen, dass wir ungenaue oder unvollständige persönliche Daten, die wir über Sie gespeichert haben, korrigieren."
+          },
+          "erasure": {
+            "title": "Recht auf Löschung",
+            "description": "Sie haben das Recht, unter bestimmten Umständen die Löschung Ihrer persönlichen Daten zu verlangen."
+          },
+          "restriction": {
+            "title": "Recht auf Einschränkung",
+            "description": "Sie haben das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer persönlichen Daten zu verlangen."
+          },
+          "portability": {
+            "title": "Recht auf Datenübertragbarkeit",
+            "description": "Sie haben das Recht, unter bestimmten Umständen die Übertragung Ihrer persönlichen Daten an einen anderen Dienstanbieter zu verlangen."
+          },
+          "objection": {
+            "title": "Recht auf Widerspruch",
+            "description": "Sie haben das Recht, unter bestimmten Umständen der Verarbeitung Ihrer persönlichen Daten zu widersprechen."
+          },
+          "consent": {
+            "title": "Recht auf Widerruf der Einwilligung",
+            "description": "Sie haben das Recht, Ihre Einwilligung jederzeit zu widerrufen, wenn wir uns auf die Einwilligung zur Verarbeitung Ihrer persönlichen Daten stützen."
+          }
+        },
+        "exercise": "Um eines dieser Rechte auszuüben, kontaktieren Sie uns bitte über die unten angegebenen Kontaktinformationen."
+      },
+      "security": {
+        "title": "Datensicherheit",
+        "content": "Wir implementieren angemessene technische und organisatorische Maßnahmen, um Ihre persönlichen Daten vor unbefugter oder unrechtmäßiger Verarbeitung, versehentlichem Verlust, Zerstörung oder Beschädigung zu schützen. Keine Methode der Übertragung über das Internet oder Methode der elektronischen Speicherung ist jedoch zu 100% sicher, und wir können keine absolute Sicherheit garantieren."
+      },
+      "thirdParty": {
+        "title": "Dienste von Drittanbietern",
+        "content": "Unsere Website kann Links zu Websites oder Diensten von Drittanbietern enthalten. Wir sind nicht verantwortlich für die Datenschutzpraktiken dieser Drittanbieter, und wir empfehlen Ihnen, deren Datenschutzrichtlinien zu lesen, bevor Sie ihnen persönliche Daten zur Verfügung stellen. Wir verwenden die folgenden Dienste von Drittanbietern:",
+        "services": {
+          "analytics": {
+            "title": "Google Analytics",
+            "description": "Wir verwenden Google Analytics, um die Nutzung unserer Website zu analysieren. Google Analytics verwendet Cookies, um Informationen über Ihre Nutzung unserer Website zu sammeln. Mehr über die Datenschutzpraktiken von Google Analytics erfahren Sie unter https://policies.google.com/privacy."
+          },
+          "payment": {
+            "title": "Zahlungsabwickler",
+            "description": "Wir verwenden Zahlungsabwickler von Drittanbietern, um Zahlungen über unsere Website zu verarbeiten. Diese Zahlungsabwickler können Ihre Zahlungsinformationen gemäß ihren Datenschutzrichtlinien sammeln und speichern."
+          },
+          "social": {
+            "title": "Soziale Medien",
+            "description": "Unsere Website kann Social-Media-Funktionen enthalten, wie den Facebook-Like-Button. Diese Funktionen können Ihre IP-Adresse und die Seite, die Sie auf unserer Website besuchen, sammeln und möglicherweise ein Cookie setzen, damit die Funktion ordnungsgemäß funktioniert."
+          }
+        }
+      },
+      "children": {
+        "title": "Datenschutz für Kinder",
+        "content": "Unsere Dienste richten sich nicht an Kinder unter 16 Jahren, und wir sammeln wissentlich keine persönlichen Daten von Kindern unter 16 Jahren. Wenn wir erfahren, dass wir persönliche Daten von einem Kind unter 16 Jahren gesammelt haben, werden wir Maßnahmen ergreifen, um diese Informationen zu löschen."
+      },
+      "changes": {
+        "title": "Änderungen dieser Datenschutzerklärung",
+        "content": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wenn wir wesentliche Änderungen vornehmen, werden wir Sie benachrichtigen, indem wir einen Hinweis auf unserer Website veröffentlichen oder Ihnen eine E-Mail senden. Wir empfehlen Ihnen, diese Datenschutzerklärung regelmäßig zu überprüfen."
+      },
+      "contact": {
+        "title": "Kontaktieren Sie uns",
+        "content": "Wenn Sie Fragen oder Bedenken zu dieser Datenschutzerklärung oder unseren Datenschutzpraktiken haben, kontaktieren Sie uns bitte unter:",
+        "email": "E-Mail",
+        "address": "Adresse"
+      }
+    }
+  },
+  "dataAccessRequest": {
+    "title": "Datenzugriffsanfrage",
+    "description": "Sie haben das Recht, auf Ihre persönlichen Daten zuzugreifen, sie zu korrigieren oder zu löschen. Bitte füllen Sie das untenstehende Formular aus, um eine Anfrage zu stellen.",
+    "form": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail-Adresse",
+      "requestType": "Anfrageart",
+      "requestTypes": {
+        "access": "Zugriff auf meine Daten",
+        "correction": "Korrektur meiner Daten",
+        "deletion": "Löschung meiner Daten"
+      },
+      "message": "Zusätzliche Informationen",
+      "submit": "Anfrage einreichen",
+      "success": "Ihre Anfrage wurde eingereicht. Wir werden sie innerhalb von 30 Tagen bearbeiten und Sie unter der angegebenen E-Mail-Adresse kontaktieren.",
+      "error": "Bei der Einreichung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+    }
+  }
+}

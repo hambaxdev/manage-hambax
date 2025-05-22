@@ -22,6 +22,8 @@ const PayoutsPage = lazy(() => import('./pages/PayoutsPage'));
 const StaffManagementPage = lazy(() => import('./pages/StaffManagementPage'));
 const SetStaffPasswordPage = lazy(() => import('./pages/SetStaffPasswordPage'));
 const StaffDashboard = lazy(() => import('./pages/StaffDashboard'));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const DataAccessRequestPage = lazy(() => import('./pages/DataAccessRequestPage'));
 
 // Public routes
 export const publicRoutes = [
@@ -53,6 +55,16 @@ export const publicRoutes = [
   {
     path: '/staff/set-password',
     element: <SetStaffPasswordPage />,
+    wrapper: PublicRoute
+  },
+  {
+    path: '/privacy-policy',
+    element: <PrivacyPolicyPage />,
+    wrapper: PublicRoute
+  },
+  {
+    path: '/data-access-request',
+    element: <DataAccessRequestPage />,
     wrapper: PublicRoute
   }
 ];

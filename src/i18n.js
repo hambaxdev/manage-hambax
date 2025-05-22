@@ -5,6 +5,9 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import en from "./locales/en/translation.json";
 import de from "./locales/de/translation.json";
 import ru from "./locales/ru/translation.json";
+import enGdpr from "./locales/en/gdpr.json";
+import deGdpr from "./locales/de/gdpr.json";
+import ruGdpr from "./locales/ru/gdpr.json";
 
 i18n
   .use(HttpApi)
@@ -15,9 +18,18 @@ i18n
     supportedLngs: ["en", "de", "ru"],
     debug: true,
     resources: {
-      en: { translation: en },
-      de: { translation: de },
-      ru: { translation: ru },
+      en: { 
+        translation: en,
+        gdpr: enGdpr
+      },
+      de: { 
+        translation: de,
+        gdpr: deGdpr
+      },
+      ru: { 
+        translation: ru,
+        gdpr: ruGdpr
+      },
     },
     detection: {
       order: ["queryString", "cookie", "localStorage", "navigator", "htmlTag"],
