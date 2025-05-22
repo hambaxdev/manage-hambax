@@ -6,13 +6,11 @@ import CreatedTicketList from './CreatedTicketList';
 const ManualTicketForm = ({ eventDetails }) => {
     const [sendEmail, setSendEmail] = useState(true);
     const [email, setEmail] = useState('');
-    const [submitting, setSubmitting] = useState(false);
     const [createdTickets, setCreatedTickets] = useState([]);
     const { createTickets } = useCreateManualTicket();
 
     console.log(eventDetails);
     const handleSubmit = async () => {
-        setSubmitting(true);
         try {
             const result = await createTickets({
                 email: sendEmail ? email : undefined,
@@ -43,8 +41,6 @@ const ManualTicketForm = ({ eventDetails }) => {
             setEmail('');
         } catch (err) {
             console.error('❌ Ошибка создания билета:', err);
-        } finally {
-            setSubmitting(false);
         }
     };
 

@@ -37,6 +37,7 @@ const useFetchUserEvents = () => {
 
     useEffect(() => {
         fetchUserEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return { events, loading, error, fetchUserEvents };

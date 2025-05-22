@@ -6,7 +6,6 @@ import useValidateTicket from '../hooks/useValidateTicket';
 const ScanQRPage = () => {
   const webcamRef = useRef(null);
   const [scanning, setScanning] = useState(false);
-  const [qrResult, setQrResult] = useState(null);
   const [statusColor, setStatusColor] = useState(null);
   const { validateTicket, status, errorReason } = useValidateTicket();
 
@@ -34,11 +33,9 @@ const ScanQRPage = () => {
         if (code) {
           setScanning(false);
           const text = code.data;
-          setQrResult(text);
           await validateTicket(text);
 
           setTimeout(() => {
-            setQrResult(null);
             setStatusColor(null);
           }, 2000);
         }

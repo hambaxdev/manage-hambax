@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Typography, Box, Button, Link, Alert } from "@mui/material";
+import React from "react";
+import { Container, Typography, Box, Button, Alert } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import useResendVerification from "../hooks/useResendVerification"; // Импортируем хук

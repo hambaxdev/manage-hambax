@@ -3,7 +3,6 @@ import {
   TextField,
   Box,
   MenuItem,
-  Typography,
   Grid
 } from "@mui/material";
 import { useTranslation } from "react-i18next";

@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
         } else {
             setIsInitialLogin(false);
         }
-    }, [authToken, profileData]);
+    }, [authToken, profileData, isInitialLogin]);
 
     const login = (accessToken, refreshToken, basicComplete) => {
         localStorage.setItem('authToken', accessToken);

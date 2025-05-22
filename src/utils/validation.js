@@ -8,27 +8,27 @@ import { isValidPostalCode } from "./validatePostalCode";
  */
 export const validateRegistration = (values) => {
     const errors = {};
-  
+
     if (!values.username.trim()) {
       errors.username = 'Username is required';
     }
-  
+
     if (!values.email) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
       errors.email = 'Email address is invalid';
     }
-  
+
     if (!values.password) {
       errors.password = 'Password is required';
     } else if (values.password.length < 6) {
       errors.password = 'Password must be at least 6 characters long';
     }
-  
+
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
-  
+
     return errors;
   };
 
@@ -40,17 +40,17 @@ export const validateRegistration = (values) => {
  */
 export const validateLogin = (values) => {
     const errors = {};
-  
+
     if (!values.email) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
       errors.email = 'Email address is invalid';
     }
-  
+
     if (!values.password) {
       errors.password = 'Password is required';
     }
-  
+
     return errors;
   };
 
@@ -118,7 +118,7 @@ export const validatePersonalInfoStep = (formData) => {
   if (!formData.organizationName || formData.organizationName.trim() === '') {
     errors.organizationName = i18n.t("validation.organizationNameRequired");
   }
-  
+
   if (!formData.firstName) {
     errors.firstName = i18n.t("validation.firstNameRequired");
   }
@@ -209,12 +209,3 @@ export const validateContactInfoStep = (formData) => {
   return errors;
 };
 
-const validatePhone = (phone) => {
-  if (!phone.startsWith('+')) {
-    return 'Phone number must start with + and country code';
-  }
-  if (phone.length < 10) {
-    return 'Phone number is too short';
-  }
-  return null;
-};

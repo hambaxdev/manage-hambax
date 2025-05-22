@@ -26,7 +26,7 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
         } else {
             setPools([]); 
         }
-    }, [useTicketPools]);
+    }, [useTicketPools, setPools]);
 
     const handleAddPool = () => {
         setPools((prevPools) => [

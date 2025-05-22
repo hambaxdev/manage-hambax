@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Tabs, Tab, Typography, Box, CircularProgress } from '@mui/material';
+import { Container, Tabs, Tab, Typography, Box, CircularProgress, Button } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import EventEditForm from '../components/Event/EventEditForm';
@@ -34,9 +34,12 @@ const EventEditPage = () => {
             <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 4 }}>
                 <Typography color="error" variant="h6">{t('eventEditPage.error', { error })}</Typography>
                 <Typography variant="body1" mt={2}>
-                    <a href="#" onClick={() => navigate(-1)} style={{ textDecoration: 'none', color: '#1976d2' }}>
+                    <Button 
+                        onClick={() => navigate(-1)} 
+                        sx={{ textDecoration: 'none', color: '#1976d2', padding: 0, minWidth: 'auto' }}
+                    >
                         {t('eventEditPage.back')}
-                    </a>
+                    </Button>
                 </Typography>
             </Container>
         );

@@ -24,7 +24,7 @@ const RegistrationReminder = () => {
     useEffect(() => {
         const fetchUserStatus = async () => {
             try {
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-status`, {
+                await axios.get(`${process.env.REACT_APP_API_URL}/auth/user-status`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` },
                 });
                 updateAuthContext(); // Обновляем контекст аутентификации
@@ -36,7 +36,7 @@ const RegistrationReminder = () => {
         if (!isBasicRegistrationComplete) {
             fetchUserStatus();
         }
-    }, []);
+    }, [isBasicRegistrationComplete, updateAuthContext]);
 
     // Если регистрация полностью завершена и Stripe-онбординг не требуется, ничего не показываем
     if (!stripeOnboardingIncomplete && isBasicRegistrationComplete) {
