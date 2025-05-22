@@ -12,7 +12,7 @@ import UserEventCard from './UserEventCard';
 import DeleteEventDialog from './DeleteEventDialog';
 
 const UserEvents = () => {
-    const { events, loading, error } = useFetchUserEvents();
+    const { events, loading, error, fetchUserEvents } = useFetchUserEvents();
     const { deleteEvent } = useDeleteEvent();
     const { t } = useTranslation();
 
@@ -48,7 +48,8 @@ const UserEvents = () => {
         if (eventToDelete) {
             const success = await deleteEvent(eventToDelete);
             if (success) {
-                setFilteredEvents((prev) => prev.filter(e => e._id !== eventToDelete));
+                // Refresh events from the server
+                await fetchUserEvents();
             }
         }
         setEventToDelete(null);
