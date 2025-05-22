@@ -354,7 +354,10 @@
   },
   "pricing": {
     "useTicketPools": "Use ticket pools",
-    "tooltipText": "Fixed price means one price for all tickets. Ticket pools allow you to set different prices for different groups of tickets."
+    "tooltipText": "Fixed price means one price for all tickets. Ticket pools allow you to set different prices for different groups of tickets.",
+    "limitTickets": "Limit Tickets",
+    "ticketPrice": "Ticket Price",
+    "maximumTickets": "Maximum Tickets"
   },
   "registration": {
     "title": "Complete Registration",

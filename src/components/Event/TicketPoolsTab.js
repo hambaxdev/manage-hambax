@@ -7,17 +7,17 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
     const { t } = useTranslation();
 
     useEffect(() => {
-    
+
         if (useTicketPools === undefined) {
             return;
         }
-    
+
         if (useTicketPools) {
             setPools((prevPools) => {
                 if (prevPools.length > 0) {
                     return prevPools;
                 }
-    
+
                 return [
                     { name: '', price: '', quantity: '', limitTickets: false, startDate: '', endDate: '' },
                     { name: '', price: '', quantity: '', limitTickets: false, startDate: '', endDate: '' },
@@ -47,7 +47,6 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
         });
     };
 
-    console.log("Current pools:", pools);
 
     return (
         <Box mt={2}>
@@ -58,7 +57,7 @@ const TicketPoolsTab = ({ pools, setPools, errors = { general: '', pools: [] }, 
             )}
 
             {pools.length === 0 ? (
-                <Typography color="error">No ticket pools available.</Typography>
+                <Typography color="error">{t('ticketPools.noPoolsAvailable')}</Typography>
             ) : (
                 pools.map((pool, index) => (
                     <Box

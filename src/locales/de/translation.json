@@ -115,7 +115,10 @@
   },
   "pricing": {
     "useTicketPools": "Ticketpools verwenden",
-    "tooltipText": "Festpreis bedeutet ein Preis für alle Tickets. Ticketpools ermöglichen es Ihnen, unterschiedliche Preise für verschiedene Ticketgruppen festzulegen."
+    "tooltipText": "Festpreis bedeutet ein Preis für alle Tickets. Ticketpools ermöglichen es Ihnen, unterschiedliche Preise für verschiedene Ticketgruppen festzulegen.",
+    "limitTickets": "Tickets begrenzen",
+    "ticketPrice": "Ticketpreis",
+    "maximumTickets": "Maximale Ticketanzahl"
   },
   "registration": {
     "title": "Registrierung abschließen",

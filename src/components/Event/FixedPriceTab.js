@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Box, TextField, Switch, FormControlLabel } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const FixedPriceTab = ({
     ticketPrice,
@@ -11,6 +12,7 @@ const FixedPriceTab = ({
     useTicketPools,
     errors = {},
 }) => {
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (useTicketPools) {
@@ -18,21 +20,22 @@ const FixedPriceTab = ({
             setLimitTickets(false);
             setTicketLimit('');
         }
-    }, [useTicketPools]);
+    }, [useTicketPools, setTicketPrice, setLimitTickets, setTicketLimit]);
 
     return (
         <Box mt={2}>
             <TextField
                 fullWidth
-                label="Ticket Price"
+                label={t('pricing.ticketPrice')}
                 value={ticketPrice}
                 onChange={(e) => setTicketPrice(e.target.value)}
                 margin="normal"
                 type="number"
+                inputProps={{ min: 0, step: 0.01 }}
                 required
                 error={!!errors.ticketPrice}
                 helperText={errors.ticketPrice}
-                disabled={useTicketPools} // ✅ Блокируем поле, если выбраны пулы билетов
+                disabled={useTicketPools}
             />
             <Box mt={2}>
                 <FormControlLabel
@@ -41,23 +44,24 @@ const FixedPriceTab = ({
                             checked={limitTickets}
                             onChange={(e) => setLimitTickets(e.target.checked)}
                             color="primary"
-                            disabled={useTicketPools} // ✅ Блокируем свитчер
+                            disabled={useTicketPools}
                         />
                     }
-                    label="Limit Tickets"
+                    label={t('pricing.limitTickets')}
                 />
                 {limitTickets && (
                     <TextField
                         fullWidth
-                        label="Maximum Tickets"
+                        label={t('pricing.maximumTickets')}
                         value={ticketLimit}
                         onChange={(e) => setTicketLimit(e.target.value)}
                         margin="normal"
                         type="number"
+                        inputProps={{ min: 1, step: 1 }}
                         required
                         error={!!errors.ticketLimit}
                         helperText={errors.ticketLimit}
-                        disabled={useTicketPools} // ✅ Блокируем ввод
+                        disabled={useTicketPools}
                     />
                 )}
             </Box>
