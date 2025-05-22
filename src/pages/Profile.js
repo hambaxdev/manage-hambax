@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { Typography, Box, Snackbar, Alert } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import UserProfileForm from "../components/UserProfileForm";
@@ -20,15 +20,15 @@ const Profile = () => {
   const { profileData, isLoading, error, updateUserProfile } = useUserProfile();
   const [avatar, setAvatar] = useState("/default-avatar.png");
   const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
-  console.log('profileData', profileData);
+
   useEffect(() => {
-    
+
     if (profileData?.organization.avatar ) {
       setAvatar(profileData.organization.avatar);
     }
   }, [profileData]);
 
-  const handleAvatarChange = (newAvatar) => {
+  const handleAvatarChange = useCallback((newAvatar) => {
     if (newAvatar.startsWith("blob:")) {
       console.warn("Ошибка: `blob://` не поддерживается в API");
       return;
@@ -36,9 +36,9 @@ const Profile = () => {
 
     setAvatar(newAvatar);
     updateUserProfile({ ...profileData, avatar: newAvatar });
-  };
+  }, [profileData, updateUserProfile]);
 
-  const handleSave = async (updatedData) => {
+  const handleSave = useCallback(async (updatedData) => {
     const success = await updateUserProfile(updatedData);
     if (success) {
       // Use setTimeout to avoid ResizeObserver glitch
@@ -46,12 +46,32 @@ const Profile = () => {
         setSuccessSnackbarOpen(true);
       }, 100);
     }
-  };
+  }, [updateUserProfile]);
 
-  const handleSnackbarClose = (_, reason) => {
+  const handleSnackbarClose = useCallback((_, reason) => {
     if (reason === "clickaway") return;
     setSuccessSnackbarOpen(false);
-  };
+  }, []);
+
+  // Memoize styles before conditional returns to follow React hooks rules
+  const containerStyles = useMemo(() => ({
+    maxWidth: 900,
+    margin: "auto",
+    mt: 5,
+    px: { xs: 2, sm: 4 },
+    pb: 3,
+    bgcolor: "background.default",
+    borderRadius: 2
+  }), []);
+
+  const avatarContainerStyles = useMemo(() => ({ 
+    textAlign: "center", 
+    mt: { xs: 6, sm: 8 } 
+  }), []);
+
+  const formContainerStyles = useMemo(() => ({ 
+    mt: 3 
+  }), []);
 
   if (isLoading) {
     return (
@@ -64,18 +84,8 @@ const Profile = () => {
   if (!profileData) return <p>{t("profile.noData")}</p>;
 
   return (
-    <Box
-      sx={{
-        maxWidth: 900,
-        margin: "auto",
-        mt: 5,
-        px: { xs: 2, sm: 4 },
-        pb: 3,
-        bgcolor: "background.default",
-        borderRadius: 2
-      }}
-    >
-      <Box sx={{ textAlign: "center", mt: { xs: 6, sm: 8 } }}>
+    <Box sx={containerStyles}>
+      <Box sx={avatarContainerStyles}>
         <UserAvatar avatarUrl={avatar} onAvatarChange={handleAvatarChange} />
         <Typography variant="h5">{profileData.fullName}</Typography>
         <Typography variant="body1" color="textSecondary">
@@ -83,7 +93,7 @@ const Profile = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ mt: 3 }}>
+      <Box sx={formContainerStyles}>
         <UserProfileForm profileData={profileData} onSave={handleSave} />
       </Box>
 
