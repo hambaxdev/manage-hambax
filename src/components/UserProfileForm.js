@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState } from 'react';
 import { Grid, Typography, Button, Divider } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import BasicInfoSection from './UserProfileSections/BasicInfoSection';
@@ -6,9 +6,8 @@ import ContactInfoSection from './UserProfileSections/ContactInfoSection';
 import AddressInfoSection from './UserProfileSections/AddressInfoSection';
 
 const UserProfileForm = ({ profileData, onSave }) => {
-    const { t } = useTranslation();
-
-    const initialFormData = useMemo(() => ({
+    const { t } = useTranslation('profile');
+    const [formData, setFormData] = useState({
         ...profileData,
         organization: {
             name: profileData?.organization?.name || '',
@@ -33,11 +32,9 @@ const UserProfileForm = ({ profileData, onSave }) => {
             website: '',
             email: '',
         }
-    }), [profileData]);
-
-    const [formData, setFormData] = useState(initialFormData);
-
-    const handleChange = useCallback((section, key, value) => {
+    });
+    
+    const handleChange = (section, key, value) => {
         if (section) {
             setFormData((prev) => ({
                 ...prev,
@@ -52,14 +49,14 @@ const UserProfileForm = ({ profileData, onSave }) => {
                 [key]: value,
             }));
         }
-    }, []);
+    };
 
-    const handleSave = useCallback(() => {
+    const handleSave = () => {
         const org = {
           ...formData.organization,
           currentName: profileData?.organization?.name || '',
         };
-
+      
         ['instagram', 'youtube', 'twitter', 'facebook'].forEach((field) => {
           if (!org[field] || !org[field].trim()) {
             delete org[field];
@@ -67,15 +64,16 @@ const UserProfileForm = ({ profileData, onSave }) => {
             org[field] = org[field].trim();
           }
         });
-
+      
         const payload = {
           ...formData,
           organization: org,
         };
 
         onSave(payload);
-      }, [formData, onSave, profileData?.organization?.name]);
-
+      };
+      
+    console.log(formData);
     return (
         <Grid container spacing={3}>
             <Grid item xs={12}>

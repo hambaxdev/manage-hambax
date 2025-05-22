@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import EUCitizenshipSelect from '../../components/Form/Select/EUCitizenshipSelect';
 
 const AddressInfoSection = ({ data, onChange }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     return (
         <Grid container spacing={3}>

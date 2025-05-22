@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 const EventImageSelector = ({ eventImage, setEventImage }) => {
     const fileInputRef = useRef(null);
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const [previewURL, setPreviewURL] = useState(null);
 
     // Функция выбора файла

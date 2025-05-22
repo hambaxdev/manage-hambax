@@ -1,0 +1,123 @@
+{
+    "events": {
+    "title": "Veranstaltungsliste",
+    "createEventButton": "Veranstaltung erstellen"
+  },
+  "filters": {
+    "city": "Stadt",
+    "theme": "Thema",
+    "age": "Altersbeschränkung",
+    "allCities": "Alle Städte",
+    "allThemes": "Alle Themen",
+    "allAges": "Keine Beschränkung",
+    "dateSort": "Nach Datum sortieren",
+    "dateAscending": "Datum (aufsteigend)",
+    "dateDescending": "Datum (absteigend)",
+    "cityFilter": "Stadt",
+    "eventTypeFilter": "Veranstaltungstyp",
+    "allEventTypes": "Alle Typen",
+    "showPastEvents": "Vergangene Veranstaltungen anzeigen"
+  },
+  "eventEditPage": {
+    "title": "Veranstaltung bearbeiten",
+    "statisticsTab": "Statistik",
+    "editTab": "Veranstaltung bearbeiten",
+    "statisticsPlaceholder": "Hier werden Statistiken angezeigt.",
+    "error": "Fehler beim Laden der Veranstaltung: {{error}}",
+    "back": "Zurück"
+  },
+  "eventStatistics": {
+    "title": "Veranstaltungsstatistik",
+    "createTicket": "Ticket erstellen",
+    "eventNotLoaded": "Veranstaltung nicht geladen",
+    "totalRevenue": "Gesamteinnahmen",
+    "totalTickets": "Gesamttickets",
+    "generatedFree": "Kostenlos erstellt",
+    "lastTenDays": "Letzte 10 Tage",
+    "scannedTickets": "Gescannt"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Veranstaltungstitel",
+    "descriptionLabel": "Beschreibung",
+    "clubNameLabel": "Name des Clubs",
+    "dateLabel": "Veranstaltungsdatum",
+    "timeLabel": "Startzeit"
+  },
+  "eventEditForm": {
+    "generalInfo": "Allgemeine Informationen",
+    "titleLabel": "Veranstaltungstitel",
+    "descriptionLabel": "Veranstaltungsbeschreibung",
+    "dateLabel": "Veranstaltungsdatum",
+    "timeLabel": "Veranstaltungsbeginn",
+    "ageRestriction": "Altersbeschränkung",
+    
+    "address": "Adresse",
+    "street": "Straße",
+    "building": "Gebäude",
+    "city": "Stadt",
+    "country": "Land",
+    "postalCode": "Postleitzahl",
+    
+    "pricing": "Preisgestaltung",
+    "ticketPrice": "Ticketpreis",
+    "limitTickets": "Tickets begrenzen",
+    
+    "stripeIntegration": "Stripe-Integration",
+    "stripeProductId": "Stripe-Produkt-ID",
+    "stripePriceId": "Stripe-Preis-ID",
+    
+    "saveButton": "Änderungen speichern",
+    "saving": "Speichern...",
+    "success": "Veranstaltung erfolgreich aktualisiert!",
+    "error": "Fehler beim Aktualisieren der Veranstaltung: {{error}}",
+    "authError": "Benutzer ist nicht authentifiziert.",
+    "active": "Event aktiv setzen",
+    "inactive": "Event inaaktiv setzen"
+  },
+  "eventType": {
+    "title": "Veranstaltungsart",
+    "helperText": "Wählen Sie die Art der Veranstaltung aus",
+    "party": "Party",
+    "club": "Club-Show",
+    "concert": "Konzert"
+  },
+  "eventImage": {
+    "title": "Veranstaltungsbild",
+    "helperText": "Klicken Sie, um ein Bild für die Veranstaltung auszuwählen",
+    "altText": "Veranstaltungsbild",
+    "placeholder": "Klicken Sie, um ein Bild auszuwählen"
+  },
+  "ageRestriction": {
+    "title": "Altersbeschränkung",
+    "label": "Wählen Sie eine Altersbeschränkung",
+    "noRestrictions": "Keine Beschränkungen",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventAddress": {
+    "title": "Veranstaltungsadresse",
+    "locationLabel": "Lokation",
+    "subtitle": "Helfen Sie Ihren Gästen, die Veranstaltung zu finden! Geben Sie die genaue Adresse ein, einschließlich Straße, Hausnummer, Stadt, Land und Postleitzahl",
+    "streetLabel": "Straße",
+    "buildingLabel": "Gebäude",
+    "cityLabel": "Stadt",
+    "countryLabel": "Land",
+    "countryHelperText": "Wählen Sie das Land der Veranstaltung",
+    "postalCodeLabel": "Postleitzahl"
+  },
+  "pricing": {
+    "useTicketPools": "Ticketpools verwenden",
+    "tooltipText": "Festpreis bedeutet ein Preis für alle Tickets. Ticketpools ermöglichen es Ihnen, unterschiedliche Preise für verschiedene Ticketgruppen festzulegen."
+  },
+  "ticketPools": {
+    "pool": "Pool",
+    "poolName": "Name des Pools",
+    "price": "Preis",
+    "startDate": "Anfangsdatum",
+    "endDate": "Enddatum",
+    "quantity": "Anzahl",
+    "limitTickets": "Tickets begrenzen",
+    "addPool": "Pool hinzufügen"
+  }
+}

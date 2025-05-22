@@ -3,7 +3,7 @@ import { List, ListItem, ListItemText, CircularProgress, Typography } from '@mui
 import { useNavigate } from 'react-router-dom';
 
 const StaffList = ({ staff, loading }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate('event');
 
     if (loading) {
         return <CircularProgress />;

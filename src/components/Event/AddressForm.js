@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import EUCitizenshipSelect from '../Form/Select/EUCitizenshipSelect';
 
 const AddressForm = ({ address, onChange, errors = {} }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     const handleAddressChange = (field, value) => {
         onChange({ ...address, [field]: value });

@@ -44,7 +44,7 @@ const StatBox = ({ title, value }) => (
 
 
 const EventStatistics = ({ eventDetails }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const navigate = useNavigate();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 

@@ -12,7 +12,7 @@ const eventTypes = [
 ];
 
 const EventTypeSelector = ({ eventType, setEventType, error }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
 
     const handleSelect = (type) => {
         // Deselect if the same type is clicked

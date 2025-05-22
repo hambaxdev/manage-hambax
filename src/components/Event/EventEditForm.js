@@ -54,7 +54,7 @@ const getModifiedFields = (original, updated) => {
 };
 
 const EventEditForm = ({ eventDetails, fetchEventDetails }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('event');
   const { updateEvent, updating, updateError } = useUpdateEvent();
 
   const [formData, setFormData] = useState(() => ({

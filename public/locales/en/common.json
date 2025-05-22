@@ -1,0 +1,11 @@
+{
+  "address": "Address",
+  "country": "Country",
+  "city": "City",
+  "zipCode": "Postal Code",
+  "streetName": "Street Name",
+  "houseNumber": "House Number",
+  "contactInformation": "Contact Information",
+  "phone": "Phone Number",
+  "website": "Website"
+}

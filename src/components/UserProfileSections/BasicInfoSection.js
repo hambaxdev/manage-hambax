@@ -9,7 +9,7 @@ import CountrySelect from '../../components/Form/Select/CountrySelect';
 import SocialLinksSection from '../SocialLinksSection';
 
 function BasicInfoSection({ data, onChange }) {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     return React.createElement(Grid, {
         container: true,

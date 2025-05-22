@@ -3,7 +3,7 @@ import { Grid, TextField, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 const ContactInfoSection = ({ data, onChange }) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     return (
         <Grid container spacing={3}>

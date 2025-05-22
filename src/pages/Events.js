@@ -7,7 +7,7 @@ import useActionRestriction from '../hooks/useActionRestriction';
 
 const Events = () => {
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t } = useTranslation('event');
     const { checkRestriction } = useActionRestriction();
 
     const handleCreateEvent = () => {

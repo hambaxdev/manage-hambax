@@ -247,14 +247,7 @@
     "ZM": "Замбия",
     "ZW": "Зимбабве"
   },
-  "login": {
-    "title": "Вход",
-    "emailLabel": "Электронная почта",
-    "passwordLabel": "Пароль",
-    "button": "Войти",
-    "registerLink": "Нет аккаунта? Зарегистрироваться",
-    "forgotPasswordLink": "Забыли пароль?"
-  },
+  
   "forgotPassword": {
     "title": "Восстановление пароля",
     "emailLabel": "Введите вашу электронную почту",
@@ -515,35 +508,6 @@
     "title": "Список мероприятий",
     "createEventButton": "Добавить мероприятие"
   },
-  "profile": {
-    "title": "Профиль",
-    "saveButton": "Сохранить",
-    "updateSuccess": "Профиль успешно обновлен",
-    "updateFailure": "Ошибка сохранения",
-    "basicInfo": {
-      "title": "Основная информация",
-      "socialMedia": "Социальные сети",
-      "organizationName": "Имя организации",
-      "firstName": "Имя",
-      "lastName": "Фамилия",
-      "email": "Электронная почта",
-      "organizationDescription": "Описание организации"
-    },
-    "contactInfo": {
-      "title": "Контактная информация",
-      "phone": "Телефон",
-      "alternatePhone": "Дополнительный телефон",
-      "website": "Веб-сайт"
-    },
-    "addressInfo": {
-      "title": "Адресная информация",
-      "city": "Город",
-      "zipCode": "Почтовый индекс",
-      "streetName": "Улица",
-      "houseNumber": "Дом",
-      "state": "Область"
-    }
-  },
   "emailInput": {
     "label": "Введите ваш email",
     "sendCodeButton": "Отправить код"
@@ -558,23 +522,7 @@
     "payouts": "Выплаты",
     "staff_management": "Персонал"
   },
-  "register": {
-    "title": "Регистрация",
-    "username": "Имя пользователя",
-    "email": "Электронная почта",
-    "password": "Пароль",
-    "confirmPassword": "Подтвердите пароль",
-    "loading": "Регистрация...",
-    "submit": "Зарегистрироваться",
-    "success": "Регистрация прошла успешно!",
-    "error": "Ошибка регистрации. Пожалуйста, попробуйте снова.",
-    "validation": {
-      "username": "Имя пользователя обязательно.",
-      "email": "Некорректный адрес электронной почты.",
-      "password": "Пароль должен содержать не менее 6 символов.",
-      "confirmPassword": "Пароли не совпадают."
-    }
-  },
+  
   "passwordReset": {
     "newPassword": "Новый пароль",
     "confirmPassword": "Подтвердите пароль",

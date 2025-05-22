@@ -1,0 +1,49 @@
+{
+    "profile": {
+    "title": "Profil",
+    "saveButton": "Speichern",
+    "updateSuccess": "Profil wurde gespeichrt",
+    "updateFailure": "Fehler",
+    "basicInfo": {
+      "title": "Grundlegende Informationen",
+      "organizationName": "Organization",
+      "socialMedia": "Social Media",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "organizationDescription": "Organisationsbeschreibung"
+    },
+    "contactInfo": {
+      "title": "Kontaktinformationen",
+      "phone": "Telefon",
+      "alternatePhone": "Alternativtelefon",
+      "website": "Webseite"
+    },
+    "addressInfo": {
+      "title": "Adressinformationen",
+      "city": "Stadt",
+      "zipCode": "Postleitzahl",
+      "streetName": "Straßenname",
+      "houseNumber": "Hausnummer",
+      "state": "Bundesland"
+    }
+  },
+  "personalInfo": {
+      "title": "Persönliche Informationen",
+      "firstName": "Vorname",
+      "organizationName": "Organization",
+      "lastName": "Nachname",
+      "citizenship": "Staatsangehörigkeit",
+      "selectCountry": "Bitte auswählen",
+      "language": "Sprache",
+      "dateOfBirth": "Geburtsdatum",
+      "gender": "Geschlecht",
+      "taxIdentificationNumber": "Steueridentifikationsnummer",
+      "male": "Männlich",
+      "female": "Weiblich",
+      "other": "Divers",
+      "organizationNameTooltip": "Aus diesem Namen wird ein eindeutiger Bezeichner (Slug) für die Seite Ihrer Organisation generiert. Zum Beispiel wird 'My Party' zu 'myparty'.",
+      "organizationDescription": "Organisationsbeschreibung",
+      "organizationDescriptionTooltip": "Dieser Text wird auf Ihrer öffentlichen Organisationsseite für Käufer angezeigt. Beschreiben Sie hier kurz, was Ihre Organisation macht. Dieses Feld ist optional und kann später im Profil bearbeitet werden."
+    }
+}

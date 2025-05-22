@@ -1,0 +1,122 @@
+{
+    "events": {
+    "title": "Event List",
+    "createEventButton": "Create Event"
+  },
+  "filters": {
+    "city": "City",
+    "theme": "Theme",
+    "age": "Age Restriction",
+    "allCities": "All Cities",
+    "allThemes": "All Themes",
+    "allAges": "All Ages",
+    "dateSort": "Sort by date",
+    "dateAscending": "Date (ascending)",
+    "dateDescending": "Date (descending)",
+    "cityFilter": "City",
+    "eventTypeFilter": "Event type",
+    "allEventTypes": "All types",
+    "showPastEvents": "Show past events"
+  },
+  "eventEditPage": {
+    "title": "Edit Event",
+    "statisticsTab": "Statistics",
+    "editTab": "Edit Event",
+    "statisticsPlaceholder": "Statistics will be displayed here.",
+    "error": "Error loading event: {{error}}",
+    "back": "Go Back"
+  },
+  "eventStatistics": {
+    "title": "Event Statistics",
+    "createTicket": "Create Ticket",
+    "eventNotLoaded": "Event not loaded",
+    "totalRevenue": "Total Revenue",
+    "totalTickets": "Total Tickets",
+    "generatedFree": "Generated for Free",
+    "lastTenDays": "Last 10 days",
+    "scannedTickets": "Scanned"
+  },
+  "eventDetailsForm": {
+    "titleLabel": "Event Title",
+    "descriptionLabel": "Description",
+    "clubNameLabel": "Club Name",
+    "dateLabel": "Event Date",
+    "timeLabel": "Start Time"
+  },
+  "eventEditForm": {
+    "generalInfo": "General Information",
+    "titleLabel": "Event Title",
+    "descriptionLabel": "Event Description",
+    "dateLabel": "Event Date",
+    "timeLabel": "Event Start Time",
+    "ageRestriction": "Age Restriction",
+    
+    "address": "Address",
+    "street": "Street",
+    "building": "Building",
+    "city": "City",
+    "country": "Country",
+    "postalCode": "Postal Code",
+    
+    "pricing": "Pricing",
+    "ticketPrice": "Ticket Price",
+    "limitTickets": "Limit Tickets",
+    
+    "stripeIntegration": "Stripe Integration",
+    "stripeProductId": "Stripe Product ID",
+    "stripePriceId": "Stripe Price ID",
+    
+    "saveButton": "Save Changes",
+    "saving": "Saving...",
+    "success": "Event updated successfully!",
+    "error": "Error updating event: {{error}}",
+    "active": "Set event inactive",
+    "inactive": "Set event active"
+  },
+  "eventType": {
+    "title": "Event Type",
+    "helperText": "Select the type of event",
+    "party": "Party",
+    "club": "Club Show",
+    "concert": "Concert"
+  },
+  "eventImage": {
+    "title": "Event Image",
+    "helperText": "Click to select an image for the event",
+    "altText": "Event image",
+    "placeholder": "Click to choose an image"
+  },
+  "ageRestriction": {
+    "title": "Age Restriction",
+    "label": "Select an age restriction",
+    "noRestrictions": "No restrictions",
+    "16": "16+",
+    "18": "18+",
+    "21": "21+"
+  },
+  "eventAddress": {
+    "title": "Event Address",
+    "locationLabel": "Location",
+    "subtitle": "Help your guests find the event! Enter the exact address, including the street, building number, city, country, and postal code",
+    "streetLabel": "Street",
+    "buildingLabel": "Building",
+    "cityLabel": "City",
+    "countryLabel": "Country",
+    "countryHelperText": "Select the country of the event",
+    "postalCodeLabel": "Postal Code"
+  },
+  "pricing": {
+    "useTicketPools": "Use ticket pools",
+    "tooltipText": "Fixed price means one price for all tickets. Ticket pools allow you to set different prices for different groups of tickets."
+  },
+  "ticketPools": {
+    "pool": "Pool",
+    "poolName": "Pool Name",
+    "price": "Price",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "quantity": "Quantity",
+    "limitTickets": "Limit Tickets",
+    "addPool": "Add Pool"
+  }
+}
