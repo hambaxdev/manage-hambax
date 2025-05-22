@@ -5,7 +5,7 @@ import useStripeOnboardingLink from "../hooks/useStripeOnboardingLink";
 
 const OnboardingRefresh = () => {
     const location = useLocation();
-    const { stripeLink, isLoading, error, fetchStripeOnboardingLink } = useStripeOnboardingLink();
+    const { isLoading, error, fetchStripeOnboardingLink } = useStripeOnboardingLink();
     const accountId = new URLSearchParams(location.search).get("accountId");
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const OnboardingRefresh = () => {
                 }
             });
         }
-    }, [accountId]);
+    }, [accountId, fetchStripeOnboardingLink]);
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh">

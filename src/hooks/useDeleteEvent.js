@@ -15,7 +15,7 @@ const useDeleteEvent = () => {
         if (!token) {
             setError('User is not authenticated. JWT token is missing.');
             setLoading(false);
-            return;
+            return false;
         }
 
         try {
@@ -24,8 +24,10 @@ const useDeleteEvent = () => {
             });
 
             setSuccess(true);
+            return true;
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при удалении мероприятия');
+            return false;
         } finally {
             setLoading(false);
         }

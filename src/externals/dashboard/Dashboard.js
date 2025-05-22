@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { alpha } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -28,7 +27,7 @@ export default function Dashboard(props) {
   return (
     <AppTheme disableCustomTheme={false} themeComponents={xThemeComponents}>
       <CssBaseline enableColorScheme />      
-      
+
         {/* ✅ Основной контент ограниченной ширины */}
         <Box
           component="main"

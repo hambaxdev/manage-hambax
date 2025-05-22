@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
     Box,
     Typography,
@@ -12,7 +12,7 @@ import UserEventCard from './UserEventCard';
 import DeleteEventDialog from './DeleteEventDialog';
 
 const UserEvents = () => {
-    const { events, loading, error } = useFetchUserEvents();
+    const { events, loading, error, fetchUserEvents } = useFetchUserEvents();
     const { deleteEvent } = useDeleteEvent();
     const { t } = useTranslation();
 
@@ -23,7 +23,7 @@ const UserEvents = () => {
         setFilteredEvents(events);
     }, [events]);
 
-    const handleFilterChange = ({ dateSortOrder, selectedCity, showPastEvents }) => {
+    const handleFilterChange = useCallback(({ dateSortOrder, selectedCity, showPastEvents }) => {
         let filtered = [...events];
 
         if (dateSortOrder === 'asc') {
@@ -42,24 +42,33 @@ const UserEvents = () => {
         }
 
         setFilteredEvents(filtered);
-    };
+    }, [events]);
 
-    const handleConfirmDelete = async () => {
+    const handleConfirmDelete = useCallback(async () => {
         if (eventToDelete) {
             const success = await deleteEvent(eventToDelete);
             if (success) {
-                setFilteredEvents((prev) => prev.filter(e => e._id !== eventToDelete));
+                // Refresh events from the server
+                await fetchUserEvents();
             }
         }
         setEventToDelete(null);
-    };
+    }, [eventToDelete, deleteEvent, fetchUserEvents]);
+
+    const containerStyles = useMemo(() => ({ width: '100%' }), []);
+    const loadingBoxStyles = useMemo(() => ({ display: 'flex', justifyContent: 'center', mt: 4 }), []);
+    const eventsContainerStyles = useMemo(() => ({ display: 'flex', flexDirection: 'column', gap: 2, mt: 2, mb: 5 }), []);
+
+    const handleSetEventToDelete = useCallback((id) => {
+        setEventToDelete(id);
+    }, []);
 
     return (
-        <Box sx={{ width: '100%' }}>
+        <Box sx={containerStyles}>
             <EventFilters events={events} onFilterChange={handleFilterChange} />
 
             {loading && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                <Box sx={loadingBoxStyles}>
                     <CircularProgress />
                 </Box>
             )}
@@ -71,12 +80,12 @@ const UserEvents = () => {
             )}
 
             {!loading && !error && filteredEvents.length > 0 ? (
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 2, mb: 5 }}>
+                <Box sx={eventsContainerStyles}>
                     {filteredEvents.map((event) => (
                         <UserEventCard
                             key={event._id}
                             event={event}
-                            onDelete={(id) => setEventToDelete(id)}
+                            onDelete={handleSetEventToDelete}
                         />
                     ))}
                 </Box>

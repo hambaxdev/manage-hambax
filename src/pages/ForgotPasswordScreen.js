@@ -21,7 +21,7 @@ const ForgotPasswordScreen = () => {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState(['', '', '', '']);
   const [isCodeSent, setIsCodeSent] = useState(false);
-  const [isCodeValid, setIsCodeValid] = useState(false);
+  const [isCodeValid] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

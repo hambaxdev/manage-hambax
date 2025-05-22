@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { colorSchemes } from '../externals/shared-theme/themePrimitives';
 
 const isLoginPage = () => window.location.pathname === '/login';
 
@@ -50,4 +49,3 @@ export const refreshAccessToken = async () => {
     throw error;
   }
 };
-

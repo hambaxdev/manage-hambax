@@ -1,44 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { Box, CssBaseline, useMediaQuery } from '@mui/material';
+import { Box, CssBaseline, useMediaQuery, CircularProgress } from '@mui/material';
 
-import Dashboard from './externals/dashboard/Dashboard';
-import Events from './pages/Events';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
-import ForgotPasswordScreen from './pages/ForgotPasswordScreen';
-import RegisterPage from './pages/RegisterPage';
-import CompleteRegistrationPage from './pages/CompleteRegistrationPage';
 import AuthProvider from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import PublicRoute from './components/PublicRoute';
 import Sidebar from './components/Sidebar';
-import CreateEventPage from './pages/CreateEventPage';
-import EventEditPage from './pages/EventEditPage';
-import ScanQRPage from './pages/ScanQRPage';
-import EmailVerificationNotice from './pages/EmailVerificationNotice';
-import ResendVerificationPage from './pages/ResendVerificationPage';
-import OnboardingRefresh from './pages/OnboardingRefresh';
-import OnboardingSuccess from './pages/OnboardingSuccess';
-import CreateTicketPage from './pages/CreateTicketPage';
-import PayoutsPage from './pages/PayoutsPage';
-import StaffManagementPage from './pages/StaffManagementPage';
-import SetStaffPasswordPage from './pages/SetStaffPasswordPage';
-import StaffDashboard from './pages/StaffDashboard';
+import ErrorBoundary from './components/ErrorBoundary';
+import CookieConsent from './components/CookieConsent';
+import Footer from './components/Footer';
+import { allRoutes, authRoutes } from './routes';
+import { trackPageView } from './utils/analytics';
+
+// Loading component for Suspense
+const LoadingFallback = () => (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+    </Box>
+);
 
 const AppContent = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const location = useLocation();
     const isMobile = useMediaQuery('(max-width: 768px)');
 
-    const authRoutes = ["/login", "/register", "/forgot-password"];
-    const isAuthPage = authRoutes.includes(location.pathname);
+    // Track page views
+    useEffect(() => {
+        trackPageView(location.pathname);
+    }, [location]);
 
-    const toggleSidebar = () => {
+    // Memoize isAuthPage check
+    const isAuthPage = useMemo(() => {
+        return authRoutes.includes(location.pathname);
+    }, [location.pathname]);
+
+    // Memoize toggleSidebar function
+    const toggleSidebar = useCallback(() => {
         setSidebarOpen((prev) => !prev);
-    };
+    }, []);
 
-    console.log(localStorage.getItem('refreshToken'));
+    // Memoize main content styles
+    const mainContentStyles = useMemo(() => ({
+        flexGrow: 1,
+        p: 3,
+        ml: !isAuthPage 
+            ? (isMobile 
+                ? "0px" // Mobile: no margin (overlay)
+                : (isSidebarOpen ? "240px" : "60px")) // Desktop: margin based on sidebar state
+            : "0px", // Auth pages: no margin
+        transition: "margin-left 0.3s",
+    }), [isAuthPage, isMobile, isSidebarOpen]);
+
     return (
         <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
             <Box sx={{ display: "flex", flexGrow: 1 }}>
@@ -46,39 +56,25 @@ const AppContent = () => {
                 {!isAuthPage && <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
                 <Box
                     component="main"
-                    sx={{
-                        flexGrow: 1,
-                        p: 3,
-                        ml: !isAuthPage && !isMobile ? (isSidebarOpen ? "240px" : "60px") : "0px",
-                        transition: "margin-left 0.3s",
-                    }}
+                    sx={mainContentStyles}
                 >
-                    <Routes>
-                        {/* Публичные маршруты */}
-                        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-                        <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
-                        <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordScreen /></PublicRoute>} />
-                        <Route path="/email-verification" element={<PublicRoute><EmailVerificationNotice /></PublicRoute>} />
-                        <Route path="/resend-verification" element={<PublicRoute><ResendVerificationPage /></PublicRoute>} />
-                        <Route path="/staff/set-password" element={<PublicRoute><SetStaffPasswordPage /></PublicRoute>} />
-
-                        {/* Приватные маршруты */}
-                        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-                        <Route path="/events" element={<ProtectedRoute><Events /></ProtectedRoute>} />
-                        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                        <Route path="/create-event" element={<ProtectedRoute><CreateEventPage /></ProtectedRoute>} />
-                        <Route path="/events/:id" element={<ProtectedRoute><EventEditPage /></ProtectedRoute>} />
-                        <Route path="/events/:id/create-ticket" element={<ProtectedRoute><CreateTicketPage /></ProtectedRoute>} />
-                        <Route path="/scan-qr" element={<ProtectedRoute><ScanQRPage /></ProtectedRoute>} />
-                        <Route path="/complete-registration" element={<ProtectedRoute><CompleteRegistrationPage /></ProtectedRoute>} />
-                        <Route path="/onboarding/refresh" element={<ProtectedRoute><OnboardingRefresh /></ProtectedRoute>} />
-                        <Route path="/onboarding/success" element={<ProtectedRoute><OnboardingSuccess /></ProtectedRoute>} />
-                        <Route path="/payouts" element={<ProtectedRoute><PayoutsPage /></ProtectedRoute>} />
-                        <Route path="/staff" element={<ProtectedRoute><StaffManagementPage /></ProtectedRoute>} />
-                        <Route path="/staff-dashboard" element={<ProtectedRoute><StaffDashboard /></ProtectedRoute>} />
-                    </Routes>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingFallback />}>
+                            <Routes>
+                                {allRoutes.map((route) => (
+                                    <Route
+                                        key={route.path}
+                                        path={route.path}
+                                        element={<route.wrapper>{route.element}</route.wrapper>}
+                                    />
+                                ))}
+                            </Routes>
+                        </Suspense>
+                    </ErrorBoundary>
+                    <CookieConsent />
                 </Box>
             </Box>
+            <Footer />
         </Box>
     );
 };
