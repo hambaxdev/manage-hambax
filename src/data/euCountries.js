@@ -10,6 +10,7 @@ export const euCountries = [
     { name: 'Finland', code: 'FI' },
     { name: 'France', code: 'FR' },
     { name: 'Germany', code: 'DE' },
+    {name: 'Georgia', code: 'GE'}, 
     { name: 'Greece', code: 'GR' },
     { name: 'Hungary', code: 'HU' },
     { name: 'Ireland', code: 'IE' },
